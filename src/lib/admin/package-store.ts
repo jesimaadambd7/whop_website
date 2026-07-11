@@ -9,8 +9,9 @@ import {
   defaultAdminPackages,
   defaultCreatorPricing,
 } from "@/lib/admin/package-seed";
+import { getDataDir } from "@/lib/admin/data-dir";
 
-const DATA_DIR = path.join(process.cwd(), "data");
+const DATA_DIR = getDataDir();
 const STORE_PATH = path.join(DATA_DIR, "packages-store.json");
 
 async function ensureDataDir() {
@@ -27,7 +28,11 @@ async function readStore(): Promise<PackageStoreData> {
       packages: defaultAdminPackages,
       creatorPricing: defaultCreatorPricing,
     };
-    await writeStore(initial);
+    try {
+      await writeStore(initial);
+    } catch (error) {
+      console.error("Could not persist package store seed:", error);
+    }
     return initial;
   }
 }

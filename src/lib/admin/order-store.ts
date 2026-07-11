@@ -9,8 +9,9 @@ import type {
   OrderStatus,
 } from "@/lib/admin/order-types";
 import { createOrderId, createOrderNumber, normalizeEmail } from "@/lib/admin/order-utils";
+import { getDataDir } from "@/lib/admin/data-dir";
 
-const DATA_DIR = path.join(process.cwd(), "data");
+const DATA_DIR = getDataDir();
 const ORDERS_FILE = path.join(DATA_DIR, "orders-store.json");
 
 async function ensureStore() {

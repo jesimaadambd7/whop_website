@@ -2,8 +2,9 @@ import { promises as fs } from "fs";
 import path from "path";
 import type { AdminResource } from "@/lib/admin/resource-types";
 import { defaultAdminResources } from "@/lib/admin/resource-seed";
+import { getDataDir } from "@/lib/admin/data-dir";
 
-const DATA_DIR = path.join(process.cwd(), "data");
+const DATA_DIR = getDataDir();
 const STORE_PATH = path.join(DATA_DIR, "resources-store.json");
 
 async function ensureDataDir() {
@@ -16,7 +17,11 @@ async function readStore(): Promise<AdminResource[]> {
     const raw = await fs.readFile(STORE_PATH, "utf8");
     return JSON.parse(raw) as AdminResource[];
   } catch {
-    await writeStore(defaultAdminResources);
+    try {
+      await writeStore(defaultAdminResources);
+    } catch (error) {
+      console.error("Could not persist resource store seed:", error);
+    }
     return defaultAdminResources;
   }
 }

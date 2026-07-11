@@ -1,6 +1,7 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { seedSubmissions } from "@/lib/admin/seed-submissions";
+import { getDataDir } from "@/lib/admin/data-dir";
 import type {
   Submission,
   SubmissionStats,
@@ -8,7 +9,7 @@ import type {
   SubmissionType,
 } from "@/lib/admin/types";
 
-const DATA_DIR = path.join(process.cwd(), "data");
+const DATA_DIR = getDataDir();
 const SUBMISSIONS_FILE = path.join(DATA_DIR, "submissions.json");
 
 function normalizeEmail(email: string) {

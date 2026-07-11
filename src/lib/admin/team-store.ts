@@ -2,8 +2,9 @@ import { promises as fs } from "fs";
 import path from "path";
 import type { AdminTeamMember } from "@/lib/admin/team-types";
 import { defaultAdminTeamMembers } from "@/lib/admin/team-seed";
+import { getDataDir } from "@/lib/admin/data-dir";
 
-const DATA_DIR = path.join(process.cwd(), "data");
+const DATA_DIR = getDataDir();
 const STORE_PATH = path.join(DATA_DIR, "team-store.json");
 
 async function ensureDataDir() {
@@ -16,7 +17,11 @@ async function readStore(): Promise<AdminTeamMember[]> {
     const raw = await fs.readFile(STORE_PATH, "utf8");
     return JSON.parse(raw) as AdminTeamMember[];
   } catch {
-    await writeStore(defaultAdminTeamMembers);
+    try {
+      await writeStore(defaultAdminTeamMembers);
+    } catch (error) {
+      console.error("Could not persist team store seed:", error);
+    }
     return defaultAdminTeamMembers;
   }
 }

@@ -2,6 +2,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import { hashPassword, verifyPassword, isValidCreatorPassword } from "@/lib/admin/creator-auth";
 import { deleteCreatorInquiries } from "@/lib/admin/submissions";
+import { getDataDir } from "@/lib/admin/data-dir";
 import type {
   CreatorAccount,
   CreatorAccountAdmin,
@@ -11,7 +12,7 @@ import type {
 } from "@/lib/admin/creator-types";
 import { createOrderId } from "@/lib/admin/order-utils";
 
-const DATA_DIR = path.join(process.cwd(), "data");
+const DATA_DIR = getDataDir();
 const CREATORS_FILE = path.join(DATA_DIR, "creators-store.json");
 
 function toAdmin(account: CreatorAccount): CreatorAccountAdmin {

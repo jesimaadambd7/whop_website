@@ -1,0 +1,425 @@
+import { mediaPath } from "@/lib/media/vidcarry-media";
+import type { PortfolioItem } from "@/lib/data/portfolio";
+
+/** Full portfolio grid items for /portfolio page (matches vidcarry.com). */
+export const portfolioPageItems: PortfolioItem[] = [
+  {
+    id: "ugc-01",
+    title: "UGC Ad Edit 01",
+    category: "UGC Ads",
+    aspect: "9:16",
+    eyebrow: "Selected Work",
+    clientType: "Selected Work",
+    description: "Selected performance ad edit created by Neaz Mahmud.",
+    href: "/portfolio/neaz-mahmud#viscap-media-ugc-ad-edit-01",
+    videoSrc: mediaPath("portfolio", "project_viscap_9ijov1rqln"),
+    posterSrc: mediaPath("portfolio", "project_viscap_9ijov1rqln", "poster"),
+  },
+  {
+    id: "blissal-shower",
+    title: "BLISSAL _Shower_Routine",
+    category: "UGC Ads",
+    aspect: "9:16",
+    eyebrow: "Body care",
+    clientType: "Body care",
+    description: "VidCarry backend-managed portfolio video.",
+    href: "/portfolio/blissal#blissal-shower-routine",
+    videoSrc: mediaPath("portfolio", "project-1782313958588-5a0622e1"),
+  },
+  {
+    id: "ryze-ugc-17",
+    title: "MA_26_A_DR-UGC_(17)_D6",
+    category: "UGC Ads",
+    aspect: "9:16",
+    eyebrow: "Ryze",
+    clientType: "Ryze",
+    description: "VidCarry backend-managed portfolio video.",
+    href: "/portfolio/ryze#ma-26-a-dr-ugc-17-d6",
+    videoSrc: mediaPath("portfolio", "project-1781894350462-2943e0ac"),
+    posterSrc: mediaPath("portfolio", "project-1781894350462-2943e0ac", "poster"),
+  },
+  {
+    id: "ryze-mushroom",
+    title: "DR-UGC-RYZE-MUSHROOM-HOT-COCOA",
+    category: "UGC Ads",
+    aspect: "9:16",
+    eyebrow: "Coffee and beverages",
+    clientType: "Coffee and beverages",
+    description: "VidCarry backend-managed portfolio video.",
+    href: "/portfolio/ryze#dr-ugc-ryze-mushroom-hot-cocoa",
+    videoSrc: mediaPath("portfolio", "project-1782061472881-83272c43"),
+    posterSrc: mediaPath("portfolio", "project-1782061472881-83272c43", "poster"),
+  },
+  {
+    id: "ryze-menopause",
+    title: "RYZE-DR-UGC-MENOPAUSE-MEMORY",
+    category: "UGC Ads",
+    aspect: "9:16",
+    eyebrow: "Coffee and beverages",
+    clientType: "Coffee and beverages",
+    description: "VidCarry backend-managed portfolio video.",
+    href: "/portfolio/ryze#ryze-dr-ugc-menopause-memory",
+    videoSrc: mediaPath("portfolio", "project-1782061615389-bee3b0f0"),
+    posterSrc: mediaPath("portfolio", "project-1782061615389-bee3b0f0", "poster"),
+  },
+  {
+    id: "wow-skin",
+    title: "WOW Skin Science Texture Demo Ads",
+    category: "UGC Ads",
+    aspect: "9:16",
+    eyebrow: "Beauty and skincare",
+    clientType: "Beauty and skincare",
+    description:
+      "Model-led beauty routines, texture shots, benefit captions, and UGC cutdowns for paid social.",
+    href: "/portfolio/wow-skin-science#wow-skin-science-texture-demo-ads",
+  },
+  {
+    id: "ryze-morning",
+    title: "RYZE Morning Routine UGC Ads",
+    category: "UGC Ads",
+    aspect: "9:16",
+    eyebrow: "Functional coffee",
+    clientType: "Functional coffee",
+    description:
+      "Creator-led morning hooks, product prep footage, benefit captions, and paid social variants.",
+    href: "/portfolio/ryze#ryze-morning-routine-ugc-ads",
+  },
+  {
+    id: "ugc-02",
+    title: "UGC Ad Edit 02",
+    category: "UGC Ads",
+    aspect: "9:16",
+    eyebrow: "Selected Work",
+    clientType: "Selected Work",
+    description: "Selected performance ad edit created by Neaz Mahmud.",
+    href: "/portfolio/neaz-mahmud#viscap-media-ugc-ad-edit-02",
+    videoSrc: mediaPath("portfolio", "project_viscap_i01jxhloj7"),
+    posterSrc: mediaPath("portfolio", "project_viscap_i01jxhloj7", "poster"),
+  },
+  {
+    id: "ugc-03",
+    title: "UGC Ad Edit 03",
+    category: "UGC Ads",
+    aspect: "9:16",
+    eyebrow: "Selected Work",
+    clientType: "Selected Work",
+    description: "Selected performance ad edit created by Neaz Mahmud.",
+    href: "/portfolio/neaz-mahmud#viscap-media-ugc-ad-edit-03",
+    videoSrc: mediaPath("portfolio", "project_viscap_1bex1elrrc"),
+    posterSrc: mediaPath("portfolio", "project_viscap_1bex1elrrc", "poster"),
+  },
+  {
+    id: "ugc-04",
+    title: "UGC Ad Edit 04",
+    category: "UGC Ads",
+    aspect: "9:16",
+    eyebrow: "Selected Work",
+    clientType: "Selected Work",
+    description: "Selected performance ad edit created by Neaz Mahmud.",
+    href: "/portfolio/neaz-mahmud#viscap-media-ugc-ad-edit-04",
+    videoSrc: mediaPath("portfolio", "project_viscap_wygrtygrxq"),
+    posterSrc: mediaPath("portfolio", "project_viscap_wygrtygrxq", "poster"),
+  },
+  {
+    id: "ugc-05",
+    title: "UGC Ad Edit 05",
+    category: "UGC Ads",
+    aspect: "9:16",
+    eyebrow: "Selected Work",
+    clientType: "Selected Work",
+    description: "Selected performance ad edit created by Neaz Mahmud.",
+    href: "/portfolio/neaz-mahmud#viscap-media-ugc-ad-edit-05",
+    videoSrc: mediaPath("portfolio", "project_viscap_9cgejdfiz2"),
+    posterSrc: mediaPath("portfolio", "project_viscap_9cgejdfiz2", "poster"),
+  },
+  {
+    id: "ugc-06",
+    title: "UGC Ad Edit 06",
+    category: "UGC Ads",
+    aspect: "9:16",
+    eyebrow: "Selected Work",
+    clientType: "Selected Work",
+    description: "Selected performance ad edit created by Neaz Mahmud.",
+    href: "/portfolio/neaz-mahmud#viscap-media-ugc-ad-edit-06",
+    videoSrc: mediaPath("portfolio", "project_viscap_30ctolj7vv"),
+    posterSrc: mediaPath("portfolio", "project_viscap_30ctolj7vv", "poster"),
+  },
+  {
+    id: "ugc-07",
+    title: "UGC Ad Edit 07",
+    category: "UGC Ads",
+    aspect: "9:16",
+    eyebrow: "Selected Work",
+    clientType: "Selected Work",
+    description: "Selected performance ad edit created by Neaz Mahmud.",
+    href: "/portfolio/neaz-mahmud#viscap-media-ugc-ad-edit-07",
+    videoSrc: mediaPath("portfolio", "project_viscap_qtg17iqtme"),
+    posterSrc: mediaPath("portfolio", "project_viscap_qtg17iqtme", "poster"),
+  },
+  {
+    id: "ugc-08",
+    title: "UGC Ad Edit 08",
+    category: "UGC Ads",
+    aspect: "9:16",
+    eyebrow: "Selected Work",
+    clientType: "Selected Work",
+    description: "Selected performance ad edit created by Neaz Mahmud.",
+    href: "/portfolio/neaz-mahmud#viscap-media-ugc-ad-edit-08",
+    videoSrc: mediaPath("portfolio", "project_viscap_xeg9rijjsp"),
+    posterSrc: mediaPath("portfolio", "project_viscap_xeg9rijjsp", "poster"),
+  },
+  {
+    id: "ugc-09",
+    title: "UGC Ad Edit 09",
+    category: "UGC Ads",
+    aspect: "9:16",
+    eyebrow: "Selected Work",
+    clientType: "Selected Work",
+    description: "Selected performance ad edit created by Neaz Mahmud.",
+    href: "/portfolio/neaz-mahmud#viscap-media-ugc-ad-edit-09",
+    videoSrc: mediaPath("portfolio", "project_viscap_fnpkr8zi8y"),
+    posterSrc: mediaPath("portfolio", "project_viscap_fnpkr8zi8y", "poster"),
+  },
+  {
+    id: "ugc-10",
+    title: "UGC Ad Edit 10",
+    category: "UGC Ads",
+    aspect: "9:16",
+    eyebrow: "Selected Work",
+    clientType: "Selected Work",
+    description: "Selected performance ad edit created by Neaz Mahmud.",
+    href: "/portfolio/neaz-mahmud#viscap-media-ugc-ad-edit-10",
+    videoSrc: mediaPath("portfolio", "project_viscap_x6u7z8x5qb"),
+    posterSrc: mediaPath("portfolio", "project_viscap_x6u7z8x5qb", "poster"),
+  },
+  {
+    id: "ugc-11",
+    title: "UGC Ad Edit 11",
+    category: "UGC Ads",
+    aspect: "4:5",
+    eyebrow: "Selected Work",
+    clientType: "Selected Work",
+    description: "Selected performance ad edit created by Neaz Mahmud.",
+    href: "/portfolio/neaz-mahmud#viscap-media-ugc-ad-edit-11",
+    videoSrc: mediaPath("portfolio", "project_viscap_youe2tzd9h"),
+    posterSrc: mediaPath("portfolio", "project_viscap_youe2tzd9h", "poster"),
+  },
+  {
+    id: "ugc-12",
+    title: "UGC Ad Edit 12",
+    category: "UGC Ads",
+    aspect: "4:5",
+    eyebrow: "Selected Work",
+    clientType: "Selected Work",
+    description: "Selected performance ad edit created by Neaz Mahmud.",
+    href: "/portfolio/neaz-mahmud#viscap-media-ugc-ad-edit-12",
+    videoSrc: mediaPath("portfolio", "project_viscap_9s8vlpttar"),
+    posterSrc: mediaPath("portfolio", "project_viscap_9s8vlpttar", "poster"),
+  },
+  {
+    id: "woxer-lifestyle",
+    title: "Woxer Lifestyle Apparel Campaign",
+    category: "Ecommerce Ads",
+    aspect: "9:16",
+    eyebrow: "DTC apparel",
+    clientType: "DTC apparel",
+    description:
+      "Lifestyle footage, comfort-led hooks, product detail cuts, and launch creatives for social campaigns.",
+    href: "/portfolio/woxer#woxer-lifestyle-apparel-campaign",
+  },
+  {
+    id: "javy-recipe",
+    title: "Javy Recipe-Style Video System",
+    category: "YouTube Videos",
+    aspect: "9:16",
+    eyebrow: "Coffee and beverages",
+    clientType: "Coffee and beverages",
+    description:
+      "Recipe edits, product closeups, creator taste tests, and short-form cutdowns for beverage buyers.",
+    href: "/portfolio/javy#javy-recipe-style-video-system",
+  },
+  {
+    id: "ryze-hooks",
+    title: "RYZE Paid Social Hook Library",
+    category: "Motion Graphics",
+    aspect: "9:16",
+    eyebrow: "Functional coffee",
+    clientType: "Functional coffee",
+    description:
+      "UGC hooks, animated product callouts, routine edits, and retargeting cuts for performance testing.",
+    href: "/portfolio/ryze#ryze-paid-social-hook-library",
+  },
+  {
+    id: "blissal-short",
+    title: "Blissal Body Care Short-Form Ads",
+    category: "AI Generated",
+    aspect: "9:16",
+    eyebrow: "Body care",
+    clientType: "Body care",
+    description:
+      "Problem-solution edits, product usage closeups, caption rhythm, and offer-ready social cuts.",
+    href: "/portfolio/blissal#blissal-body-care-short-form-ads",
+  },
+  {
+    id: "shine-armor",
+    title: "SHINE Armor Before-After Ads",
+    category: "Ecommerce Ads",
+    aspect: "9:16",
+    eyebrow: "Auto care",
+    clientType: "Auto care",
+    description:
+      "High-contrast product demos, shine reveals, offer explainers, and warm-audience proof clips.",
+    href: "/portfolio/shine-armor#shine-armor-before-after-ads",
+  },
+  {
+    id: "woxer-testimonial",
+    title: "Woxer Creator Testimonial Cuts",
+    category: "Short Form Content",
+    aspect: "9:16",
+    eyebrow: "DTC apparel",
+    clientType: "DTC apparel",
+    description:
+      "Creator reads, social proof pacing, lifestyle frames, and retention-focused caption systems.",
+    href: "/portfolio/woxer#woxer-creator-testimonial-cuts",
+  },
+];
+
+export type ClientLibraryEntry = {
+  name: string;
+  slug: string;
+  category: string;
+  videoCount: number;
+  tags: string[];
+  logo: string;
+  logoBg: "zinc-950" | "white";
+  videos: {
+    title: string;
+    category: string;
+    description: string;
+  }[];
+};
+
+export const portfolioClientLibraries: ClientLibraryEntry[] = [
+  {
+    name: "RYZE",
+    slug: "ryze",
+    category: "Functional coffee",
+    videoCount: 5,
+    tags: ["UGC ads", "Paid social edits", "Product storytelling"],
+    logo: "/assets/clients/ryze.svg",
+    logoBg: "zinc-950",
+    videos: [
+      {
+        title: "MA_26_A_DR-UGC_(17)_D6",
+        category: "UGC Ads",
+        description: "Published from the VidCarry portfolio control panel.",
+      },
+      {
+        title: "DR-UGC-RYZE-MUSHROOM-HOT-COCOA",
+        category: "UGC Ads",
+        description: "Published from the VidCarry portfolio control panel.",
+      },
+      {
+        title: "RYZE-DR-UGC-MENOPAUSE-MEMORY",
+        category: "UGC Ads",
+        description: "Published from the VidCarry portfolio control panel.",
+      },
+    ],
+  },
+  {
+    name: "WOW Skin Science",
+    slug: "wow-skin-science",
+    category: "Beauty and skincare",
+    videoCount: 1,
+    tags: ["Beauty UGC", "Product demos", "Social ad cutdowns"],
+    logo: "/assets/clients/wow-skin-science.png",
+    logoBg: "white",
+    videos: [
+      {
+        title: "WOW Skin Science Texture Demo Ads",
+        category: "UGC Ads",
+        description:
+          "Model-led beauty routines, texture shots, benefit captions, and UGC cutdowns for paid social.",
+      },
+    ],
+  },
+  {
+    name: "SHINE Armor",
+    slug: "shine-armor",
+    category: "Auto care",
+    videoCount: 1,
+    tags: ["Demo ads", "Offer creatives", "Before-after edits"],
+    logo: "/assets/clients/shine-armor.png",
+    logoBg: "zinc-950",
+    videos: [
+      {
+        title: "SHINE Armor Before-After Ads",
+        category: "Ecommerce Ads",
+        description:
+          "High-contrast product demos, shine reveals, offer explainers, and warm-audience proof clips.",
+      },
+    ],
+  },
+  {
+    name: "Woxer",
+    slug: "woxer",
+    category: "DTC apparel",
+    videoCount: 2,
+    tags: ["UGC ads", "Lifestyle edits", "Short-form content"],
+    logo: "/assets/clients/woxer.svg",
+    logoBg: "white",
+    videos: [
+      {
+        title: "Woxer Lifestyle Apparel Campaign",
+        category: "Ecommerce Ads",
+        description:
+          "Lifestyle footage, comfort-led hooks, product detail cuts, and launch creatives for social campaigns.",
+      },
+      {
+        title: "Woxer Creator Testimonial Cuts",
+        category: "Short Form Content",
+        description:
+          "Creator reads, social proof pacing, lifestyle frames, and retention-focused caption systems.",
+      },
+    ],
+  },
+  {
+    name: "Javy",
+    slug: "javy",
+    category: "Coffee and beverages",
+    videoCount: 1,
+    tags: ["Product ads", "Recipe-style edits", "Performance creatives"],
+    logo: "/assets/clients/javy.svg",
+    logoBg: "white",
+    videos: [
+      {
+        title: "Javy Recipe-Style Video System",
+        category: "YouTube Videos",
+        description:
+          "Recipe edits, product closeups, creator taste tests, and short-form cutdowns for beverage buyers.",
+      },
+    ],
+  },
+  {
+    name: "Blissal",
+    slug: "blissal",
+    category: "Body care",
+    videoCount: 2,
+    tags: ["UGC ads", "Problem-solution edits", "Product demos"],
+    logo: "/assets/clients/blissal.png",
+    logoBg: "white",
+    videos: [
+      {
+        title: "BLISSAL _Shower_Routine",
+        category: "UGC Ads",
+        description: "Published from the VidCarry portfolio control panel.",
+      },
+      {
+        title: "Blissal Body Care Short-Form Ads",
+        category: "AI Generated",
+        description:
+          "Problem-solution edits, product usage closeups, caption rhythm, and offer-ready social cuts.",
+      },
+    ],
+  },
+];

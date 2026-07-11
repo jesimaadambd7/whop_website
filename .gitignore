@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local admin data
+/data/submissions.json
+/data/packages-store.json
+/data/team-store.json
+/data/orders-store.json
+/data/creators-store.json
+/data/resources-store.json

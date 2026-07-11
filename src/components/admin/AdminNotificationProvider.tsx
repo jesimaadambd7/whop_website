@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   createContext,
   useCallback,
@@ -17,10 +18,17 @@ import type {
 } from "@/lib/admin/notification-types";
 import { cn } from "@/lib/utils";
 
-const STORAGE_KEY = "vidcarry_admin_notification_seen_v1";
+const STORAGE_KEY = "vidcarry_admin_notification_seen_v2";
 const POLL_MS = 20_000;
 const TOAST_LIFETIME_MS = 9_000;
 const MAX_TOASTS = 4;
+
+const EMPTY_COUNTS: AdminNotificationCounts = {
+  inquiries: 0,
+  creators: 0,
+  orders: 0,
+  total: 0,
+};
 
 type AdminNotificationContextValue = {
   counts: AdminNotificationCounts;
@@ -151,13 +159,16 @@ function AdminNotificationToast({
   );
 }
 
-export function AdminNotificationProvider({ children }: { children: React.ReactNode }) {
-  const [counts, setCounts] = useState<AdminNotificationCounts>({
-    inquiries: 0,
-    creators: 0,
-    orders: 0,
-    total: 0,
-  });
+type Props = {
+  children: React.ReactNode;
+  initialSnapshot?: AdminNotificationSnapshot;
+};
+
+export function AdminNotificationProvider({ children, initialSnapshot }: Props) {
+  const pathname = usePathname();
+  const [counts, setCounts] = useState<AdminNotificationCounts>(
+    initialSnapshot?.counts ?? EMPTY_COUNTS,
+  );
   const [toasts, setToasts] = useState<AdminNotificationEvent[]>([]);
   const seenIdsRef = useRef<Set<string>>(new Set());
   const initializedRef = useRef(false);
@@ -187,6 +198,11 @@ export function AdminNotificationProvider({ children }: { children: React.ReactN
     (snapshot: AdminNotificationSnapshot, announce: boolean) => {
       setCounts(snapshot.counts);
 
+      const liveIds = new Set(snapshot.events.map((event) => event.id));
+      seenIdsRef.current = new Set(
+        [...seenIdsRef.current].filter((id) => liveIds.has(id)),
+      );
+
       if (!announce) {
         for (const event of snapshot.events) {
           seenIdsRef.current.add(event.id);
@@ -207,31 +223,40 @@ export function AdminNotificationProvider({ children }: { children: React.ReactN
     [enqueueToasts],
   );
 
-  useEffect(() => {
-    seenIdsRef.current = readSeenIds();
-
-    async function poll(announce: boolean) {
+  const poll = useCallback(
+    async (announce: boolean) => {
       try {
         const response = await fetch("/api/admin/notifications", {
           credentials: "same-origin",
           cache: "no-store",
         });
-        if (!response.ok) return;
+        if (!response.ok) {
+          setCounts(EMPTY_COUNTS);
+          return;
+        }
         const snapshot = (await response.json()) as AdminNotificationSnapshot;
         applySnapshot(snapshot, announce);
       } catch {
-        // Ignore transient polling errors.
+        setCounts(EMPTY_COUNTS);
       }
+    },
+    [applySnapshot],
+  );
+
+  useEffect(() => {
+    seenIdsRef.current = readSeenIds();
+    if (initialSnapshot) {
+      applySnapshot(initialSnapshot, false);
     }
+
+    let interval: number | undefined;
 
     void poll(false).then(() => {
       initializedRef.current = true;
+      interval = window.setInterval(() => {
+        void poll(true);
+      }, POLL_MS);
     });
-
-    const interval = window.setInterval(() => {
-      if (!initializedRef.current) return;
-      void poll(true);
-    }, POLL_MS);
 
     function onFocus() {
       if (!initializedRef.current) return;
@@ -241,10 +266,15 @@ export function AdminNotificationProvider({ children }: { children: React.ReactN
     window.addEventListener("focus", onFocus);
 
     return () => {
-      window.clearInterval(interval);
+      if (interval) window.clearInterval(interval);
       window.removeEventListener("focus", onFocus);
     };
-  }, [applySnapshot]);
+  }, [applySnapshot, initialSnapshot, poll]);
+
+  useEffect(() => {
+    if (!initializedRef.current) return;
+    void poll(false);
+  }, [pathname, poll]);
 
   useEffect(() => {
     if (toasts.length === 0) return;

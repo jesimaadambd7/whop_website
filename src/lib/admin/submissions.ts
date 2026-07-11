@@ -1,4 +1,4 @@
-import { readJsonStore, writeJsonStore } from "@/lib/admin/json-store";
+import { readJsonStore, requireJsonStoreWrite } from "@/lib/admin/json-store";
 import type {
   Submission,
   SubmissionStats,
@@ -31,7 +31,7 @@ async function readAll(): Promise<Submission[]> {
 }
 
 async function writeAll(submissions: Submission[]) {
-  await writeJsonStore(STORE_FILE, submissions);
+  await requireJsonStoreWrite(STORE_FILE, submissions);
 }
 
 export async function listSubmissions(filters?: {

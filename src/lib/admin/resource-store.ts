@@ -1,6 +1,6 @@
 import type { AdminResource } from "@/lib/admin/resource-types";
 import { defaultAdminResources } from "@/lib/admin/resource-seed";
-import { readJsonStore, writeJsonStore } from "@/lib/admin/json-store";
+import { readJsonStore, requireJsonStoreWrite } from "@/lib/admin/json-store";
 
 const STORE_FILE = "resources-store.json";
 
@@ -19,7 +19,7 @@ async function readStore(): Promise<AdminResource[]> {
 }
 
 async function writeStore(resources: AdminResource[]) {
-  await writeJsonStore(STORE_FILE, resources);
+  await requireJsonStoreWrite(STORE_FILE, resources);
 }
 
 export async function listAdminResources() {

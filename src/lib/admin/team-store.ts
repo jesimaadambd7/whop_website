@@ -1,6 +1,6 @@
 import type { AdminTeamMember } from "@/lib/admin/team-types";
 import { defaultAdminTeamMembers } from "@/lib/admin/team-seed";
-import { readJsonStore, writeJsonStore } from "@/lib/admin/json-store";
+import { readJsonStore, requireJsonStoreWrite } from "@/lib/admin/json-store";
 
 const STORE_FILE = "team-store.json";
 
@@ -19,7 +19,7 @@ async function readStore(): Promise<AdminTeamMember[]> {
 }
 
 async function writeStore(members: AdminTeamMember[]) {
-  await writeJsonStore(STORE_FILE, members);
+  await requireJsonStoreWrite(STORE_FILE, members);
 }
 
 export async function listAdminTeamMembers() {

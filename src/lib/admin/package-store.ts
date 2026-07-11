@@ -7,7 +7,7 @@ import {
   defaultAdminPackages,
   defaultCreatorPricing,
 } from "@/lib/admin/package-seed";
-import { readJsonStore, writeJsonStore } from "@/lib/admin/json-store";
+import { readJsonStore, requireJsonStoreWrite } from "@/lib/admin/json-store";
 
 const STORE_FILE = "packages-store.json";
 
@@ -51,7 +51,7 @@ async function readStore(): Promise<PackageStoreData> {
 }
 
 async function writeStore(data: PackageStoreData) {
-  await writeJsonStore(STORE_FILE, data);
+  await requireJsonStoreWrite(STORE_FILE, data);
 }
 
 export async function getPackageStore() {

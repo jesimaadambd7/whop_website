@@ -1,11 +1,17 @@
 import { promises as fs } from "fs";
 import path from "path";
-import { BlobNotFoundError, head, put } from "@vercel/blob";
+import { Redis } from "@upstash/redis";
+import { BlobNotFoundError, get, put } from "@vercel/blob";
 import {
   getBundledDataDir,
   getDataDir,
   isServerlessRuntime,
 } from "@/lib/admin/data-dir";
+import {
+  getPersistentStorageStatus,
+  useBlobStorage,
+  useRedisStorage,
+} from "@/lib/admin/persistent-storage";
 
 const BLOB_PREFIX = "vidcarry-data";
 
@@ -21,8 +27,17 @@ function blobPath(fileName: string) {
   return `${BLOB_PREFIX}/${fileName}`;
 }
 
-export function useBlobStorage() {
-  return isServerlessRuntime() && Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+function redisKey(fileName: string) {
+  return `vidcarry:store:${fileName}`;
+}
+
+export { getPersistentStorageStatus, useBlobStorage, useRedisStorage } from "@/lib/admin/persistent-storage";
+
+function getRedisClient() {
+  const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+  if (!url || !token) return null;
+  return new Redis({ url, token });
 }
 
 function isReadOnlyFsError(error: unknown) {
@@ -30,14 +45,45 @@ function isReadOnlyFsError(error: unknown) {
   return code === "EROFS" || code === "EACCES" || code === "EPERM";
 }
 
+async function readRedisStore<T>(fileName: string): Promise<T | null> {
+  const redis = getRedisClient();
+  if (!redis) return null;
+
+  try {
+    const data = await redis.get<T>(redisKey(fileName));
+    return data ?? null;
+  } catch (error) {
+    console.error(`readRedisStore failed for ${fileName}:`, error);
+    return null;
+  }
+}
+
+async function writeRedisStore<T>(fileName: string, data: T): Promise<boolean> {
+  const redis = getRedisClient();
+  if (!redis) return false;
+
+  try {
+    await redis.set(redisKey(fileName), data);
+    return true;
+  } catch (error) {
+    console.error(`writeRedisStore failed for ${fileName}:`, error);
+    return false;
+  }
+}
+
 async function readBlobStore<T>(fileName: string): Promise<T | null> {
   try {
-    const metadata = await head(blobPath(fileName));
-    const response = await fetch(metadata.downloadUrl);
-    if (!response.ok) {
-      throw new Error(`Blob download failed with status ${response.status}`);
+    const result = await get(blobPath(fileName), {
+      access: "private",
+      useCache: false,
+    });
+
+    if (!result || result.statusCode !== 200 || !result.stream) {
+      return null;
     }
-    return JSON.parse(await response.text()) as T;
+
+    const text = await new Response(result.stream).text();
+    return JSON.parse(text) as T;
   } catch (error) {
     if (error instanceof BlobNotFoundError) {
       return null;
@@ -88,33 +134,39 @@ async function readWritableFile<T>(
   }
 }
 
+function validateParsed<T>(parsed: unknown, isValid?: (value: unknown) => value is T): parsed is T {
+  return !isValid || isValid(parsed);
+}
+
 export async function readJsonStore<T>(
   fileName: string,
   fallback: T,
   isValid?: (value: unknown) => value is T,
 ): Promise<T> {
+  if (useRedisStorage()) {
+    const fromRedis = await readRedisStore<T>(fileName);
+    if (fromRedis != null && validateParsed(fromRedis, isValid)) {
+      return fromRedis;
+    }
+  }
+
   if (useBlobStorage()) {
     const fromBlob = await readBlobStore<T>(fileName);
-    if (fromBlob != null) {
-      if (!isValid || isValid(fromBlob)) {
-        return fromBlob;
-      }
-      console.error(`readJsonStore invalid blob payload for ${fileName}`);
+    if (fromBlob != null && validateParsed(fromBlob, isValid)) {
+      return fromBlob;
     }
   }
 
   const fromWritable = await readWritableFile<T>(fileName, isValid);
   if (fromWritable != null) {
-    if (useBlobStorage()) {
-      await writeBlobStore(fileName, fromWritable);
-    }
+    await writeJsonStore(fileName, fromWritable);
     return fromWritable;
   }
 
   try {
     const bundledRaw = await fs.readFile(bundledStorePath(fileName), "utf8");
     const bundled = JSON.parse(bundledRaw) as unknown;
-    if (!isValid || isValid(bundled)) {
+    if (validateParsed(bundled, isValid)) {
       await writeJsonStore(fileName, bundled as T);
       return bundled as T;
     }
@@ -123,35 +175,65 @@ export async function readJsonStore<T>(
   }
 
   const bundled = await readBundledSeed<T>(fileName);
-  if (bundled != null && (!isValid || isValid(bundled))) {
+  if (bundled != null && validateParsed(bundled, isValid)) {
     await writeJsonStore(fileName, bundled);
     return bundled;
   }
 
-  await writeJsonStore(fileName, fallback);
+  if (!isServerlessRuntime()) {
+    await writeJsonStore(fileName, fallback);
+  }
+
   return fallback;
 }
 
 export async function writeJsonStore<T>(fileName: string, data: T): Promise<boolean> {
-  let blobSaved = false;
-  if (useBlobStorage()) {
-    blobSaved = await writeBlobStore(fileName, data);
+  let persisted = false;
+
+  if (useRedisStorage()) {
+    persisted = (await writeRedisStore(fileName, data)) || persisted;
   }
 
-  const dir = getDataDir();
-  try {
-    await fs.mkdir(dir, { recursive: true });
-    await fs.writeFile(writableStorePath(fileName), JSON.stringify(data, null, 2), "utf8");
-    return true;
-  } catch (error) {
-    if (isReadOnlyFsError(error)) {
-      console.warn(
-        `writeJsonStore skipped read-only filesystem for ${fileName} at ${writableStorePath(fileName)}`,
-      );
-      return blobSaved;
-    }
-    console.error(`writeJsonStore failed for ${fileName}:`, error);
-    if (blobSaved) return true;
-    throw error;
+  if (useBlobStorage()) {
+    persisted = (await writeBlobStore(fileName, data)) || persisted;
   }
+
+  try {
+    await fs.mkdir(getDataDir(), { recursive: true });
+    await fs.writeFile(writableStorePath(fileName), JSON.stringify(data, null, 2), "utf8");
+    if (!isServerlessRuntime()) {
+      return true;
+    }
+  } catch (error) {
+    if (!isReadOnlyFsError(error)) {
+      console.error(`writeJsonStore filesystem cache failed for ${fileName}:`, error);
+    }
+  }
+
+  if (isServerlessRuntime()) {
+    return persisted;
+  }
+
+  return true;
+}
+
+export class PersistentStorageError extends Error {
+  constructor(message = "Persistent storage is not configured for production.") {
+    super(message);
+    this.name = "PersistentStorageError";
+  }
+}
+
+export async function requireJsonStoreWrite<T>(fileName: string, data: T) {
+  const saved = await writeJsonStore(fileName, data);
+  if (saved) return;
+
+  const status = getPersistentStorageStatus();
+  if (!status.configured) {
+    throw new PersistentStorageError(
+      "Inquiries cannot be saved on Vercel until you connect Redis or Blob storage.",
+    );
+  }
+
+  throw new PersistentStorageError("Could not save admin data. Please try again.");
 }

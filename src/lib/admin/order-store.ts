@@ -7,7 +7,7 @@ import type {
   OrderStatus,
 } from "@/lib/admin/order-types";
 import { createOrderId, createOrderNumber, normalizeEmail } from "@/lib/admin/order-utils";
-import { readJsonStore, writeJsonStore } from "@/lib/admin/json-store";
+import { readJsonStore, requireJsonStoreWrite } from "@/lib/admin/json-store";
 
 const STORE_FILE = "orders-store.json";
 
@@ -18,7 +18,7 @@ async function readAll(): Promise<AdminOrder[]> {
 }
 
 async function writeAll(orders: AdminOrder[]) {
-  await writeJsonStore(STORE_FILE, orders);
+  await requireJsonStoreWrite(STORE_FILE, orders);
 }
 
 function normalizeOrder(order: AdminOrder): AdminOrder {

@@ -1,6 +1,6 @@
 import { hashPassword, verifyPassword, isValidCreatorPassword } from "@/lib/admin/creator-auth";
 import { deleteCreatorInquiries } from "@/lib/admin/submissions";
-import { readJsonStore, writeJsonStore } from "@/lib/admin/json-store";
+import { readJsonStore, requireJsonStoreWrite } from "@/lib/admin/json-store";
 import type {
   CreatorAccount,
   CreatorAccountAdmin,
@@ -47,7 +47,7 @@ async function readAll(): Promise<CreatorAccount[]> {
 }
 
 async function writeAll(creators: CreatorAccount[]) {
-  await writeJsonStore(STORE_FILE, creators);
+  await requireJsonStoreWrite(STORE_FILE, creators);
 }
 
 export async function getCreatorById(id: string) {

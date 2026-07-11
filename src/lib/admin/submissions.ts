@@ -1,4 +1,3 @@
-import { seedSubmissions } from "@/lib/admin/seed-submissions";
 import { readJsonStore, writeJsonStore } from "@/lib/admin/json-store";
 import type {
   Submission,
@@ -26,9 +25,8 @@ function isSubmission(value: unknown): value is Submission {
 }
 
 async function readAll(): Promise<Submission[]> {
-  const fallback = seedSubmissions;
-  const data = await readJsonStore(STORE_FILE, fallback);
-  if (!Array.isArray(data)) return fallback;
+  const data = await readJsonStore<Submission[]>(STORE_FILE, []);
+  if (!Array.isArray(data)) return [];
   return data.filter(isSubmission);
 }
 

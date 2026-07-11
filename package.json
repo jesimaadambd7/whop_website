@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@vercel/blob": "^2.6.1",
     "@whop/checkout": "^0.3.0",
     "@whop/sdk": "^0.0.40",
     "framer-motion": "^12.42.2",

@@ -25,9 +25,18 @@ function inquiryAccent(type: SubmissionType): AdminNotificationAccent {
 
 export async function getAdminNotificationSnapshot(): Promise<AdminNotificationSnapshot> {
   const [submissions, creators, orders] = await Promise.all([
-    listSubmissions(),
-    listCreators({ status: "pending" }),
-    listOrders(),
+    listSubmissions().catch((error) => {
+      console.error("Notification snapshot: submissions failed", error);
+      return [];
+    }),
+    listCreators({ status: "pending" }).catch((error) => {
+      console.error("Notification snapshot: creators failed", error);
+      return [];
+    }),
+    listOrders().catch((error) => {
+      console.error("Notification snapshot: orders failed", error);
+      return [];
+    }),
   ]);
 
   const submissionStats = getSubmissionStats(submissions);

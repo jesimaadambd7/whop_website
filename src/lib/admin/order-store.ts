@@ -1,5 +1,3 @@
-import { promises as fs } from "fs";
-import path from "path";
 import type {
   AdminOrder,
   BillingType,
@@ -9,29 +7,16 @@ import type {
   OrderStatus,
 } from "@/lib/admin/order-types";
 import { createOrderId, createOrderNumber, normalizeEmail } from "@/lib/admin/order-utils";
-import { getDataDir } from "@/lib/admin/data-dir";
+import { readJsonStore, writeJsonStore } from "@/lib/admin/json-store";
 
-const DATA_DIR = getDataDir();
-const ORDERS_FILE = path.join(DATA_DIR, "orders-store.json");
-
-async function ensureStore() {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-  try {
-    await fs.access(ORDERS_FILE);
-  } catch {
-    await fs.writeFile(ORDERS_FILE, JSON.stringify([], null, 2), "utf8");
-  }
-}
+const STORE_FILE = "orders-store.json";
 
 async function readAll(): Promise<AdminOrder[]> {
-  await ensureStore();
-  const raw = await fs.readFile(ORDERS_FILE, "utf8");
-  return JSON.parse(raw) as AdminOrder[];
+  return readJsonStore(STORE_FILE, []);
 }
 
 async function writeAll(orders: AdminOrder[]) {
-  await ensureStore();
-  await fs.writeFile(ORDERS_FILE, JSON.stringify(orders, null, 2), "utf8");
+  await writeJsonStore(STORE_FILE, orders);
 }
 
 function normalizeOrder(order: AdminOrder): AdminOrder {

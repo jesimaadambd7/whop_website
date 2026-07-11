@@ -1,8 +1,6 @@
-import { promises as fs } from "fs";
-import path from "path";
 import { hashPassword, verifyPassword, isValidCreatorPassword } from "@/lib/admin/creator-auth";
 import { deleteCreatorInquiries } from "@/lib/admin/submissions";
-import { getDataDir } from "@/lib/admin/data-dir";
+import { readJsonStore, writeJsonStore } from "@/lib/admin/json-store";
 import type {
   CreatorAccount,
   CreatorAccountAdmin,
@@ -12,8 +10,7 @@ import type {
 } from "@/lib/admin/creator-types";
 import { createOrderId } from "@/lib/admin/order-utils";
 
-const DATA_DIR = getDataDir();
-const CREATORS_FILE = path.join(DATA_DIR, "creators-store.json");
+const STORE_FILE = "creators-store.json";
 
 function toAdmin(account: CreatorAccount): CreatorAccountAdmin {
   const { passwordHash: _passwordHash, ...adminAccount } = account;
@@ -43,24 +40,13 @@ function normalizeEmail(email: string) {
   return email.trim().toLowerCase();
 }
 
-async function ensureStore() {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-  try {
-    await fs.access(CREATORS_FILE);
-  } catch {
-    await fs.writeFile(CREATORS_FILE, JSON.stringify([], null, 2), "utf8");
-  }
-}
-
 async function readAll(): Promise<CreatorAccount[]> {
-  await ensureStore();
-  const raw = await fs.readFile(CREATORS_FILE, "utf8");
-  return (JSON.parse(raw) as CreatorAccount[]).map(normalizeAccount);
+  const creators = await readJsonStore<CreatorAccount[]>(STORE_FILE, []);
+  return creators.map(normalizeAccount);
 }
 
 async function writeAll(creators: CreatorAccount[]) {
-  await ensureStore();
-  await fs.writeFile(CREATORS_FILE, JSON.stringify(creators, null, 2), "utf8");
+  await writeJsonStore(STORE_FILE, creators);
 }
 
 export async function getCreatorById(id: string) {

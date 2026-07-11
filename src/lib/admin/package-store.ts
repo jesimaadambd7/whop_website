@@ -1,5 +1,3 @@
-import { promises as fs } from "fs";
-import path from "path";
 import type {
   AdminPackage,
   CreatorPricing,
@@ -9,37 +7,21 @@ import {
   defaultAdminPackages,
   defaultCreatorPricing,
 } from "@/lib/admin/package-seed";
-import { getDataDir } from "@/lib/admin/data-dir";
+import { readJsonStore, writeJsonStore } from "@/lib/admin/json-store";
 
-const DATA_DIR = getDataDir();
-const STORE_PATH = path.join(DATA_DIR, "packages-store.json");
+const STORE_FILE = "packages-store.json";
 
-async function ensureDataDir() {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-}
+const defaultStore = (): PackageStoreData => ({
+  packages: defaultAdminPackages,
+  creatorPricing: defaultCreatorPricing,
+});
 
 async function readStore(): Promise<PackageStoreData> {
-  await ensureDataDir();
-  try {
-    const raw = await fs.readFile(STORE_PATH, "utf8");
-    return JSON.parse(raw) as PackageStoreData;
-  } catch {
-    const initial: PackageStoreData = {
-      packages: defaultAdminPackages,
-      creatorPricing: defaultCreatorPricing,
-    };
-    try {
-      await writeStore(initial);
-    } catch (error) {
-      console.error("Could not persist package store seed:", error);
-    }
-    return initial;
-  }
+  return readJsonStore(STORE_FILE, defaultStore());
 }
 
 async function writeStore(data: PackageStoreData) {
-  await ensureDataDir();
-  await fs.writeFile(STORE_PATH, JSON.stringify(data, null, 2), "utf8");
+  await writeJsonStore(STORE_FILE, data);
 }
 
 export async function getPackageStore() {

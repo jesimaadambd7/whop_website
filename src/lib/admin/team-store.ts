@@ -1,34 +1,15 @@
-import { promises as fs } from "fs";
-import path from "path";
 import type { AdminTeamMember } from "@/lib/admin/team-types";
 import { defaultAdminTeamMembers } from "@/lib/admin/team-seed";
-import { getDataDir } from "@/lib/admin/data-dir";
+import { readJsonStore, writeJsonStore } from "@/lib/admin/json-store";
 
-const DATA_DIR = getDataDir();
-const STORE_PATH = path.join(DATA_DIR, "team-store.json");
-
-async function ensureDataDir() {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-}
+const STORE_FILE = "team-store.json";
 
 async function readStore(): Promise<AdminTeamMember[]> {
-  await ensureDataDir();
-  try {
-    const raw = await fs.readFile(STORE_PATH, "utf8");
-    return JSON.parse(raw) as AdminTeamMember[];
-  } catch {
-    try {
-      await writeStore(defaultAdminTeamMembers);
-    } catch (error) {
-      console.error("Could not persist team store seed:", error);
-    }
-    return defaultAdminTeamMembers;
-  }
+  return readJsonStore(STORE_FILE, defaultAdminTeamMembers);
 }
 
 async function writeStore(members: AdminTeamMember[]) {
-  await ensureDataDir();
-  await fs.writeFile(STORE_PATH, JSON.stringify(members, null, 2), "utf8");
+  await writeJsonStore(STORE_FILE, members);
 }
 
 export async function listAdminTeamMembers() {

@@ -1,7 +1,5 @@
-import { promises as fs } from "fs";
-import path from "path";
 import { seedSubmissions } from "@/lib/admin/seed-submissions";
-import { getDataDir } from "@/lib/admin/data-dir";
+import { readJsonStore, writeJsonStore } from "@/lib/admin/json-store";
 import type {
   Submission,
   SubmissionStats,
@@ -9,31 +7,18 @@ import type {
   SubmissionType,
 } from "@/lib/admin/types";
 
-const DATA_DIR = getDataDir();
-const SUBMISSIONS_FILE = path.join(DATA_DIR, "submissions.json");
+const STORE_FILE = "submissions.json";
 
 function normalizeEmail(email: string) {
   return email.trim().toLowerCase();
 }
 
-async function ensureStore() {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-  try {
-    await fs.access(SUBMISSIONS_FILE);
-  } catch {
-    await fs.writeFile(SUBMISSIONS_FILE, JSON.stringify(seedSubmissions, null, 2), "utf8");
-  }
-}
-
 async function readAll(): Promise<Submission[]> {
-  await ensureStore();
-  const raw = await fs.readFile(SUBMISSIONS_FILE, "utf8");
-  return JSON.parse(raw) as Submission[];
+  return readJsonStore(STORE_FILE, seedSubmissions);
 }
 
 async function writeAll(submissions: Submission[]) {
-  await ensureStore();
-  await fs.writeFile(SUBMISSIONS_FILE, JSON.stringify(submissions, null, 2), "utf8");
+  await writeJsonStore(STORE_FILE, submissions);
 }
 
 export async function listSubmissions(filters?: {

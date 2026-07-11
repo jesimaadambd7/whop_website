@@ -4,8 +4,18 @@ import { readJsonStore, writeJsonStore } from "@/lib/admin/json-store";
 
 const STORE_FILE = "team-store.json";
 
+function isTeamMember(value: unknown): value is AdminTeamMember {
+  if (!value || typeof value !== "object") return false;
+  const member = value as AdminTeamMember;
+  return Boolean(member.id && member.slug && member.name);
+}
+
 async function readStore(): Promise<AdminTeamMember[]> {
-  return readJsonStore(STORE_FILE, defaultAdminTeamMembers);
+  const fallback = defaultAdminTeamMembers;
+  const data = await readJsonStore(STORE_FILE, fallback);
+  if (!Array.isArray(data)) return fallback;
+  const members = data.filter(isTeamMember);
+  return members.length > 0 ? members : fallback;
 }
 
 async function writeStore(members: AdminTeamMember[]) {

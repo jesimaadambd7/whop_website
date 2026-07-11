@@ -25,25 +25,36 @@ export function isCreatorOfferActive(pricing: CreatorPricing) {
 }
 
 export function toPublicCreatorPricing(pricing: CreatorPricing): PublicCreatorPricing {
-  const offerActive = isCreatorOfferActive(pricing);
-  const publicPrice = offerActive ? pricing.offerPrice : pricing.regularPrice;
-  const publicPriceLabel = formatMoney(publicPrice, pricing.currency);
+  const safePricing: CreatorPricing = {
+    regularPrice: Number(pricing?.regularPrice ?? 79),
+    offerPrice: Number(pricing?.offerPrice ?? pricing?.regularPrice ?? 79),
+    offerStarts: pricing?.offerStarts ?? null,
+    offerEnds: pricing?.offerEnds ?? null,
+    currency: pricing?.currency ?? "usd",
+    ctaLabel: pricing?.ctaLabel ?? "Start building",
+    available: pricing?.available ?? true,
+    features: Array.isArray(pricing?.features) ? pricing.features : [],
+  };
+
+  const offerActive = isCreatorOfferActive(safePricing);
+  const publicPrice = offerActive ? safePricing.offerPrice : safePricing.regularPrice;
+  const publicPriceLabel = formatMoney(publicPrice, safePricing.currency);
   const regularPriceLabel =
-    offerActive && pricing.regularPrice > publicPrice
-      ? formatMoney(pricing.regularPrice, pricing.currency)
+    offerActive && safePricing.regularPrice > publicPrice
+      ? formatMoney(safePricing.regularPrice, safePricing.currency)
       : undefined;
 
   return {
     publicPrice,
-    regularPrice: pricing.regularPrice,
+    regularPrice: safePricing.regularPrice,
     publicPriceLabel,
     regularPriceLabel,
     headline: `${publicPriceLabel} once. Build it, publish it, keep using it.`,
     subheadline: `${publicPriceLabel} once. One profile. No recurring VidCarry platform fee within included limits.`,
     offerActive,
-    ctaLabel: pricing.ctaLabel || "Start building",
-    available: pricing.available,
-    features: pricing.features,
+    ctaLabel: safePricing.ctaLabel || "Start building",
+    available: safePricing.available,
+    features: safePricing.features,
     comparisonPriceLabel: `${publicPriceLabel} one time within limits`,
   };
 }

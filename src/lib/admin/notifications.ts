@@ -100,7 +100,7 @@ export async function getAdminNotificationSnapshot(): Promise<AdminNotificationS
       });
     }
 
-    for (const message of order.messages) {
+    for (const message of order.messages ?? []) {
       if (message.author !== "client") continue;
 
       events.push({

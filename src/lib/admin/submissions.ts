@@ -13,8 +13,23 @@ function normalizeEmail(email: string) {
   return email.trim().toLowerCase();
 }
 
+function isSubmission(value: unknown): value is Submission {
+  if (!value || typeof value !== "object") return false;
+  const submission = value as Submission;
+  return Boolean(
+    submission.id &&
+      submission.type &&
+      submission.status &&
+      submission.name &&
+      submission.createdAt,
+  );
+}
+
 async function readAll(): Promise<Submission[]> {
-  return readJsonStore(STORE_FILE, seedSubmissions);
+  const fallback = seedSubmissions;
+  const data = await readJsonStore(STORE_FILE, fallback);
+  if (!Array.isArray(data)) return fallback;
+  return data.filter(isSubmission);
 }
 
 async function writeAll(submissions: Submission[]) {
@@ -120,7 +135,9 @@ export async function deleteCreatorInquiries(email: string, username?: string) {
 export function getSubmissionStats(submissions: Submission[]): SubmissionStats {
   return submissions.reduce(
     (stats, submission) => {
-      stats[submission.status] += 1;
+      if (submission.status in stats) {
+        stats[submission.status] += 1;
+      }
       return stats;
     },
     { new: 0, reviewing: 0, replied: 0, closed: 0 },

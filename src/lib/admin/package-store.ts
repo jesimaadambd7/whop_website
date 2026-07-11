@@ -16,8 +16,38 @@ const defaultStore = (): PackageStoreData => ({
   creatorPricing: defaultCreatorPricing,
 });
 
+function isPackageStore(value: unknown): value is PackageStoreData {
+  if (!value || typeof value !== "object") return false;
+  const store = value as PackageStoreData;
+  return (
+    Array.isArray(store.packages) &&
+    !!store.creatorPricing &&
+    typeof store.creatorPricing.regularPrice === "number"
+  );
+}
+
+function normalizePackageStore(
+  value: unknown,
+  fallback: PackageStoreData,
+): PackageStoreData {
+  if (!value || typeof value !== "object") return fallback;
+
+  const store = value as Partial<PackageStoreData>;
+  const creatorPricing =
+    store.creatorPricing && typeof store.creatorPricing.regularPrice === "number"
+      ? { ...fallback.creatorPricing, ...store.creatorPricing }
+      : fallback.creatorPricing;
+
+  return {
+    packages: Array.isArray(store.packages) ? store.packages : fallback.packages,
+    creatorPricing,
+  };
+}
+
 async function readStore(): Promise<PackageStoreData> {
-  return readJsonStore(STORE_FILE, defaultStore());
+  const fallback = defaultStore();
+  const data = await readJsonStore(STORE_FILE, fallback, isPackageStore);
+  return normalizePackageStore(data, fallback);
 }
 
 async function writeStore(data: PackageStoreData) {

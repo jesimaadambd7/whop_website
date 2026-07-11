@@ -42,7 +42,8 @@ function normalizeEmail(email: string) {
 
 async function readAll(): Promise<CreatorAccount[]> {
   const creators = await readJsonStore<CreatorAccount[]>(STORE_FILE, []);
-  return creators.map(normalizeAccount);
+  if (!Array.isArray(creators)) return [];
+  return creators.filter((creator) => creator?.id && creator?.status).map(normalizeAccount);
 }
 
 async function writeAll(creators: CreatorAccount[]) {
@@ -85,7 +86,9 @@ export async function getCreatorStats(): Promise<CreatorStats> {
   const creators = await readAll();
   return creators.reduce(
     (stats, creator) => {
-      stats[creator.status] += 1;
+      if (creator.status in stats) {
+        stats[creator.status] += 1;
+      }
       stats.total += 1;
       return stats;
     },

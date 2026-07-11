@@ -4,8 +4,18 @@ import { readJsonStore, writeJsonStore } from "@/lib/admin/json-store";
 
 const STORE_FILE = "resources-store.json";
 
+function isAdminResource(value: unknown): value is AdminResource {
+  if (!value || typeof value !== "object") return false;
+  const resource = value as AdminResource;
+  return Boolean(resource.id && resource.slug && resource.title);
+}
+
 async function readStore(): Promise<AdminResource[]> {
-  return readJsonStore(STORE_FILE, defaultAdminResources);
+  const fallback = defaultAdminResources;
+  const data = await readJsonStore(STORE_FILE, fallback);
+  if (!Array.isArray(data)) return fallback;
+  const resources = data.filter(isAdminResource);
+  return resources.length > 0 ? resources : fallback;
 }
 
 async function writeStore(resources: AdminResource[]) {

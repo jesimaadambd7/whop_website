@@ -12,7 +12,9 @@ import { readJsonStore, writeJsonStore } from "@/lib/admin/json-store";
 const STORE_FILE = "orders-store.json";
 
 async function readAll(): Promise<AdminOrder[]> {
-  return readJsonStore(STORE_FILE, []);
+  const orders = await readJsonStore<AdminOrder[]>(STORE_FILE, []);
+  if (!Array.isArray(orders)) return [];
+  return orders.filter((order) => order?.id && order?.status).map(normalizeOrder);
 }
 
 async function writeAll(orders: AdminOrder[]) {

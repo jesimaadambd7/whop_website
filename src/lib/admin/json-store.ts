@@ -1,19 +1,23 @@
 import { promises as fs } from "fs";
 import path from "path";
-import { getDataDir } from "@/lib/admin/data-dir";
+import { getBundledDataDir, getDataDir } from "@/lib/admin/data-dir";
 
-function storePath(fileName: string) {
+function writableStorePath(fileName: string) {
   return path.join(getDataDir(), fileName);
 }
 
-async function readBundledSeed<T>(fileName: string): Promise<T | null> {
-  if (!process.env.VERCEL && !process.env.VERCEL_ENV) {
-    return null;
-  }
+function bundledStorePath(fileName: string) {
+  return path.join(getBundledDataDir(), fileName);
+}
 
+function isReadOnlyFsError(error: unknown) {
+  const code = (error as NodeJS.ErrnoException)?.code;
+  return code === "EROFS" || code === "EACCES" || code === "EPERM";
+}
+
+async function readBundledSeed<T>(fileName: string): Promise<T | null> {
   try {
-    const bundledPath = path.join(process.cwd(), "data", fileName);
-    const raw = await fs.readFile(bundledPath, "utf8");
+    const raw = await fs.readFile(bundledStorePath(fileName), "utf8");
     return JSON.parse(raw) as T;
   } catch {
     return null;
@@ -25,44 +29,56 @@ export async function readJsonStore<T>(
   fallback: T,
   isValid?: (value: unknown) => value is T,
 ): Promise<T> {
-  const filePath = storePath(fileName);
+  const writablePath = writableStorePath(fileName);
 
-  try {
-    await fs.mkdir(getDataDir(), { recursive: true });
-    const raw = await fs.readFile(filePath, "utf8");
+  const tryParse = (raw: string) => {
     const parsed = JSON.parse(raw) as unknown;
     if (isValid && !isValid(parsed)) {
       throw new Error(`Invalid store payload for ${fileName}`);
     }
     return parsed as T;
-  } catch (error) {
-    console.error(`readJsonStore failed for ${fileName}:`, error);
+  };
+
+  try {
+    await fs.mkdir(getDataDir(), { recursive: true });
+    const raw = await fs.readFile(writablePath, "utf8");
+    return tryParse(raw);
+  } catch (writableError) {
+    console.error(`readJsonStore writable read failed for ${fileName}:`, writableError);
+
+    try {
+      const bundledRaw = await fs.readFile(bundledStorePath(fileName), "utf8");
+      const bundled = tryParse(bundledRaw);
+      await writeJsonStore(fileName, bundled);
+      return bundled;
+    } catch {
+      // Fall through to bundled seed object or coded fallback.
+    }
 
     const bundled = await readBundledSeed<T>(fileName);
     if (bundled != null && (!isValid || isValid(bundled))) {
-      try {
-        await writeJsonStore(fileName, bundled);
-      } catch (seedError) {
-        console.error(`readJsonStore bundled seed failed for ${fileName}:`, seedError);
-      }
+      await writeJsonStore(fileName, bundled);
       return bundled;
     }
 
-    try {
-      await writeJsonStore(fileName, fallback);
-    } catch (seedError) {
-      console.error(`readJsonStore seed failed for ${fileName}:`, seedError);
-    }
+    await writeJsonStore(fileName, fallback);
     return fallback;
   }
 }
 
-export async function writeJsonStore<T>(fileName: string, data: T): Promise<void> {
+export async function writeJsonStore<T>(fileName: string, data: T): Promise<boolean> {
   const dir = getDataDir();
   try {
     await fs.mkdir(dir, { recursive: true });
-    await fs.writeFile(storePath(fileName), JSON.stringify(data, null, 2), "utf8");
+    await fs.writeFile(writableStorePath(fileName), JSON.stringify(data, null, 2), "utf8");
+    return true;
   } catch (error) {
+    if (isReadOnlyFsError(error)) {
+      console.warn(
+        `writeJsonStore skipped read-only filesystem for ${fileName} at ${writableStorePath(fileName)}`,
+      );
+      return false;
+    }
     console.error(`writeJsonStore failed for ${fileName}:`, error);
     throw error;
   }

@@ -1067,3 +1067,41 @@ body {
 .admin-toast-glow-rose {
   animation: admin-toast-glow-rose 2.8s ease-in-out infinite;
 }
+
+@keyframes creator-portfolio-preview-shine {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes creator-portfolio-preview-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.55;
+  }
+}
+
+.creator-portfolio-preview-shine {
+  animation: creator-portfolio-preview-shine 4.5s ease-in-out infinite;
+}
+
+.creator-portfolio-preview-pulse {
+  animation: creator-portfolio-preview-pulse 2s ease-in-out infinite;
+}
+
+.creator-portfolio-preview-card {
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.creator-portfolio-preview-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(56, 189, 248, 0.25);
+}

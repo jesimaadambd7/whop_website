@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { CreatorPortfolioLivePreview } from "@/components/creators/CreatorPortfolioLivePreview";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import type { PublicCreatorPricing } from "@/lib/admin/creator-pricing-utils";
@@ -48,22 +48,14 @@ export function CreatorHero({ pricing }: { pricing: PublicCreatorPricing }) {
                   </span>
                 </div>
 
-                <Image
-                  src="/assets/creators/portfolio-preview.gif"
-                  alt="Animated preview of a creator portfolio video player"
-                  width={640}
-                  height={360}
-                  unoptimized
-                  priority
-                  className="mt-6 aspect-video w-full rounded-[1.75rem] object-cover"
-                />
+                <CreatorPortfolioLivePreview />
 
-                <h2 className="mt-6 font-display text-4xl font-black tracking-[-0.05em] text-white">
-                  Alex creates retention-focused product stories.
+                <h2 className="mt-6 font-display text-3xl font-black tracking-[-0.05em] text-white sm:text-4xl">
+                  A clean portfolio built for creative work.
                 </h2>
 
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {["Video editing", "UGC ads", "Motion", "Available"].map((tag) => (
+                  {["Video editing", "UGC ads", "Motion", "Analytics"].map((tag) => (
                     <span
                       key={tag}
                       className="rounded-full border border-white/10 px-3 py-1 text-xs font-bold text-zinc-300"

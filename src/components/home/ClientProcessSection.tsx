@@ -31,7 +31,6 @@ export function ClientProcessSection() {
       <Container>
         <Reveal className="mb-10 sm:mb-14">
           <CinematicSectionHeading
-            scene="08"
             eyebrow="Client process"
             title="A simple sprint system from product shoot to paid ads."
           />

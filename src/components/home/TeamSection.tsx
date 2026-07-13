@@ -1,11 +1,18 @@
 import { Container } from "@/components/ui/Container";
 import { CinematicSectionHeading } from "@/components/effects/cinematic/CinematicSectionHeading";
-import { TeamCard } from "@/components/shared/TeamCard";
+import { MemberTeamCard } from "@/components/shared/MemberTeamCard";
+import { FounderTeamCard } from "@/components/shared/FounderTeamCard";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionShell } from "@/components/ui/SectionShell";
-import type { TeamMember } from "@/lib/data/team";
+import {
+  isFounderMember,
+  sortTeamWithFounderFirst,
+  type TeamMember,
+} from "@/lib/data/team";
 
 export function TeamSection({ members }: { members: TeamMember[] }) {
+  const sorted = sortTeamWithFounderFirst(members);
+
   return (
     <SectionShell withGrid cinematic tone="elevated">
       <Container>
@@ -20,9 +27,13 @@ export function TeamSection({ members }: { members: TeamMember[] }) {
           className="grid auto-rows-fr items-stretch gap-5 md:grid-cols-2 xl:grid-cols-4"
           stagger={0.1}
         >
-          {members.map((member) => (
-            <StaggerItem key={member.slug} className="h-full">
-              <TeamCard member={member} />
+          {sorted.map((member) => (
+            <StaggerItem key={member.slug} className="h-full overflow-visible">
+              {isFounderMember(member) ? (
+                <FounderTeamCard member={member} />
+              ) : (
+                <MemberTeamCard member={member} />
+              )}
             </StaggerItem>
           ))}
         </Stagger>

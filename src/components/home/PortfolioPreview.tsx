@@ -14,7 +14,6 @@ export function PortfolioPreview() {
       <Container>
         <Reveal className="mb-10 sm:mb-14">
           <CinematicSectionHeading
-            scene="06"
             eyebrow="Portfolio"
             title="Client creative built for paid social, ecommerce, and sales."
             description="Explore selected campaign formats across UGC ads, ecommerce videos, product explainers, short-form content, and motion-led performance creative."

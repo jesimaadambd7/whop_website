@@ -22,7 +22,6 @@ export function PackageGrid({
         {showHeading && (
           <Reveal className="mb-10 sm:mb-14">
             <CinematicSectionHeading
-              scene="03"
               eyebrow="Direct-purchase packages"
               title="Choose a sprint, pay securely, and start without waiting for a sales call."
               description="Every package has a clear scope, delivery estimate, included revision rounds, and a private client workspace after payment."

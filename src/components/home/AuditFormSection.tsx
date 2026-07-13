@@ -63,7 +63,6 @@ export function AuditFormSection({
           <Reveal className="lg:sticky lg:top-28">
             <aside>
               <CinematicSectionHeading
-                scene="09"
                 eyebrow="Creative audit"
                 title="Get a free ad creative audit before the next sprint."
                 description="Share your site, current creative context, and bottleneck. We will review the fit and suggest the clearest next creative move."

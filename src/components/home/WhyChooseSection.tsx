@@ -17,7 +17,6 @@ export function WhyChooseSection() {
       <Container>
         <Reveal className="mb-10 sm:mb-14">
           <CinematicSectionHeading
-            scene="07"
             eyebrow="Why choose us"
             title="A production and growth partner for teams that cannot wait on slow creative."
           />

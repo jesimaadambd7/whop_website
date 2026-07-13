@@ -26,18 +26,18 @@ export default async function HomePage() {
   return (
     <>
       <HeroSection />
-      <FilmStripDivider label="Scene 01 — Overview" />
+      <FilmStripDivider />
       <OverviewSection />
       <ClientsSection />
       <FrameworkSection />
       <ProofSection />
-      <FilmStripDivider label="Scene 02 — Proof" />
+      <FilmStripDivider />
       <NetworkSection />
       <PackageGrid packages={packages} />
       <ServicesSection />
       <IndustriesSection />
       <PortfolioPreview />
-      <FilmStripDivider label="Scene 03 — Process" />
+      <FilmStripDivider />
       <ProcessSection />
       <WhyChooseSection />
       <TeamSection members={teamMembers} />

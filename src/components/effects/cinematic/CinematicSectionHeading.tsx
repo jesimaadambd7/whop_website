@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
 
 type CinematicSectionHeadingProps = {
-  scene?: string;
   eyebrow: string;
   title: string;
   description?: string;
@@ -11,7 +10,6 @@ type CinematicSectionHeadingProps = {
 };
 
 export function CinematicSectionHeading({
-  scene,
   eyebrow,
   title,
   description,
@@ -27,22 +25,15 @@ export function CinematicSectionHeading({
         className,
       )}
     >
-      <div
+      <p
         className={cn(
-          "mb-4 flex flex-wrap items-center gap-3",
+          "mb-4 flex items-center gap-2 text-xs font-black uppercase tracking-[0.28em] text-sky-400",
           align === "center" && "justify-center",
         )}
       >
-        {scene && (
-          <span className="cine-scene-badge rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
-            Scene {scene}
-          </span>
-        )}
-        <span className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.28em] text-sky-400">
-          <span className="h-1.5 w-1.5 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.75)]" />
-          {eyebrow}
-        </span>
-      </div>
+        <span className="h-1.5 w-1.5 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.75)]" />
+        {eyebrow}
+      </p>
 
       <h2
         className={cn(

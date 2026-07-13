@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/shared/PageHero";
 import { CtaBanner } from "@/components/shared/CtaBanner";
-import { TeamPageCard } from "@/components/team/TeamPageCard";
+import { FounderTeamCard } from "@/components/shared/FounderTeamCard";
+import { MemberTeamCard } from "@/components/shared/MemberTeamCard";
 import { TeamCultureCard } from "@/components/team/TeamCultureCard";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionShell } from "@/components/ui/SectionShell";
-import { loadTeamMembers, teamCulture } from "@/lib/data/team";
+import {
+  isFounderMember,
+  loadTeamMembers,
+  sortTeamWithFounderFirst,
+  teamCulture,
+} from "@/lib/data/team";
 
 export const metadata: Metadata = {
   title: "VidCarry Team - Production, UGC Editing & Paid Ads",
@@ -15,7 +21,7 @@ export const metadata: Metadata = {
 };
 
 export default async function TeamPage() {
-  const teamMembers = await loadTeamMembers();
+  const teamMembers = sortTeamWithFounderFirst(await loadTeamMembers());
 
   return (
     <>
@@ -29,7 +35,13 @@ export default async function TeamPage() {
         <Container>
           <div className="grid auto-rows-fr items-stretch gap-6 md:grid-cols-2 xl:grid-cols-4">
             {teamMembers.map((member) => (
-              <TeamPageCard key={member.slug} member={member} />
+              <div key={member.slug} className="h-full overflow-visible">
+                {isFounderMember(member) ? (
+                  <FounderTeamCard member={member} />
+                ) : (
+                  <MemberTeamCard member={member} variant="page" />
+                )}
+              </div>
             ))}
           </div>
         </Container>

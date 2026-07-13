@@ -842,10 +842,6 @@ body {
     transition: left 0.08s linear;
   }
 
-  .cine-scene-badge {
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  }
-
   .cine-title-shine {
     background: linear-gradient(
       120deg,
@@ -867,15 +863,6 @@ body {
 
   .cine-overview-card:hover {
     transform: translateY(-2px);
-  }
-
-  .cine-process-line {
-    background: linear-gradient(
-      to bottom,
-      rgba(56, 189, 248, 0.5),
-      rgba(56, 189, 248, 0.15) 60%,
-      transparent
-    );
   }
 
   .cine-process-step {
@@ -907,6 +894,367 @@ body {
 
   .cine-cta-export {
     animation: cine-cta-export-glow 5s ease-in-out infinite;
+  }
+
+  .founder-team-card__halo {
+    background: radial-gradient(circle, rgba(0, 188, 254, 0.22) 0%, transparent 70%);
+    opacity: 0.45;
+    filter: blur(18px);
+    animation: founder-halo-pulse 4s ease-in-out infinite;
+  }
+
+  .founder-team-card__halo--gold {
+    background: radial-gradient(circle, rgba(255, 210, 54, 0.14) 0%, transparent 72%);
+    animation-delay: -2s;
+  }
+
+  .founder-team-card__frame {
+    isolation: isolate;
+    background: conic-gradient(
+      from var(--founder-angle, 0deg),
+      transparent 0deg,
+      rgba(255, 210, 54, 0.35) 55deg,
+      rgba(56, 189, 248, 1) 115deg,
+      rgba(125, 211, 252, 0.85) 155deg,
+      rgba(255, 210, 54, 0.4) 215deg,
+      transparent 285deg,
+      rgba(56, 189, 248, 0.45) 330deg,
+      transparent 360deg
+    );
+    animation: founder-border-spin 3.5s linear infinite;
+    box-shadow:
+      0 0 24px rgba(0, 188, 254, 0.25),
+      0 0 48px rgba(255, 210, 54, 0.08);
+  }
+
+  .founder-team-card__body {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 20px 60px rgba(0, 0, 0, 0.45);
+    transition: box-shadow 0.45s ease, border-color 0.45s ease;
+  }
+
+  .group\/founder:hover .founder-team-card__body,
+  .founder-team-card:hover .founder-team-card__body {
+    border-color: rgba(56, 189, 248, 0.35);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      0 28px 72px rgba(0, 0, 0, 0.55),
+      0 0 56px rgba(0, 188, 254, 0.18);
+  }
+
+  .founder-team-card__aurora {
+    background:
+      radial-gradient(circle at 12% 8%, rgba(0, 188, 254, 0.2), transparent 42%),
+      radial-gradient(circle at 88% 92%, rgba(255, 210, 54, 0.12), transparent 38%),
+      radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.06), transparent 55%);
+    animation: founder-aurora-shift 8s ease-in-out infinite;
+  }
+
+  .founder-team-card__grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(circle at 50% 40%, black, transparent 78%);
+  }
+
+  .founder-team-card__orb {
+    width: 120px;
+    height: 120px;
+    border-radius: 9999px;
+    filter: blur(28px);
+    opacity: 0.5;
+  }
+
+  .founder-team-card__orb--1 {
+    top: -20px;
+    right: -24px;
+    background: rgba(0, 188, 254, 0.35);
+    animation: founder-orb-drift-1 7s ease-in-out infinite;
+  }
+
+  .founder-team-card__orb--2 {
+    bottom: -28px;
+    left: -20px;
+    background: rgba(255, 210, 54, 0.28);
+    animation: founder-orb-drift-2 9s ease-in-out infinite;
+  }
+
+  .founder-team-card__shine {
+    background: linear-gradient(
+      105deg,
+      transparent 36%,
+      rgba(255, 255, 255, 0.14) 48%,
+      rgba(0, 188, 254, 0.2) 52%,
+      transparent 64%
+    );
+    transform: translateX(-130%);
+    animation: founder-shine-sweep 4.5s ease-in-out infinite;
+    opacity: 0.85;
+  }
+
+  .founder-team-card__scanline {
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(255, 255, 255, 0.015) 3px,
+      rgba(255, 255, 255, 0.015) 4px
+    );
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+  }
+
+  .founder-team-card__badge {
+    animation: founder-badge-glow 3s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(255, 210, 54, 0.15);
+  }
+
+  .founder-team-card__arrow {
+    transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease, color 0.35s ease;
+  }
+
+  .group\/founder:hover .founder-team-card__arrow,
+  .founder-team-card:hover .founder-team-card__arrow {
+    transform: translate(2px, -2px) rotate(8deg);
+    border-color: rgba(56, 189, 248, 0.45);
+    background: rgba(0, 188, 254, 0.12);
+    color: #fff;
+  }
+
+  .founder-team-card__ring {
+    border: 1px dashed rgba(56, 189, 248, 0.45);
+    animation: founder-ring-spin 12s linear infinite;
+  }
+
+  .founder-team-card__avatar-wrap {
+    animation: founder-avatar-float 5s ease-in-out infinite;
+  }
+
+  .founder-team-card__avatar {
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+  }
+
+  .group\/founder:hover .founder-team-card__avatar,
+  .founder-team-card:hover .founder-team-card__avatar {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 0 56px rgba(0, 188, 254, 0.38);
+  }
+
+  .founder-team-card__name {
+    transition: color 0.35s ease, text-shadow 0.35s ease;
+  }
+
+  .group\/founder:hover .founder-team-card__name,
+  .founder-team-card:hover .founder-team-card__name {
+    color: #e0f2fe;
+    text-shadow: 0 0 24px rgba(0, 188, 254, 0.35);
+  }
+
+  .founder-team-card__role {
+    background: linear-gradient(
+      120deg,
+      #7dd3fc 0%,
+      #e0f2fe 35%,
+      #fde68a 70%,
+      #7dd3fc 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: cine-title-shimmer 6s linear infinite;
+  }
+
+  .founder-team-card__chip {
+    animation: founder-chip-pulse 4s ease-in-out infinite;
+  }
+
+  .group\/founder:hover .founder-team-card__shine,
+  .founder-team-card:hover .founder-team-card__shine {
+    animation-duration: 2.2s;
+    opacity: 1;
+  }
+
+  .member-team-card__halo {
+    background: radial-gradient(circle, rgba(0, 188, 254, 0.2) 0%, transparent 70%);
+    opacity: 0.45;
+    filter: blur(18px);
+    animation: member-halo-pulse 4.5s ease-in-out infinite;
+  }
+
+  .member-team-card__halo--soft {
+    background: radial-gradient(circle, rgba(125, 211, 252, 0.12) 0%, transparent 72%);
+    animation-delay: -2.2s;
+  }
+
+  .member-team-card__frame {
+    isolation: isolate;
+    background: linear-gradient(
+      90deg,
+      rgba(56, 189, 248, 0.15) 0%,
+      rgba(56, 189, 248, 0.95) 25%,
+      rgba(186, 230, 253, 0.85) 50%,
+      rgba(56, 189, 248, 0.95) 75%,
+      rgba(56, 189, 248, 0.15) 100%
+    );
+    background-size: 280% 100%;
+    animation: member-border-wave 5s ease-in-out infinite;
+    box-shadow:
+      0 0 20px rgba(0, 188, 254, 0.18),
+      0 0 40px rgba(0, 188, 254, 0.06);
+  }
+
+  .group\/member:hover .member-team-card__frame,
+  .member-team-card:hover .member-team-card__frame {
+    animation-duration: 3s;
+    box-shadow:
+      0 0 28px rgba(0, 188, 254, 0.28),
+      0 0 56px rgba(0, 188, 254, 0.1);
+  }
+
+  .member-team-card__body {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.07),
+      0 18px 56px rgba(0, 0, 0, 0.42);
+    transition: border-color 0.45s ease, box-shadow 0.45s ease;
+  }
+
+  .group\/member:hover .member-team-card__body,
+  .member-team-card:hover .member-team-card__body {
+    border-color: rgba(56, 189, 248, 0.32);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.11),
+      0 26px 68px rgba(0, 0, 0, 0.5),
+      0 0 48px rgba(0, 188, 254, 0.14);
+  }
+
+  .member-team-card__aurora {
+    background:
+      radial-gradient(circle at 85% 10%, rgba(56, 189, 248, 0.16), transparent 40%),
+      radial-gradient(circle at 10% 90%, rgba(125, 211, 252, 0.1), transparent 36%);
+    animation: member-aurora-drift 7s ease-in-out infinite;
+  }
+
+  .member-team-card__mesh {
+    background-image:
+      linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(circle at 50% 42%, black, transparent 80%);
+    animation: member-mesh-slide 12s linear infinite;
+  }
+
+  .member-team-card__orb {
+    width: 100px;
+    height: 100px;
+    border-radius: 9999px;
+    filter: blur(26px);
+    opacity: 0.45;
+  }
+
+  .member-team-card__orb--1 {
+    top: -16px;
+    left: -18px;
+    background: rgba(56, 189, 248, 0.32);
+    animation: member-orb-float 8s ease-in-out infinite;
+  }
+
+  .member-team-card__shine {
+    background: linear-gradient(
+      180deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.08) 48%,
+      rgba(56, 189, 248, 0.16) 52%,
+      transparent 70%
+    );
+    transform: translateY(-120%);
+    opacity: 0.75;
+    animation: member-shine-vertical 5s ease-in-out infinite;
+  }
+
+  .member-team-card__waves {
+    background: repeating-linear-gradient(
+      -12deg,
+      transparent,
+      transparent 18px,
+      rgba(56, 189, 248, 0.03) 18px,
+      rgba(56, 189, 248, 0.03) 19px
+    );
+    opacity: 0.5;
+    animation: member-waves-drift 10s linear infinite;
+  }
+
+  .group\/member:hover .member-team-card__shine,
+  .member-team-card:hover .member-team-card__shine {
+    animation-duration: 2.8s;
+    opacity: 1;
+  }
+
+  .member-team-card__badge {
+    animation: member-badge-glow 3.5s ease-in-out infinite;
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.12);
+  }
+
+  .member-team-card__arrow {
+    transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease, color 0.35s ease;
+  }
+
+  .group\/member:hover .member-team-card__arrow,
+  .member-team-card:hover .member-team-card__arrow {
+    transform: translate(2px, -2px) rotate(-6deg);
+    border-color: rgba(56, 189, 248, 0.4);
+    background: rgba(0, 188, 254, 0.12);
+    color: #fff;
+  }
+
+  .member-team-card__ring {
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    animation: member-ring-pulse 3.5s ease-in-out infinite;
+  }
+
+  .member-team-card__avatar-wrap {
+    animation: member-avatar-bob 6s ease-in-out infinite;
+  }
+
+  .member-team-card__avatar {
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+  }
+
+  .group\/member:hover .member-team-card__avatar,
+  .member-team-card:hover .member-team-card__avatar {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 0 48px rgba(0, 188, 254, 0.3);
+  }
+
+  .member-team-card__name {
+    transition: color 0.35s ease, text-shadow 0.35s ease;
+  }
+
+  .group\/member:hover .member-team-card__name,
+  .member-team-card:hover .member-team-card__name {
+    color: #e0f2fe;
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.28);
+  }
+
+  .member-team-card__role {
+    background: linear-gradient(
+      120deg,
+      #38bdf8 0%,
+      #bae6fd 40%,
+      #7dd3fc 70%,
+      #38bdf8 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: member-role-shimmer 5s linear infinite;
+  }
+
+  .member-team-card__chip {
+    animation: member-chip-glow 4.5s ease-in-out infinite;
   }
 }
 
@@ -1553,6 +1901,227 @@ body {
   }
 }
 
+@property --founder-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes founder-border-spin {
+  to {
+    --founder-angle: 360deg;
+  }
+}
+
+@keyframes founder-halo-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes founder-aurora-shift {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes founder-orb-drift-1 {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-12px, 14px);
+  }
+}
+
+@keyframes founder-orb-drift-2 {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(14px, -10px);
+  }
+}
+
+@keyframes founder-shine-sweep {
+  0%,
+  28% {
+    transform: translateX(-130%);
+  }
+  45%,
+  100% {
+    transform: translateX(130%);
+  }
+}
+
+@keyframes founder-badge-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 16px rgba(255, 210, 54, 0.12);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(255, 210, 54, 0.28);
+  }
+}
+
+@keyframes founder-ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes founder-avatar-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes founder-chip-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(0, 188, 254, 0);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 188, 254, 0.2);
+  }
+}
+
+@keyframes member-border-wave {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes member-halo-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.62;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes member-aurora-drift {
+  0%,
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(6px) scale(1.04);
+    opacity: 1;
+  }
+}
+
+@keyframes member-mesh-slide {
+  to {
+    background-position: 24px 24px;
+  }
+}
+
+@keyframes member-orb-float {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(16px, 12px);
+  }
+}
+
+@keyframes member-shine-vertical {
+  0%,
+  30% {
+    transform: translateY(-120%);
+  }
+  50%,
+  100% {
+    transform: translateY(120%);
+  }
+}
+
+@keyframes member-waves-drift {
+  to {
+    background-position: 40px 40px;
+  }
+}
+
+@keyframes member-badge-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(56, 189, 248, 0.24);
+  }
+}
+
+@keyframes member-ring-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+
+@keyframes member-avatar-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes member-role-shimmer {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes member-chip-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(56, 189, 248, 0);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.18);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cine-light-leak,
   .cine-film-grain,
@@ -1568,7 +2137,30 @@ body {
   .cine-reel-track,
   .cine-title-shine,
   .cine-faq-cta::after,
-  .cine-cta-export {
+  .cine-cta-export,
+  .founder-team-card__frame,
+  .founder-team-card__halo,
+  .founder-team-card__aurora,
+  .founder-team-card__orb,
+  .founder-team-card__shine,
+  .founder-team-card__badge,
+  .founder-team-card__ring,
+  .founder-team-card__avatar-wrap,
+  .founder-team-card__avatar,
+  .founder-team-card__role,
+  .founder-team-card__chip,
+  .member-team-card__frame,
+  .member-team-card__halo,
+  .member-team-card__aurora,
+  .member-team-card__mesh,
+  .member-team-card__orb,
+  .member-team-card__shine,
+  .member-team-card__waves,
+  .member-team-card__badge,
+  .member-team-card__ring,
+  .member-team-card__avatar-wrap,
+  .member-team-card__role,
+  .member-team-card__chip {
     animation: none !important;
   }
 

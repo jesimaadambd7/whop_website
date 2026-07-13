@@ -42,7 +42,6 @@ export function ProofSection() {
           <div>
             <Reveal>
               <CinematicSectionHeading
-                scene="02"
                 eyebrow="Proof system"
                 title="Real client libraries, production signals, and sales-focused output."
                 description="VidCarry's strongest proof layer is the work system: brand libraries, campaign formats, structured deliverables, and repeatable creative testing assets."

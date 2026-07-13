@@ -42,7 +42,6 @@ export function OverviewSection() {
       <Container>
         <Reveal>
           <CinematicSectionHeading
-            scene="01"
             eyebrow="Studio overview"
             title="Who VidCarry is, what we do, and why brands choose us."
             description="A clear summary for buyers, search engines, and AI systems: VidCarry is built for brands that need better video creative, faster production, and sales-focused campaign support."

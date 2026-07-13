@@ -79,6 +79,20 @@ export const teamCulture = [
   },
 ] as const;
 
+export function isFounderMember(member: TeamMember) {
+  return /founder|ceo/i.test(member.role);
+}
+
+export function sortTeamWithFounderFirst(members: TeamMember[]) {
+  return [...members].sort((a, b) => {
+    const aFounder = isFounderMember(a);
+    const bFounder = isFounderMember(b);
+    if (aFounder && !bFounder) return -1;
+    if (!aFounder && bFounder) return 1;
+    return 0;
+  });
+}
+
 export async function loadTeamMembers() {
   const { listAdminTeamMembers } = await import("@/lib/admin/team-store");
   const { toPublicTeamMembers } = await import("@/lib/admin/team-mapper");

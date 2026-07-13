@@ -37,12 +37,9 @@ export function PackageCard({ pkg, eager = false }: PackageCardProps) {
           className="aspect-[4/5] w-full"
           imageClassName="transition duration-700 group-hover/thumb:scale-[1.035]"
         >
-          <div className="absolute left-4 right-4 top-4 flex items-center justify-between">
+          <div className="absolute left-4 top-4">
             <span className="rounded-full border border-white/20 bg-black/45 px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-white backdrop-blur">
-              {pkg.sprint}
-            </span>
-            <span className="grid h-9 w-9 place-items-center rounded-full border border-white/25 bg-white/15 text-[10px] font-black text-white backdrop-blur">
-              View
+              {pkg.thumbnailLabel}
             </span>
           </div>
         </HoverVideoPreview>

@@ -2,6 +2,8 @@ export type Package = {
   id: string;
   slug: string;
   sprint: string;
+  /** Short label on the package thumbnail (e.g. UGC, EDIT). */
+  thumbnailLabel: string;
   badge: string;
   price: string;
   priceAmount: number;
@@ -27,6 +29,7 @@ export const packages: Package[] = [
     id: "01",
     slug: "ugc-ad-sprint",
     sprint: "Sprint 01",
+    thumbnailLabel: "UGC",
     badge: "Fast creative testing",
     price: "$550",
     priceAmount: 550,
@@ -70,6 +73,7 @@ export const packages: Package[] = [
     id: "02",
     slug: "editing-sprint",
     sprint: "Sprint 02",
+    thumbnailLabel: "EDIT",
     badge: "Production support",
     price: "$170",
     priceAmount: 170,
@@ -113,6 +117,7 @@ export const packages: Package[] = [
     id: "03",
     slug: "shoot-to-sales-sprint",
     sprint: "Sprint 03",
+    thumbnailLabel: "S2S",
     badge: "Full production",
     price: "$950",
     priceAmount: 950,
@@ -156,6 +161,7 @@ export const packages: Package[] = [
     id: "04",
     slug: "paid-ads-sprint",
     sprint: "Sprint 04",
+    thumbnailLabel: "ADS",
     badge: "Ongoing growth",
     price: "$700",
     priceAmount: 700,

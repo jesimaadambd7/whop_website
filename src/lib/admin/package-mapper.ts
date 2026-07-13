@@ -39,7 +39,8 @@ export function toPublicPackage(pkg: AdminPackage): Package {
     slug: pkg.slug,
     title: pkg.title,
     sprint: pkg.eyebrow,
-    badge: pkg.thumbnailLabel,
+    thumbnailLabel: pkg.thumbnailLabel,
+    badge: pkg.eyebrow,
     price: formatMoney(publicPrice, variant?.currency ?? "usd"),
     priceAmount: publicPrice,
     priceNote:
@@ -48,7 +49,7 @@ export function toPublicPackage(pkg: AdminPackage): Package {
       offerActive && regularPrice > publicPrice
         ? formatMoney(regularPrice, variant?.currency ?? "usd")
         : undefined,
-    description: pkg.summary,
+    description: pkg.bestFor || pkg.summary,
     heroDescription: pkg.summary,
     delivery: pkg.timelineLabel,
     revisions: `${revisionRounds} revision${revisionRounds === 1 ? "" : "s"}`,

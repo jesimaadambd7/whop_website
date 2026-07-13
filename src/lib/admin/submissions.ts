@@ -1,6 +1,8 @@
 import { readJsonStore, requireJsonStoreWrite } from "@/lib/admin/json-store";
+import { notifyInquiryConfirmation, notifyInquiryReply } from "@/lib/admin/inquiry-email";
 import type {
   Submission,
+  SubmissionReply,
   SubmissionStats,
   SubmissionStatus,
   SubmissionType,
@@ -10,6 +12,13 @@ const STORE_FILE = "submissions.json";
 
 function normalizeEmail(email: string) {
   return email.trim().toLowerCase();
+}
+
+function normalizeSubmission(submission: Submission): Submission {
+  return {
+    ...submission,
+    replies: submission.replies ?? [],
+  };
 }
 
 function isSubmission(value: unknown): value is Submission {
@@ -27,7 +36,7 @@ function isSubmission(value: unknown): value is Submission {
 async function readAll(): Promise<Submission[]> {
   const data = await readJsonStore<Submission[]>(STORE_FILE, []);
   if (!Array.isArray(data)) return [];
-  return data.filter(isSubmission);
+  return data.filter(isSubmission).map(normalizeSubmission);
 }
 
 async function writeAll(submissions: Submission[]) {
@@ -87,11 +96,20 @@ export async function createSubmission(input: {
     summary: input.summary,
     createdAt: new Date().toISOString(),
     payload: input.payload,
+    replies: [],
   };
 
   submissions.unshift(submission);
   await writeAll(submissions);
-  return submission;
+
+  const saved = normalizeSubmission(submission);
+  try {
+    await notifyInquiryConfirmation(saved);
+  } catch (error) {
+    console.error("Inquiry confirmation email failed:", error);
+  }
+
+  return saved;
 }
 
 export async function updateSubmissionStatus(id: string, status: SubmissionStatus) {
@@ -99,9 +117,47 @@ export async function updateSubmissionStatus(id: string, status: SubmissionStatu
   const index = submissions.findIndex((submission) => submission.id === id);
   if (index === -1) return null;
 
-  submissions[index] = { ...submissions[index], status };
+  submissions[index] = normalizeSubmission({ ...submissions[index], status });
   await writeAll(submissions);
   return submissions[index];
+}
+
+export async function addSubmissionReply(id: string, body: string) {
+  const trimmed = body.trim();
+  if (!trimmed) {
+    throw new Error("Reply message is required.");
+  }
+
+  const submissions = await readAll();
+  const index = submissions.findIndex((submission) => submission.id === id);
+  if (index === -1) return null;
+
+  const now = new Date().toISOString();
+  const reply: SubmissionReply = {
+    id: `reply-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`,
+    body: trimmed,
+    createdAt: now,
+  };
+
+  const current = normalizeSubmission(submissions[index]);
+  const nextStatus: SubmissionStatus =
+    current.status === "closed" ? "closed" : "replied";
+
+  submissions[index] = normalizeSubmission({
+    ...current,
+    status: nextStatus,
+    replies: [...(current.replies ?? []), reply],
+  });
+  await writeAll(submissions);
+
+  const updated = submissions[index];
+  try {
+    await notifyInquiryReply(updated, trimmed);
+  } catch (error) {
+    console.error("Inquiry reply email failed:", error);
+  }
+
+  return updated;
 }
 
 export async function deleteSubmission(id: string) {

@@ -7,6 +7,12 @@ export type SubmissionType =
 
 export type SubmissionStatus = "new" | "reviewing" | "replied" | "closed";
 
+export type SubmissionReply = {
+  id: string;
+  body: string;
+  createdAt: string;
+};
+
 export type Submission = {
   id: string;
   type: SubmissionType;
@@ -16,6 +22,7 @@ export type Submission = {
   summary: string;
   createdAt: string;
   payload: Record<string, string>;
+  replies?: SubmissionReply[];
 };
 
 export type SubmissionStats = {

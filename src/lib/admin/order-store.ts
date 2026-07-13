@@ -6,7 +6,8 @@ import type {
   OrderSource,
   OrderStatus,
 } from "@/lib/admin/order-types";
-import { createOrderId, createOrderNumber, normalizeEmail } from "@/lib/admin/order-utils";
+import { createOrderId, createOrderNumber, formatOrderAmount, normalizeEmail, toPublicDeliveryUrl } from "@/lib/admin/order-utils";
+import { notifyOrderConfirmation } from "@/lib/admin/order-email";
 import { readJsonStore, requireJsonStoreWrite } from "@/lib/admin/json-store";
 
 const STORE_FILE = "orders-store.json";
@@ -146,19 +147,38 @@ export async function markOrderPaid(id: string, whopPaymentId?: string) {
   if (index === -1) return null;
 
   const now = new Date().toISOString();
-  const current = orders[index];
-  if (current.status === "awaiting_payment" || current.status === "paid") {
-    orders[index] = {
-      ...current,
-      status: current.status === "awaiting_payment" ? "paid" : current.status,
-      whopPaymentId: whopPaymentId || current.whopPaymentId,
-      paidAt: current.paidAt || now,
-      updatedAt: now,
-    };
-    await writeAll(orders);
+  const current = normalizeOrder(orders[index]);
+  if (current.status !== "awaiting_payment" && current.status !== "paid") {
+    return current;
   }
 
-  return orders[index];
+  const wasAwaitingPayment = current.status === "awaiting_payment";
+  orders[index] = normalizeOrder({
+    ...current,
+    status: wasAwaitingPayment ? "paid" : current.status,
+    whopPaymentId: whopPaymentId || current.whopPaymentId,
+    paidAt: current.paidAt || now,
+    updatedAt: now,
+  });
+  await writeAll(orders);
+
+  const order = normalizeOrder(orders[index]);
+  if (wasAwaitingPayment && !order.confirmationEmailSentAt) {
+    try {
+      await notifyOrderConfirmation(order);
+      orders[index] = {
+        ...order,
+        confirmationEmailSentAt: now,
+        updatedAt: now,
+      };
+      await writeAll(orders);
+      return normalizeOrder(orders[index]);
+    } catch (error) {
+      console.error("Order confirmation email failed:", error);
+    }
+  }
+
+  return order;
 }
 
 export async function updateOrder(
@@ -214,6 +234,94 @@ export async function addOrderMessage(id: string, body: string) {
   return orders[index];
 }
 
+export function buildDeliveryNotificationMessage(urls: string[]) {
+  const publicUrls = urls.map((url) => toPublicDeliveryUrl(url.trim())).filter(Boolean);
+  if (publicUrls.length === 0) {
+    throw new Error("Add a file or delivery link before delivering.");
+  }
+
+  return [
+    "Thank you! Your video delivery has been completed successfully through VidCarry.",
+    "",
+    ...publicUrls,
+    "",
+    "Please review the final file and let us know if everything looks good. If you need any small revisions, feel free to share your feedback.",
+    "",
+    "Thanks again for choosing VidCarry!",
+  ].join("\n");
+}
+
+function appendDelivery(
+  deliveries: OrderDelivery[],
+  label: string,
+  url: string,
+  createdAt: string,
+) {
+  deliveries.push({
+    id: createOrderId(),
+    label: label.trim() || "Delivery link",
+    url: url.trim(),
+    createdAt,
+  });
+}
+
+export async function deliverOrderToClient(
+  id: string,
+  input: {
+    fileUrl?: string;
+    fileLabel?: string;
+    externalUrl?: string;
+    externalLabel?: string;
+  },
+) {
+  const fileUrl = input.fileUrl?.trim();
+  const externalUrl = input.externalUrl?.trim();
+  if (!fileUrl && !externalUrl) {
+    throw new Error("Add a file or delivery link before delivering.");
+  }
+
+  const orders = await readAll();
+  const index = orders.findIndex((order) => order.id === id);
+  if (index === -1) return null;
+
+  const now = new Date().toISOString();
+  const newDeliveries: OrderDelivery[] = [];
+  const messageUrls: string[] = [];
+
+  if (fileUrl) {
+    appendDelivery(newDeliveries, input.fileLabel || "Here's your delivery.", fileUrl, now);
+    messageUrls.push(fileUrl);
+  }
+
+  if (externalUrl) {
+    appendDelivery(
+      newDeliveries,
+      input.externalLabel || "Final exports",
+      externalUrl,
+      now,
+    );
+    messageUrls.push(externalUrl);
+  }
+
+  const message: OrderMessage = {
+    id: createOrderId(),
+    body: buildDeliveryNotificationMessage(messageUrls),
+    author: "admin",
+    createdAt: now,
+  };
+
+  const current = normalizeOrder(orders[index]);
+  orders[index] = {
+    ...current,
+    deliveries: [...current.deliveries, ...newDeliveries],
+    messages: [...current.messages, message],
+    updatedAt: now,
+  };
+  await writeAll(orders);
+  return orders[index];
+}
+
+/** @deprecated Use deliverOrderToClient — kept for compatibility without auto-message */
 export async function addOrderDelivery(id: string, label: string, url: string) {
   const orders = await readAll();
   const index = orders.findIndex((order) => order.id === id);
@@ -222,7 +330,7 @@ export async function addOrderDelivery(id: string, label: string, url: string) {
   const now = new Date().toISOString();
   const delivery: OrderDelivery = {
     id: createOrderId(),
-    label: label.trim(),
+    label: label.trim() || "Delivery link",
     url: url.trim(),
     createdAt: now,
   };

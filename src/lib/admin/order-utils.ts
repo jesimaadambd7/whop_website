@@ -1,6 +1,59 @@
 import type { AdminOrder } from "@/lib/admin/order-types";
 import { formatMoney } from "@/lib/admin/package-utils";
 
+export function toPublicDeliveryUrl(url: string) {
+  const trimmed = url.trim();
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "";
+  if (siteUrl && trimmed.startsWith("/")) return `${siteUrl}${trimmed}`;
+  return trimmed;
+}
+
+export function isUploadedDeliveryUrl(url: string) {
+  const value = url.trim();
+  return (
+    value.includes("/assets/deliveries/") ||
+    value.includes("/api/files/deliveries/") ||
+    value.includes("blob.vercel-storage.com")
+  );
+}
+
+export function getDeliveryFilename(url: string) {
+  const part = url.split("/").pop()?.split("?")[0] || "";
+  const decoded = decodeURIComponent(part);
+  return decoded.replace(/^\d+-/, "") || "Uploaded file";
+}
+
+export function getOrderUploadedDeliveryLinks(
+  deliveries: AdminOrder["deliveries"],
+): { label: string; url: string; filename: string }[] {
+  return deliveries
+    .filter((delivery) => isUploadedDeliveryUrl(delivery.url))
+    .map((delivery) => ({
+      label: "Here's your delivery.",
+      url: toPublicDeliveryUrl(delivery.url),
+      filename: getDeliveryFilename(delivery.url),
+    }));
+}
+
+export function getOrderExternalDeliveryLinks(
+  deliveries: AdminOrder["deliveries"],
+): { label: string; url: string }[] {
+  return deliveries
+    .filter((delivery) => !isUploadedDeliveryUrl(delivery.url))
+    .map((delivery) => ({
+      label: delivery.label.trim() || "Delivery link",
+      url: toPublicDeliveryUrl(delivery.url),
+    }));
+}
+
+export function normalizeDeliveryUrl(url: string) {
+  const trimmed = url.trim();
+  if (!trimmed) return "";
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return `https://${trimmed}`;
+}
+
 export function createOrderId() {
   if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
     return crypto.randomUUID();

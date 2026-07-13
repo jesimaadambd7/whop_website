@@ -6,6 +6,11 @@ import { useRouter } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { WhopCheckout } from "@/components/checkout/WhopCheckout";
 import { PendingSubmitButton } from "@/components/checkout/PendingSubmitButton";
+import {
+  buildCheckoutCompletePath,
+  buildCheckoutCompleteUrl,
+  getCheckoutOrigin,
+} from "@/lib/checkout/urls";
 import type { VaultResource } from "@/lib/data/resources";
 import { getPublicWhopPlanId } from "@/lib/whop-plans";
 
@@ -28,8 +33,13 @@ export function ResourceCheckoutView({ resource }: ResourceCheckoutViewProps) {
   const [orderId, setOrderId] = useState<string | null>(null);
 
   const returnUrl = orderId
-    ? `${siteUrl || (typeof window !== "undefined" ? window.location.origin : "")}/checkout/${resource.slug}/complete?orderId=${orderId}`
-    : `${siteUrl || (typeof window !== "undefined" ? window.location.origin : "")}/checkout/${resource.slug}/complete`;
+    ? buildCheckoutCompleteUrl(resource.slug, orderId, siteUrl)
+    : `${getCheckoutOrigin(siteUrl)}/checkout/${resource.slug}/complete`;
+
+  function handlePaymentComplete() {
+    if (!orderId) return;
+    router.push(buildCheckoutCompletePath(resource.slug, orderId));
+  }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -132,7 +142,12 @@ export function ResourceCheckoutView({ resource }: ResourceCheckoutViewProps) {
 
           {showPayment && planId ? (
             <div className="mt-8 border-t border-white/10 pt-8">
-              <WhopCheckout planId={planId} returnUrl={returnUrl} email={customerEmail} />
+              <WhopCheckout
+                planId={planId}
+                returnUrl={returnUrl}
+                email={customerEmail}
+                onPaymentComplete={handlePaymentComplete}
+              />
             </div>
           ) : null}
         </section>

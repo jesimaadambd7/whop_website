@@ -1,23 +1,29 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import type { SubmissionStatus } from "@/lib/admin/types";
 
 type SubmissionStatusFormProps = {
   submissionId: string;
   status: SubmissionStatus;
   redirectTo: string;
+  onStatusChange?: (status: SubmissionStatus) => void;
 };
 
 export function SubmissionStatusForm({
   submissionId,
   status,
   redirectTo,
+  onStatusChange,
 }: SubmissionStatusFormProps) {
   const router = useRouter();
   const [value, setValue] = useState(status);
   const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    setValue(status);
+  }, [status]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -31,6 +37,7 @@ export function SubmissionStatusForm({
       });
 
       if (!response.ok) throw new Error("Failed to update status");
+      onStatusChange?.(value);
       router.push(redirectTo);
       router.refresh();
     } finally {

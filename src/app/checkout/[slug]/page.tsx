@@ -4,6 +4,7 @@ import { PackageCheckoutView } from "@/components/checkout/PackageCheckoutView";
 import { ResourceCheckoutView } from "@/components/checkout/ResourceCheckoutView";
 import { loadPackageBySlug, loadPackages } from "@/lib/data/packages";
 import { getPublishedVaultResourceBySlug, loadPublishedVaultResources } from "@/lib/data/load-resources";
+import { getPublicWhopCheckoutUrl, getPublicWhopPlanId } from "@/lib/whop-plans";
 
 type Props = {
   params: { slug: string };
@@ -45,7 +46,15 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
 
   if (pkg) {
     const variantId = searchParams.variant ?? pkg.variantId;
-    return <PackageCheckoutView pkg={pkg} variantId={variantId} />;
+    return (
+      <PackageCheckoutView
+        pkg={pkg}
+        variantId={variantId}
+        whopPlanId={getPublicWhopPlanId(pkg.slug)}
+        whopCheckoutUrl={getPublicWhopCheckoutUrl(pkg.slug)}
+        whopSandbox={process.env.WHOP_SANDBOX === "true"}
+      />
+    );
   }
 
   if (resource) {

@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/admin/auth";
+import { notifyOrderClient } from "@/lib/admin/order-email";
 import {
-  addOrderDelivery,
   addOrderMessage,
+  deliverOrderToClient,
   getOrder,
   issueOrderRefund,
   updateOrder,
@@ -41,19 +42,32 @@ export async function PUT(request: Request, { params }: Params) {
       if (!order) {
         return NextResponse.json({ error: "Order not found." }, { status: 404 });
       }
-      return NextResponse.json({ order });
+
+      const latestMessage = order.messages[order.messages.length - 1];
+      if (latestMessage) {
+        await notifyOrderClient(order, latestMessage.body, "message");
+      }
+
+      return NextResponse.json({ order, emailed: true });
     }
 
-    if (body.action === "delivery") {
-      const order = await addOrderDelivery(
-        params.id,
-        String(body.label ?? ""),
-        String(body.url ?? ""),
-      );
+    if (body.action === "deliver") {
+      const order = await deliverOrderToClient(params.id, {
+        fileUrl: body.fileUrl ? String(body.fileUrl) : undefined,
+        fileLabel: body.fileLabel ? String(body.fileLabel) : undefined,
+        externalUrl: body.externalUrl ? String(body.externalUrl) : undefined,
+        externalLabel: body.externalLabel ? String(body.externalLabel) : undefined,
+      });
       if (!order) {
         return NextResponse.json({ error: "Order not found." }, { status: 404 });
       }
-      return NextResponse.json({ order });
+
+      const latestMessage = order.messages[order.messages.length - 1];
+      if (latestMessage) {
+        await notifyOrderClient(order, latestMessage.body, "delivery");
+      }
+
+      return NextResponse.json({ order, emailed: true });
     }
 
     if (body.action === "refund") {

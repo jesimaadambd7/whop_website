@@ -56,6 +56,7 @@ export type AdminOrder = {
   createdAt: string;
   updatedAt: string;
   paidAt?: string;
+  confirmationEmailSentAt?: string;
 };
 
 export const ORDER_STATUSES: OrderStatus[] = [

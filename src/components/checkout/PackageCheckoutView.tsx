@@ -6,12 +6,15 @@ import { useRouter } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { WhopCheckout } from "@/components/checkout/WhopCheckout";
 import { PendingSubmitButton } from "@/components/checkout/PendingSubmitButton";
+import { buildCheckoutCompletePath, buildCheckoutCompleteUrl, getCheckoutOrigin } from "@/lib/checkout/urls";
 import type { Package } from "@/lib/data/packages";
-import { getPublicWhopPlanId } from "@/lib/whop-plans";
 
 type PackageCheckoutViewProps = {
   pkg: Package;
   variantId?: string;
+  whopPlanId?: string;
+  whopCheckoutUrl?: string;
+  whopSandbox?: boolean;
 };
 
 const fieldClass =
@@ -56,8 +59,16 @@ function OrderSummary({ pkg }: { pkg: Package }) {
   );
 }
 
-export function PackageCheckoutView({ pkg, variantId }: PackageCheckoutViewProps) {
-  const planId = getPublicWhopPlanId(pkg.slug);
+export function PackageCheckoutView({
+  pkg,
+  variantId,
+  whopPlanId,
+  whopCheckoutUrl,
+  whopSandbox = false,
+}: PackageCheckoutViewProps) {
+  const planId = whopPlanId;
+  const checkoutUrl = whopCheckoutUrl;
+  const canCheckout = Boolean(planId || checkoutUrl);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
   const router = useRouter();
   const paymentRef = useRef<HTMLDivElement>(null);
@@ -68,8 +79,13 @@ export function PackageCheckoutView({ pkg, variantId }: PackageCheckoutViewProps
   const [orderId, setOrderId] = useState<string | null>(null);
 
   const returnUrl = orderId
-    ? `${siteUrl || (typeof window !== "undefined" ? window.location.origin : "")}/checkout/${pkg.slug}/complete?orderId=${orderId}`
-    : `${siteUrl || (typeof window !== "undefined" ? window.location.origin : "")}/checkout/${pkg.slug}/complete`;
+    ? buildCheckoutCompleteUrl(pkg.slug, orderId, siteUrl)
+    : `${getCheckoutOrigin(siteUrl)}/checkout/${pkg.slug}/complete`;
+
+  function handlePaymentComplete() {
+    if (!orderId) return;
+    router.push(buildCheckoutCompletePath(pkg.slug, orderId));
+  }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -78,7 +94,7 @@ export function PackageCheckoutView({ pkg, variantId }: PackageCheckoutViewProps
     const email = String(formData.get("email") || "");
     setCustomerEmail(email);
 
-    if (!planId) return;
+    if (!canCheckout) return;
 
     setIsSubmitting(true);
     startRedirect(async () => {
@@ -96,6 +112,12 @@ export function PackageCheckoutView({ pkg, variantId }: PackageCheckoutViewProps
         if (!response.ok) {
           throw new Error(data.error || "Could not start checkout.");
         }
+
+        if (checkoutUrl && !planId) {
+          window.location.href = checkoutUrl;
+          return;
+        }
+
         setOrderId(data.order.id);
         setShowPayment(true);
         requestAnimationFrame(() => {
@@ -243,25 +265,26 @@ export function PackageCheckoutView({ pkg, variantId }: PackageCheckoutViewProps
                 </span>
               </label>
 
-              {planId ? (
+              {canCheckout ? (
                 <PendingSubmitButton
                   name="provider"
                   value="whop"
                   pending={isSubmitting}
-                  pendingLabel="Opening checkout..."
+                  pendingLabel={planId ? "Loading payment..." : "Redirecting to Whop..."}
                   className="sm:col-span-2"
                 >
-                  Pay Now
+                  {planId ? "Continue to payment" : "Pay Now"}
                 </PendingSubmitButton>
               ) : (
                 <div className="sm:col-span-2">
                   <div className="rounded-2xl border border-amber-400/30 bg-amber-400/5 p-6">
                     <p className="font-medium text-amber-200">Whop plan not configured</p>
                     <p className="mt-2 text-sm text-zinc-400">
-                      Add your Whop plan ID to <code className="text-sky-400">.env.local</code>:
+                      Add a Whop plan ID or hosted checkout URL to{" "}
+                      <code className="text-sky-400">.env.local</code>:
                     </p>
                     <pre className="mt-3 overflow-x-auto rounded-lg bg-black/40 p-3 text-xs text-zinc-400">
-                      {`NEXT_PUBLIC_WHOP_PLAN_${pkg.slug.toUpperCase().replace(/-/g, "_")}=plan_xxxxxxxx`}
+                      {`NEXT_PUBLIC_WHOP_PLAN_${pkg.slug.toUpperCase().replace(/-/g, "_")}=plan_xxxxxxxx\n# or for sandbox redirect:\nNEXT_PUBLIC_WHOP_CHECKOUT_URL_${pkg.slug.toUpperCase().replace(/-/g, "_")}=https://sandbox.whop.com/...`}
                     </pre>
                     <button
                       type="button"
@@ -281,7 +304,13 @@ export function PackageCheckoutView({ pkg, variantId }: PackageCheckoutViewProps
                   Complete payment
                 </p>
                 <div className="mt-4">
-                  <WhopCheckout planId={planId} returnUrl={returnUrl} email={customerEmail} />
+                  <WhopCheckout
+                    planId={planId}
+                    returnUrl={returnUrl}
+                    email={customerEmail}
+                    sandbox={whopSandbox}
+                    onPaymentComplete={handlePaymentComplete}
+                  />
                 </div>
                 <button
                   type="button"

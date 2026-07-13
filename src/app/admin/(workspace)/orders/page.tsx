@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { OrderStatusBadge } from "@/components/admin/OrderStatusBadge";
 import { listOrders } from "@/lib/admin/order-store";
 import type { BillingType, OrderStatus } from "@/lib/admin/order-types";
 import { ORDER_STATUSES } from "@/lib/admin/order-types";
@@ -66,28 +67,36 @@ export default async function AdminOrdersPage({ searchParams }: Props) {
             No orders yet. New checkouts will appear here as soon as a customer clicks Pay Now.
           </div>
         ) : (
-          orders.map((order) => (
-            <Link
-              key={order.id}
-              href={`/admin/orders/${order.id}`}
-              className="grid gap-4 border-b border-white/10 bg-white/[0.025] p-6 transition hover:bg-white/[0.05] last:border-0 lg:grid-cols-[1fr_1fr_auto_auto] lg:items-center"
-            >
-              <div>
-                <p className="text-xs font-black uppercase text-sky-300">{order.orderNumber}</p>
-                <h2 className="mt-2 font-display text-2xl font-black">{order.packageTitle}</h2>
-              </div>
-              <div>
-                <p className="font-bold">{order.customerName}</p>
-                <p className="text-sm text-zinc-500">
-                  {order.email} / {order.company}
-                </p>
-              </div>
-              <p className="font-black text-sky-200">{formatOrderAmount(order)}</p>
-              <span className="rounded-full border border-white/10 px-3 py-1 text-center text-xs font-black uppercase">
-                {order.status.replace(/_/g, " ")}
-              </span>
-            </Link>
-          ))
+          <>
+            <div className="hidden border-b border-white/10 bg-white/[0.03] px-6 py-4 text-xs font-black uppercase tracking-[0.16em] text-zinc-500 lg:grid lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1.35fr)_6rem_12rem] lg:gap-x-6">
+              <p>Order</p>
+              <p className="lg:border-l lg:border-white/10 lg:pl-6">Client</p>
+              <p className="text-right">Amount</p>
+              <p className="text-right">Status</p>
+            </div>
+            {orders.map((order) => (
+              <Link
+                key={order.id}
+                href={`/admin/orders/${order.id}`}
+                className="grid gap-x-6 gap-y-3 border-b border-white/10 bg-white/[0.025] p-6 transition hover:bg-white/[0.05] last:border-0 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1.35fr)_6rem_12rem] lg:items-center"
+              >
+                <div className="min-w-0">
+                  <p className="text-xs font-black uppercase text-sky-300">{order.orderNumber}</p>
+                  <h2 className="mt-2 font-display text-2xl font-black">{order.packageTitle}</h2>
+                </div>
+                <div className="min-w-0 lg:border-l lg:border-white/10 lg:pl-6">
+                  <p className="truncate font-bold">{order.customerName}</p>
+                  <p className="mt-1 truncate text-sm text-zinc-500">
+                    {order.email} / {order.company}
+                  </p>
+                </div>
+                <p className="font-black text-sky-200 lg:text-right">{formatOrderAmount(order)}</p>
+                <div className="flex lg:justify-end">
+                  <OrderStatusBadge status={order.status} />
+                </div>
+              </Link>
+            ))}
+          </>
         )}
       </section>
     </main>

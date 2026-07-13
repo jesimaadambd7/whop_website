@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { AdminSuccessModal } from "@/components/admin/AdminSuccessModal";
 import type { AdminOrder, OrderStatus } from "@/lib/admin/order-types";
@@ -8,7 +8,11 @@ import { ORDER_STATUSES } from "@/lib/admin/order-types";
 import {
   formatOrderAmount,
   getOrderAssetLinks,
+  getOrderExternalDeliveryLinks,
   getOrderIntakeRows,
+  getOrderUploadedDeliveryLinks,
+  normalizeDeliveryUrl,
+  toPublicDeliveryUrl,
 } from "@/lib/admin/order-utils";
 import { toDatetimeLocalValue } from "@/lib/admin/package-utils";
 
@@ -21,6 +25,7 @@ const inputClass =
 
 export function AdminOrderDetailPanel({ order: initialOrder }: Props) {
   const router = useRouter();
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [order, setOrder] = useState(initialOrder);
   const [status, setStatus] = useState<OrderStatus>(initialOrder.status);
   const [dueAt, setDueAt] = useState(toDatetimeLocalValue(initialOrder.dueAt ?? null));
@@ -29,12 +34,28 @@ export function AdminOrderDetailPanel({ order: initialOrder }: Props) {
   const [messageBody, setMessageBody] = useState("");
   const [deliveryLabel, setDeliveryLabel] = useState("");
   const [deliveryUrl, setDeliveryUrl] = useState("");
+  const [deliveryFile, setDeliveryFile] = useState<File | null>(null);
+  const [stagedFile, setStagedFile] = useState<{
+    fileUrl: string;
+    filename: string;
+    label: string;
+  } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<{ title: string; description?: string } | null>(null);
   const [pending, startTransition] = useTransition();
 
   const intakeRows = getOrderIntakeRows(order.intake);
   const assetLinks = getOrderAssetLinks(order);
+  const uploadedDeliveryLinks = getOrderUploadedDeliveryLinks(order.deliveries);
+  const externalDeliveryLinks = getOrderExternalDeliveryLinks(order.deliveries);
+
+  function resolveDeliveryHref(url: string) {
+    if (/^https?:\/\//i.test(url)) return url;
+    if (url.startsWith("/") && typeof window !== "undefined") {
+      return `${window.location.origin}${url}`;
+    }
+    return toPublicDeliveryUrl(url);
+  }
 
   async function request(
     payload: Record<string, unknown>,
@@ -70,6 +91,75 @@ export function AdminOrderDetailPanel({ order: initialOrder }: Props) {
     });
   }
 
+  function uploadDeliveryFile() {
+    if (!deliveryFile) return;
+
+    run(async () => {
+      setError(null);
+      const formData = new FormData();
+      formData.append("file", deliveryFile);
+
+      const response = await fetch(`/api/admin/orders/${order.id}/delivery-file`, {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Upload failed.");
+      }
+
+      setStagedFile({
+        fileUrl: data.fileUrl,
+        filename: data.filename,
+        label: data.label || "Here's your delivery.",
+      });
+      setDeliveryFile(null);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      setSuccess({
+        title: "File ready to deliver.",
+        description: "Add an optional link, then click Deliver to client.",
+      });
+    });
+  }
+
+  function deliverToClient() {
+    const externalUrl = deliveryUrl.trim() ? normalizeDeliveryUrl(deliveryUrl) : "";
+    if (!stagedFile && !externalUrl) {
+      setError("Upload a file or add a delivery link before delivering.");
+      return;
+    }
+
+    run(async () => {
+      setError(null);
+      const response = await fetch(`/api/admin/orders/${order.id}/deliver`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fileUrl: stagedFile?.fileUrl,
+          fileLabel: stagedFile?.label,
+          externalUrl: externalUrl || undefined,
+          externalLabel: deliveryLabel.trim() || "Final exports",
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Could not deliver order.");
+      }
+
+      setOrder(data.order);
+      setStagedFile(null);
+      setDeliveryLabel("");
+      setDeliveryUrl("");
+      setSuccess({
+        title: "Delivered to client.",
+        description: "The delivery message was saved and emailed to the customer.",
+      });
+      router.refresh();
+    });
+  }
+
+  const hasStagedDelivery = Boolean(stagedFile || deliveryUrl.trim());
+
   return (
     <>
       {error && (
@@ -93,17 +183,29 @@ export function AdminOrderDetailPanel({ order: initialOrder }: Props) {
                 </div>
               ))}
             </div>
-            {assetLinks.length > 0 ? (
+            {assetLinks.length > 0 || uploadedDeliveryLinks.length > 0 ? (
               <div className="mt-5 grid gap-2">
                 {assetLinks.map((link) => (
                   <a
                     key={link.url}
-                    href={link.url}
+                    href={link.url.startsWith("http") ? link.url : `https://${link.url}`}
                     target="_blank"
                     rel="noreferrer"
                     className="rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-sky-300 transition hover:border-sky-400/30 hover:text-white"
                   >
                     {link.label}: {link.url}
+                  </a>
+                ))}
+                {uploadedDeliveryLinks.map((link) => (
+                  <a
+                    key={link.url}
+                    href={resolveDeliveryHref(link.url)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm transition hover:border-emerald-300/30"
+                  >
+                    <p className="font-bold text-white">{link.label}</p>
+                    <p className="mt-1 truncate text-emerald-200">{link.filename}</p>
                   </a>
                 ))}
               </div>
@@ -140,7 +242,7 @@ export function AdminOrderDetailPanel({ order: initialOrder }: Props) {
                   await request(
                     { action: "message", body: messageBody },
                     "Message sent.",
-                    "The client update was saved to the order thread.",
+                    "The client update was saved and emailed to the customer.",
                   );
                   setMessageBody("");
                 });
@@ -237,12 +339,30 @@ export function AdminOrderDetailPanel({ order: initialOrder }: Props) {
 
           <section className="rounded-[2rem] border border-emerald-300/20 bg-emerald-300/[0.05] p-6">
             <h2 className="font-display text-3xl font-black">Delivery</h2>
-            {order.deliveries.length > 0 ? (
+            <p className="mt-2 text-sm text-zinc-500">
+              Upload a file and/or add a link, then deliver once to send a single client message.
+            </p>
+            {externalDeliveryLinks.length > 0 || uploadedDeliveryLinks.length > 0 ? (
               <div className="mt-5 grid gap-2">
-                {order.deliveries.map((delivery) => (
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-zinc-500">
+                  Sent deliveries
+                </p>
+                {uploadedDeliveryLinks.map((delivery) => (
                   <a
-                    key={delivery.id}
-                    href={delivery.url}
+                    key={delivery.url}
+                    href={resolveDeliveryHref(delivery.url)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm transition hover:border-emerald-300/30"
+                  >
+                    <p className="font-bold text-white">{delivery.label}</p>
+                    <p className="mt-1 truncate text-emerald-200">{delivery.filename}</p>
+                  </a>
+                ))}
+                {externalDeliveryLinks.map((delivery) => (
+                  <a
+                    key={delivery.url}
+                    href={resolveDeliveryHref(delivery.url)}
                     target="_blank"
                     rel="noreferrer"
                     className="rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm transition hover:border-emerald-300/30"
@@ -253,48 +373,73 @@ export function AdminOrderDetailPanel({ order: initialOrder }: Props) {
                 ))}
               </div>
             ) : null}
-            <form
-              className="mt-5 grid gap-3"
-              onSubmit={(event) => {
-                event.preventDefault();
-                run(async () => {
-                  await request(
-                    {
-                      action: "delivery",
-                      label: deliveryLabel,
-                      url: deliveryUrl,
-                    },
-                    "Delivery link added.",
-                  );
-                  setDeliveryLabel("");
-                  setDeliveryUrl("");
-                });
-              }}
-            >
+            {stagedFile ? (
+              <div className="mt-5 rounded-xl border border-amber-300/30 bg-amber-300/10 px-4 py-3 text-sm">
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-amber-200">
+                  Ready to deliver
+                </p>
+                <p className="mt-2 font-bold text-white">{stagedFile.label}</p>
+                <p className="mt-1 truncate text-amber-100">{stagedFile.filename}</p>
+                <button
+                  type="button"
+                  onClick={() => setStagedFile(null)}
+                  className="mt-3 text-xs font-bold text-amber-200 underline"
+                >
+                  Remove staged file
+                </button>
+              </div>
+            ) : null}
+            <div className="mt-5 grid gap-3">
+              <p className="text-xs font-black uppercase tracking-[0.16em] text-zinc-500">
+                Upload final file
+              </p>
+
               <input
-                placeholder="Final exports"
+                ref={fileInputRef}
+                type="file"
+                className={`${inputClass} file:mr-3 file:rounded-lg file:border-0 file:bg-white/10 file:px-3 file:py-2 file:text-sm file:font-bold file:text-white`}
+                onChange={(event) => setDeliveryFile(event.target.files?.[0] ?? null)}
+              />
+
+              <button
+                type="button"
+                disabled={pending || !deliveryFile}
+                onClick={uploadDeliveryFile}
+                className="rounded-full border border-white/15 bg-black/40 px-5 py-3 text-sm font-black text-white disabled:opacity-60"
+              >
+                {pending ? "Uploading..." : "Stage file"}
+              </button>
+
+              <p className="pt-2 text-xs font-black uppercase tracking-[0.16em] text-zinc-500">
+                Or add external delivery link
+              </p>
+
+              <input
+                placeholder="Deliverable label"
                 className={inputClass}
-                name="label"
+                name="deliverableLabel"
                 value={deliveryLabel}
                 onChange={(event) => setDeliveryLabel(event.target.value)}
               />
+
               <input
-                required
-                placeholder="Secure delivery URL"
+                placeholder="Secure delivery URL (Google Drive, Dropbox...)"
                 className={inputClass}
                 type="url"
                 name="url"
                 value={deliveryUrl}
                 onChange={(event) => setDeliveryUrl(event.target.value)}
               />
+
               <button
-                type="submit"
-                disabled={pending}
+                type="button"
+                disabled={pending || !hasStagedDelivery}
+                onClick={deliverToClient}
                 className="rounded-full bg-emerald-300 px-5 py-3 font-black text-black disabled:opacity-60"
               >
-                {pending ? "Saving..." : "Add delivery link"}
+                {pending ? "Delivering..." : "Deliver to client"}
               </button>
-            </form>
+            </div>
           </section>
 
           <section className="rounded-[2rem] border border-red-300/20 bg-red-400/[0.05] p-6">

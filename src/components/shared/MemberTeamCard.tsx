@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Link2, Sparkles } from "lucide-react";
+import { useFinePointer } from "@/hooks/useFinePointer";
 import type { TeamMember } from "@/lib/data/team";
 
 const actionPrimary =
@@ -19,15 +20,17 @@ type MemberTeamCardProps = {
 
 export function MemberTeamCard({ member, variant = "compact" }: MemberTeamCardProps) {
   const reduceMotion = useReducedMotion() === true;
+  const finePointer = useFinePointer();
   const isPage = variant === "page";
 
-  const motionProps = reduceMotion
-    ? {}
-    : {
-        initial: false as const,
-        whileHover: { y: -8, scale: 1.012 },
-        transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const },
-      };
+  const motionProps =
+    reduceMotion || !finePointer
+      ? {}
+      : {
+          initial: false as const,
+          whileHover: { y: -8, scale: 1.012 },
+          transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const },
+        };
 
   const cardBody = (
     <motion.article className="member-team-card relative h-full" {...motionProps}>

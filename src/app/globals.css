@@ -1170,8 +1170,13 @@ body {
       transparent 70%
     );
     transform: translateY(-120%);
-    opacity: 0.75;
-    animation: member-shine-vertical 5s ease-in-out infinite;
+    opacity: 0;
+  }
+
+  .group\/member:hover .member-team-card__shine,
+  .member-team-card:hover .member-team-card__shine {
+    opacity: 0.85;
+    animation: member-shine-vertical 2.8s ease-in-out infinite;
   }
 
   .member-team-card__waves {
@@ -1182,14 +1187,8 @@ body {
       rgba(56, 189, 248, 0.03) 18px,
       rgba(56, 189, 248, 0.03) 19px
     );
-    opacity: 0.5;
-    animation: member-waves-drift 10s linear infinite;
-  }
-
-  .group\/member:hover .member-team-card__shine,
-  .member-team-card:hover .member-team-card__shine {
-    animation-duration: 2.8s;
-    opacity: 1;
+    opacity: 0.35;
+    animation: member-waves-drift 14s linear infinite;
   }
 
   .member-team-card__badge {
@@ -1255,6 +1254,111 @@ body {
 
   .member-team-card__chip {
     animation: member-chip-glow 4.5s ease-in-out infinite;
+  }
+}
+
+/* Team cards — stable on phone / touch (no shine blink while scrolling) */
+@media (max-width: 767px), (hover: none), (pointer: coarse) {
+  .founder-team-card__shine,
+  .founder-team-card__scanline,
+  .founder-team-card__orb,
+  .member-team-card__shine,
+  .member-team-card__waves,
+  .member-team-card__mesh,
+  .member-team-card__orb {
+    display: none !important;
+  }
+
+  .founder-team-card__frame,
+  .member-team-card__frame {
+    animation: none !important;
+    box-shadow: 0 0 16px rgba(0, 188, 254, 0.14);
+  }
+
+  .founder-team-card__frame {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 210, 54, 0.4),
+      rgba(56, 189, 248, 0.8) 52%,
+      rgba(255, 210, 54, 0.35)
+    );
+  }
+
+  .member-team-card__frame {
+    background: linear-gradient(
+      90deg,
+      rgba(56, 189, 248, 0.32),
+      rgba(125, 211, 252, 0.7) 50%,
+      rgba(56, 189, 248, 0.32)
+    );
+  }
+
+  .founder-team-card__halo,
+  .founder-team-card__halo--gold,
+  .member-team-card__halo,
+  .member-team-card__halo--soft {
+    animation: none !important;
+    opacity: 0.28 !important;
+    transform: none !important;
+  }
+
+  .founder-team-card__aurora,
+  .member-team-card__aurora {
+    animation: none !important;
+  }
+
+  .founder-team-card__ring,
+  .founder-team-card__avatar-wrap,
+  .member-team-card__ring,
+  .member-team-card__avatar-wrap {
+    animation: none !important;
+  }
+
+  .founder-team-card__role {
+    animation: none !important;
+    color: #bae6fd;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+  }
+
+  .member-team-card__role {
+    animation: none !important;
+    color: #38bdf8;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+  }
+
+  .founder-team-card__badge,
+  .founder-team-card__chip,
+  .member-team-card__badge,
+  .member-team-card__chip {
+    animation: none !important;
+  }
+
+  .group\/founder:hover .founder-team-card__body,
+  .founder-team-card:hover .founder-team-card__body,
+  .group\/member:hover .member-team-card__body,
+  .member-team-card:hover .member-team-card__body,
+  .group\/founder:hover .founder-team-card__frame,
+  .founder-team-card:hover .founder-team-card__frame,
+  .group\/member:hover .member-team-card__frame,
+  .member-team-card:hover .member-team-card__frame,
+  .group\/founder:hover .founder-team-card__avatar,
+  .founder-team-card:hover .founder-team-card__avatar,
+  .group\/member:hover .member-team-card__avatar,
+  .member-team-card:hover .member-team-card__avatar,
+  .group\/founder:hover .founder-team-card__arrow,
+  .founder-team-card:hover .founder-team-card__arrow,
+  .group\/member:hover .member-team-card__arrow,
+  .member-team-card:hover .member-team-card__arrow,
+  .group\/founder:hover .founder-team-card__name,
+  .founder-team-card:hover .founder-team-card__name,
+  .group\/member:hover .member-team-card__name,
+  .member-team-card:hover .member-team-card__name {
+    transform: none !important;
+    animation: none !important;
   }
 }
 

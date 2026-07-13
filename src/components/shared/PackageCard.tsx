@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { AnimatedGlassCard } from "@/components/ui/AnimatedGlassCard";
+import { HoverVideoPreview } from "@/components/effects/cinematic/HoverVideoPreview";
+import { getPackagePreviewVideo } from "@/lib/data/package-previews";
 import type { Package } from "@/lib/data/packages";
 
 type PackageCardProps = {
@@ -13,6 +15,7 @@ export function PackageCard({ pkg, eager = false }: PackageCardProps) {
   const checkoutHref = pkg.variantId
     ? `/checkout/${pkg.slug}?variant=${pkg.variantId}`
     : `/checkout/${pkg.slug}`;
+  const preview = getPackagePreviewVideo(pkg.slug);
 
   return (
     <AnimatedGlassCard
@@ -25,25 +28,24 @@ export function PackageCard({ pkg, eager = false }: PackageCardProps) {
         href={pkg.href}
         className="group/thumb relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-black shadow-[0_28px_70px_rgba(0,0,0,0.34)]"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <HoverVideoPreview
           alt={`${pkg.title} thumbnail`}
-          className="aspect-[4/5] w-full object-cover transition duration-700 group-hover/thumb:scale-[1.035]"
-          loading={eager ? "eager" : "lazy"}
-          src={pkg.thumbnail}
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.02),rgba(0,0,0,0.18)_62%,rgba(0,0,0,0.62))]"
-        />
-        <div className="absolute left-4 right-4 top-4 flex items-center justify-between">
-          <span className="rounded-full border border-white/20 bg-black/45 px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-white backdrop-blur">
-            {pkg.sprint}
-          </span>
-          <span className="grid h-9 w-9 place-items-center rounded-full border border-white/25 bg-white/15 text-[10px] font-black text-white backdrop-blur">
-            View
-          </span>
-        </div>
+          fallbackSrc={pkg.thumbnail}
+          posterSrc={preview?.posterSrc}
+          videoSrc={preview?.videoSrc}
+          eager={eager}
+          className="aspect-[4/5] w-full"
+          imageClassName="transition duration-700 group-hover/thumb:scale-[1.035]"
+        >
+          <div className="absolute left-4 right-4 top-4 flex items-center justify-between">
+            <span className="rounded-full border border-white/20 bg-black/45 px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-white backdrop-blur">
+              {pkg.sprint}
+            </span>
+            <span className="grid h-9 w-9 place-items-center rounded-full border border-white/25 bg-white/15 text-[10px] font-black text-white backdrop-blur">
+              View
+            </span>
+          </div>
+        </HoverVideoPreview>
       </Link>
 
       <div className="relative z-[1] flex flex-1 flex-col p-2 pt-5">

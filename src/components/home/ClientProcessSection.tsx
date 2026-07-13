@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import { CinematicSectionHeading } from "@/components/effects/cinematic/CinematicSectionHeading";
 import { ProcessStepCard } from "@/components/shared/ProcessStepCard";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionShell } from "@/components/ui/SectionShell";
@@ -26,15 +27,14 @@ const clientSteps = [
 
 export function ClientProcessSection() {
   return (
-    <SectionShell withGrid>
+    <SectionShell withGrid cinematic>
       <Container>
-        <Reveal className="mb-10 max-w-3xl sm:mb-14">
-          <p className="mb-4 text-xs font-black uppercase tracking-[0.34em] text-sky-400">
-            Client process
-          </p>
-          <h2 className="font-display text-3xl font-black tracking-[-0.04em] text-white sm:text-5xl">
-            A simple sprint system from product shoot to paid ads.
-          </h2>
+        <Reveal className="mb-10 sm:mb-14">
+          <CinematicSectionHeading
+            scene="08"
+            eyebrow="Client process"
+            title="A simple sprint system from product shoot to paid ads."
+          />
         </Reveal>
 
         <Stagger className="grid auto-rows-fr items-stretch gap-5 lg:grid-cols-3" stagger={0.12}>

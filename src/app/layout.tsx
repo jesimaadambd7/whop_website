@@ -6,6 +6,8 @@ import { CookiePreferencesDialog } from "@/components/cookies/CookiePreferencesD
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { RouteScrollManager } from "@/components/layout/RouteScrollManager";
+import { ScrollTimelineProgress } from "@/components/effects/cinematic/ScrollTimelineProgress";
+import { GlobalAmbientBackground } from "@/components/effects/cinematic/GlobalAmbientBackground";
 import { siteConfig } from "@/lib/data/site";
 import "./globals.css";
 
@@ -40,10 +42,12 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${manrope.variable} ${spaceGrotesk.variable} antialiased`}
     >
-      <body className="min-h-screen bg-black text-white">
+      <body className="min-h-screen bg-[#030308] text-white">
         <CookieConsentProvider>
           <RouteScrollManager />
-          <div className="fixed inset-0 bg-grid opacity-30 pointer-events-none z-0" />
+          <GlobalAmbientBackground />
+          <ScrollTimelineProgress />
+          <div className="pointer-events-none fixed inset-0 z-[1] bg-grid opacity-[0.22]" />
           <div className="relative z-10">
             <Header />
             <main>{children}</main>

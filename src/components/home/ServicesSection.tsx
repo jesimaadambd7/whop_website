@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { CinematicSectionHeading } from "@/components/effects/cinematic/CinematicSectionHeading";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { ServiceCard } from "@/components/shared/ServiceCard";
@@ -7,20 +8,15 @@ import { services } from "@/lib/data/services";
 
 export function ServicesSection() {
   return (
-    <SectionShell withGrid>
+    <SectionShell withGrid cinematic>
       <Container>
-        <Reveal className="mb-10 max-w-3xl sm:mb-14">
-          <p className="mb-4 text-xs font-black uppercase tracking-[0.34em] text-sky-400">
-            Services
-          </p>
-          <h2 className="font-display text-3xl font-black tracking-[-0.04em] text-white sm:text-5xl">
-            Creative production built for launch, testing, and scale.
-          </h2>
-          <p className="mt-5 text-base leading-8 text-zinc-400 sm:text-lg">
-            From strategy and production planning to UGC edits, motion polish, paid social
-            assets, and launch support, VidCarry covers the creative layer brands need to
-            move faster.
-          </p>
+        <Reveal className="mb-10 sm:mb-14">
+          <CinematicSectionHeading
+            scene="04"
+            eyebrow="Services"
+            title="Creative production built for launch, testing, and scale."
+            description="From strategy and production planning to UGC edits, motion polish, paid social assets, and launch support, VidCarry covers the creative layer brands need to move faster."
+          />
         </Reveal>
 
         <Stagger className="grid auto-rows-fr items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3" stagger={0.08}>

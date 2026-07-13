@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { CinematicSectionHeading } from "@/components/effects/cinematic/CinematicSectionHeading";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { PackageCard } from "@/components/shared/PackageCard";
@@ -16,20 +17,16 @@ export function PackageGrid({
   withOrb?: boolean;
 }) {
   return (
-    <SectionShell id="packages" withGrid={false} withOrb={withOrb}>
+    <SectionShell id="packages" withGrid={false} withOrb={withOrb} cinematic tone="deep">
       <Container>
         {showHeading && (
-          <Reveal className="mb-10 max-w-3xl sm:mb-14">
-            <p className="mb-4 text-xs font-black uppercase tracking-[0.34em] text-sky-400">
-              Direct-purchase packages
-            </p>
-            <h2 className="font-display text-3xl font-black tracking-[-0.04em] text-white sm:text-5xl">
-              Choose a sprint, pay securely, and start without waiting for a sales call.
-            </h2>
-            <p className="mt-5 text-base leading-8 text-zinc-400 sm:text-lg">
-              Every package has a clear scope, delivery estimate, included revision rounds,
-              and a private client workspace after payment.
-            </p>
+          <Reveal className="mb-10 sm:mb-14">
+            <CinematicSectionHeading
+              scene="03"
+              eyebrow="Direct-purchase packages"
+              title="Choose a sprint, pay securely, and start without waiting for a sales call."
+              description="Every package has a clear scope, delivery estimate, included revision rounds, and a private client workspace after payment."
+            />
           </Reveal>
         )}
 

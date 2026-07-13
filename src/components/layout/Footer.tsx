@@ -17,7 +17,7 @@ const pagesLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-black">
+    <footer className="border-t border-white/5 bg-black/30 backdrop-blur-sm">
       <Container className="py-16">
         <div className="grid gap-12 md:grid-cols-3">
           {/* Brand */}

@@ -19,7 +19,7 @@ export function PortfolioPreviewCard({ item }: PortfolioPreviewCardProps) {
       className="portfolio-preview-card h-full overflow-hidden"
       bodyClassName="flex h-full flex-col overflow-hidden p-0"
     >
-      <PortfolioMediaPlayer item={item} />
+      <PortfolioMediaPlayer item={item} hoverPreview />
 
       <div className="relative z-[1] p-6">
         <p className="text-xs font-black uppercase tracking-[0.22em] text-sky-400 transition duration-400 group-hover/glass:text-sky-300">

@@ -1,5 +1,5 @@
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { CinematicSectionHeading } from "@/components/effects/cinematic/CinematicSectionHeading";
 import { Button } from "@/components/ui/Button";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionShell } from "@/components/ui/SectionShell";
@@ -36,12 +36,13 @@ const proofStats = [
 
 export function ProofSection() {
   return (
-    <SectionShell withGrid>
+    <SectionShell withGrid cinematic>
       <Container>
         <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-12">
           <div>
             <Reveal>
-              <SectionHeading
+              <CinematicSectionHeading
+                scene="02"
                 eyebrow="Proof system"
                 title="Real client libraries, production signals, and sales-focused output."
                 description="VidCarry's strongest proof layer is the work system: brand libraries, campaign formats, structured deliverables, and repeatable creative testing assets."

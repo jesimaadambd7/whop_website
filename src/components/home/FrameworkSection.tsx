@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowRight, Play } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { CinematicSectionHeading } from "@/components/effects/cinematic/CinematicSectionHeading";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionShell } from "@/components/ui/SectionShell";
@@ -159,10 +159,10 @@ export function FrameworkSection() {
   }, [seekToBeat]);
 
   return (
-    <SectionShell withGrid withOrb>
+    <SectionShell withGrid withOrb cinematic>
       <Container>
         <Reveal>
-          <SectionHeading
+          <CinematicSectionHeading
             eyebrow="Leverage our creative library of"
             title="Winning Frameworks"
             description="Every framework stage is tied to the video itself. Select Hook, Problem, USP, Proof, or CTA to jump the creative example to that beat and see how structure changes the message."

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { CinematicSectionHeading } from "@/components/effects/cinematic/CinematicSectionHeading";
 import { PortfolioPreviewCard } from "@/components/shared/PortfolioPreviewCard";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionShell } from "@/components/ui/SectionShell";
@@ -9,20 +10,15 @@ export function PortfolioPreview() {
   const preview = portfolioItems.filter((item) => item.featured).slice(0, 3);
 
   return (
-    <SectionShell withGrid>
+    <SectionShell withGrid cinematic tone="elevated">
       <Container>
-        <Reveal className="mb-10 max-w-3xl sm:mb-14">
-          <p className="mb-4 text-xs font-black uppercase tracking-[0.34em] text-sky-400">
-            Portfolio
-          </p>
-          <h2 className="font-display text-3xl font-black tracking-[-0.04em] text-white sm:text-5xl">
-            Client creative built for paid social, ecommerce, and sales.
-          </h2>
-          <p className="mt-5 text-base leading-8 text-zinc-400 sm:text-lg">
-            Explore selected campaign formats across UGC ads, ecommerce videos,
-            product explainers, short-form content, and motion-led performance
-            creative.
-          </p>
+        <Reveal className="mb-10 sm:mb-14">
+          <CinematicSectionHeading
+            scene="06"
+            eyebrow="Portfolio"
+            title="Client creative built for paid social, ecommerce, and sales."
+            description="Explore selected campaign formats across UGC ads, ecommerce videos, product explainers, short-form content, and motion-led performance creative."
+          />
         </Reveal>
 
         <Stagger className="grid auto-rows-fr items-stretch gap-6 lg:grid-cols-3" stagger={0.1}>

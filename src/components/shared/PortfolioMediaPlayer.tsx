@@ -10,6 +10,7 @@ const mediaGradient =
 type PortfolioMediaPlayerProps = {
   item: PortfolioItem;
   compact?: boolean;
+  hoverPreview?: boolean;
 };
 
 function aspectClass(aspect: PortfolioItem["aspect"]) {
@@ -33,9 +34,14 @@ function MediaPlaceholder() {
   );
 }
 
-export function PortfolioMediaPlayer({ item, compact = false }: PortfolioMediaPlayerProps) {
+export function PortfolioMediaPlayer({
+  item,
+  compact = false,
+  hoverPreview = false,
+}: PortfolioMediaPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
+  const [hovering, setHovering] = useState(false);
   const hasMedia = Boolean(item.videoSrc || item.posterSrc);
 
   const handlePlay = useCallback(() => {
@@ -48,6 +54,28 @@ export function PortfolioMediaPlayer({ item, compact = false }: PortfolioMediaPl
       .catch(() => undefined);
   }, []);
 
+  const handleEnter = useCallback(() => {
+    if (!hoverPreview || !item.videoSrc || playing) return;
+    setHovering(true);
+    const video = videoRef.current;
+    if (!video) return;
+    video.currentTime = 0;
+    video.muted = true;
+    video.loop = true;
+    video.play().catch(() => undefined);
+  }, [hoverPreview, item.videoSrc, playing]);
+
+  const handleLeave = useCallback(() => {
+    if (!hoverPreview || playing) return;
+    setHovering(false);
+    const video = videoRef.current;
+    if (!video) return;
+    video.pause();
+    video.currentTime = 0;
+  }, [hoverPreview, playing]);
+
+  const showPlayButton = hasMedia && !playing && !(hoverPreview && hovering);
+
   return (
     <div
       className={cn(
@@ -55,6 +83,8 @@ export function PortfolioMediaPlayer({ item, compact = false }: PortfolioMediaPl
         aspectClass(item.aspect),
       )}
       style={{ background: mediaGradient }}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
     >
       {item.videoSrc ? (
         <video
@@ -82,7 +112,7 @@ export function PortfolioMediaPlayer({ item, compact = false }: PortfolioMediaPl
         <MediaPlaceholder />
       )}
 
-      {hasMedia && !playing && (
+      {hasMedia && showPlayButton && (
         <button
           type="button"
           onClick={handlePlay}
@@ -90,9 +120,15 @@ export function PortfolioMediaPlayer({ item, compact = false }: PortfolioMediaPl
           aria-label={`Play ${item.title}`}
         >
           <span className="grid h-16 w-16 place-items-center rounded-full border border-white/35 bg-black/55 text-xs font-black uppercase tracking-[0.12em] text-white shadow-[0_0_45px_rgba(0,168,255,0.24)] backdrop-blur transition hover:scale-110 hover:border-sky-300 hover:bg-sky-400 hover:text-black">
-            Play
+            {hoverPreview && item.videoSrc ? "Preview" : "Play"}
           </span>
         </button>
+      )}
+
+      {hoverPreview && item.videoSrc && !playing && !hovering && (
+        <div className="pointer-events-none absolute bottom-14 right-5 z-30 rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.16em] text-white/80 backdrop-blur">
+          Hover to preview
+        </div>
       )}
 
       <div

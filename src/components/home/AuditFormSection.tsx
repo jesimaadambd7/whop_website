@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
+import { CinematicSectionHeading } from "@/components/effects/cinematic/CinematicSectionHeading";
 import { AuditThankYou } from "@/components/shared/AuditThankYou";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionShell } from "@/components/ui/SectionShell";
@@ -56,23 +57,18 @@ export function AuditFormSection({
   }
 
   return (
-    <SectionShell id={id} withGrid={false} bordered={bordered} className={bordered ? "border-t" : undefined}>
+    <SectionShell id={id} withGrid={false} bordered={bordered} cinematic className={bordered ? "border-t" : undefined}>
       <Container>
         <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
           <Reveal className="lg:sticky lg:top-28">
             <aside>
-              <div className="max-w-xl">
-                <p className="mb-4 text-xs font-black uppercase tracking-[0.34em] text-sky-400">
-                  Creative audit
-                </p>
-                <h2 className="font-display text-4xl font-black leading-[0.98] tracking-[-0.055em] text-white sm:text-5xl">
-                  Get a free ad creative audit before the next sprint.
-                </h2>
-                <p className="mt-5 text-base leading-8 text-zinc-400">
-                  Share your site, current creative context, and bottleneck. We will review
-                  the fit and suggest the clearest next creative move.
-                </p>
-              </div>
+              <CinematicSectionHeading
+                scene="09"
+                eyebrow="Creative audit"
+                title="Get a free ad creative audit before the next sprint."
+                description="Share your site, current creative context, and bottleneck. We will review the fit and suggest the clearest next creative move."
+                className="max-w-xl"
+              />
 
               <div className="glass-card mt-8 rounded-[2.25rem] border border-white/10 bg-black/45 p-6 sm:p-7">
                 <div className="relative z-[1]">

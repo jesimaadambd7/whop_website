@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import { CinematicSectionHeading } from "@/components/effects/cinematic/CinematicSectionHeading";
 import { WhyChooseCard } from "@/components/shared/WhyChooseCard";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { SectionShell } from "@/components/ui/SectionShell";
@@ -12,15 +13,14 @@ const reasons = [
 
 export function WhyChooseSection() {
   return (
-    <SectionShell withGrid withOrb>
+    <SectionShell withGrid withOrb cinematic>
       <Container>
-        <Reveal className="mb-10 max-w-3xl sm:mb-14">
-          <p className="mb-4 text-xs font-black uppercase tracking-[0.34em] text-sky-400">
-            Why choose us
-          </p>
-          <h2 className="font-display text-3xl font-black tracking-[-0.04em] text-white sm:text-5xl">
-            A production and growth partner for teams that cannot wait on slow creative.
-          </h2>
+        <Reveal className="mb-10 sm:mb-14">
+          <CinematicSectionHeading
+            scene="07"
+            eyebrow="Why choose us"
+            title="A production and growth partner for teams that cannot wait on slow creative."
+          />
         </Reveal>
 
         <Stagger className="grid auto-rows-fr items-stretch gap-5 md:grid-cols-2" stagger={0.1}>

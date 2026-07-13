@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { CinematicSectionHeading } from "@/components/effects/cinematic/CinematicSectionHeading";
 import { FaqAccordionList } from "@/components/shared/FaqAccordion";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionShell } from "@/components/ui/SectionShell";
@@ -7,21 +8,21 @@ import { homeFaqs } from "@/lib/data/faqs";
 
 export function FaqSection() {
   return (
-    <SectionShell withGrid>
+    <SectionShell withGrid cinematic tone="deep">
       <Container>
         <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
           <Reveal className="lg:sticky lg:top-28">
-            <p className="text-xs font-black uppercase tracking-[0.34em] text-sky-400">FAQs</p>
-            <h2 className="mt-5 max-w-xl font-display text-4xl font-black leading-[0.95] tracking-[-0.06em] text-white sm:text-5xl">
-              Questions before we build your next ad sprint?
-            </h2>
-            <p className="mt-6 max-w-xl text-base leading-8 text-zinc-400">
-              Quick answers about pricing, shoots, paid ads, account access, and whether
-              VidCarry is the right fit for your brand.
-            </p>
+            <CinematicSectionHeading
+              eyebrow="FAQs"
+              title="Questions before we build your next ad sprint?"
+              description="Quick answers about pricing, shoots, paid ads, account access, and whether VidCarry is the right fit for your brand."
+              size="large"
+            />
 
-            <div className="mt-8 max-w-xl rounded-[2rem] border border-sky-400/25 bg-sky-400 p-6 text-black">
-              <p className="text-xs font-black uppercase tracking-[0.24em]">Best next step</p>
+            <div className="cine-faq-cta mt-8 max-w-xl overflow-hidden rounded-[2rem] border border-sky-400/25 bg-sky-400 p-6 text-black shadow-[0_0_48px_rgba(0,188,254,0.15)]">
+              <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-black/60">
+                Best next step
+              </p>
               <p className="mt-3 font-display text-2xl font-black tracking-[-0.04em]">
                 Bring your product, offer, and current creative bottleneck.
               </p>

@@ -6,12 +6,12 @@ import {
   buildOrderEmailPlainText,
 } from "@/lib/email/templates/order-notification";
 import { siteConfig } from "@/lib/data/site";
+import { getPublicSiteUrl } from "@/lib/public-site-url";
 
 type OrderEmailKind = "delivery" | "message" | "status" | "confirmation";
 
 function getOrderPortalUrl(orderId: string) {
-  const base = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || siteConfig.url;
-  return `${base}/creator/dashboard/orders/${orderId}`;
+  return `${getPublicSiteUrl()}/creator/dashboard/orders/${orderId}`;
 }
 
 function buildOrderConfirmationBody(order: AdminOrder) {

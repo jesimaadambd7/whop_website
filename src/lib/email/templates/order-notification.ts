@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/data/site";
+import { getPublicSiteUrl } from "@/lib/public-site-url";
 
 export type OrderEmailTemplateInput = {
   customerName: string;
@@ -9,10 +10,6 @@ export type OrderEmailTemplateInput = {
   kind: "delivery" | "message" | "status" | "confirmation";
   amountLabel?: string;
 };
-
-function getSiteUrl() {
-  return process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || siteConfig.url;
-}
 
 function normalizeOrigin(url: string) {
   const trimmed = url.trim().replace(/\/$/, "");
@@ -29,15 +26,14 @@ function getEmailAssetBaseUrl() {
     process.env.EMAIL_LOGO_BASE_URL?.trim();
   if (explicit) return normalizeOrigin(explicit);
 
-  // Prefer the Vercel deployment host — custom domains may not be live yet.
+  const siteUrl = getPublicSiteUrl();
+  if (siteUrl) return siteUrl;
+
   const vercelProd = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
   if (vercelProd) return normalizeOrigin(vercelProd);
 
   const vercelUrl = process.env.VERCEL_URL?.trim();
   if (vercelUrl) return normalizeOrigin(vercelUrl);
-
-  const siteUrl = getSiteUrl();
-  if (siteUrl && !siteUrl.includes("localhost")) return siteUrl;
 
   return null;
 }
@@ -81,9 +77,10 @@ function getLogoUrl() {
 
 function renderBrandHeader() {
   const logoUrl = getLogoUrl();
+  const siteUrl = getPublicSiteUrl();
 
   if (logoUrl) {
-    return `<a href="${getSiteUrl()}" style="text-decoration:none;display:inline-block;">
+    return `<a href="${siteUrl}" style="text-decoration:none;display:inline-block;">
       <img
         src="${escapeHtml(logoUrl)}"
         width="180"
@@ -94,7 +91,7 @@ function renderBrandHeader() {
     </a>`;
   }
 
-  return `<a href="${getSiteUrl()}" style="text-decoration:none;display:inline-block;">
+  return `<a href="${siteUrl}" style="text-decoration:none;display:inline-block;">
     <div style="font-size:34px;line-height:1;font-weight:800;letter-spacing:-0.04em;color:#38bdf8;">
       ${escapeHtml(siteConfig.name)}
     </div>
@@ -145,7 +142,7 @@ function getKindMeta(kind: OrderEmailTemplateInput["kind"]) {
 }
 
 export function buildOrderEmailHtml(input: OrderEmailTemplateInput) {
-  const siteUrl = getSiteUrl();
+  const siteUrl = getPublicSiteUrl();
   const meta = getKindMeta(input.kind);
   const greeting = input.customerName.trim()
     ? `Hi ${escapeHtml(input.customerName)},`

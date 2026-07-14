@@ -32,7 +32,7 @@ async function sendSmtpEmail(input: SendEmailInput) {
 
   const port = Number(process.env.SMTP_PORT || "587");
   const secure = process.env.SMTP_SECURE === "true" || port === 465;
-  const from = process.env.EMAIL_FROM?.trim() || `VidCarry <${user}>`;
+  const from = process.env.EMAIL_FROM?.trim() || `UGCViss <${user}>`;
   const replyTo = input.replyTo?.trim() || process.env.EMAIL_REPLY_TO?.trim();
 
   const transporter = nodemailer.createTransport({

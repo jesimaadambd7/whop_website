@@ -5,9 +5,9 @@ import { neazPortfolio } from "@/lib/data/creator-portfolio";
 import { siteConfig } from "@/lib/data/site";
 
 export const metadata: Metadata = {
-  title: `Portfolio of ${neazPortfolio.name} | ${neazPortfolio.role} | VidCarry`,
+  title: `Portfolio of ${neazPortfolio.name} | ${neazPortfolio.role} | UGCViss`,
   description:
-    "A private client-facing gallery of video editing work completed by Neaz Mahmud, Founder & CEO of VidCarry.",
+    "A private client-facing gallery of video editing work completed by Neaz Mahmud, Founder & CEO of UGCViss.",
   robots: {
     index: false,
     follow: false,

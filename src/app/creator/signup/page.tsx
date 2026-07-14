@@ -20,7 +20,7 @@ export default function CreatorSignupPage() {
     <CreatorAuthLayout
       eyebrow="Creator account"
       title="Build a portfolio clients remember."
-      description="One account gives you premium portfolio hosting, creator analytics, an inquiry inbox, directory discovery, and lifetime access to VidCarry resources."
+      description="One account gives you premium portfolio hosting, creator analytics, an inquiry inbox, directory discovery, and lifetime access to UGCViss resources."
     >
       <CreatorSignupForm />
     </CreatorAuthLayout>

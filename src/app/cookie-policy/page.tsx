@@ -7,9 +7,9 @@ import { cookieLastUpdated, cookieSections } from "@/lib/data/cookies";
 import { siteConfig } from "@/lib/data/site";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy - VidCarry",
+  title: "Cookie Policy - UGCViss",
   description:
-    "Read the VidCarry cookie policy and learn how essential and optional cookies support the website experience.",
+    "Read the UGCViss cookie policy and learn how essential and optional cookies support the website experience.",
 };
 
 const webPageSchema = {
@@ -17,9 +17,9 @@ const webPageSchema = {
   "@type": "WebPage",
   "@id": `${siteConfig.url}/cookie-policy#webpage`,
   url: `${siteConfig.url}/cookie-policy`,
-  name: "Cookie Policy - VidCarry",
+  name: "Cookie Policy - UGCViss",
   description:
-    "Read the VidCarry cookie policy and learn how essential and optional cookies support the website experience.",
+    "Read the UGCViss cookie policy and learn how essential and optional cookies support the website experience.",
   inLanguage: "en",
   isPartOf: { "@id": `${siteConfig.url}/#website` },
   about: { "@id": `${siteConfig.url}/#organization` },
@@ -58,7 +58,7 @@ export default function CookiePage() {
 
       <PageHero
         eyebrow="Cookie Policy"
-        title="How VidCarry uses cookies and consent preferences."
+        title="How UGCViss uses cookies and consent preferences."
         description="This policy explains the cookie categories used by this website and how visitors can manage consent preferences."
       />
 

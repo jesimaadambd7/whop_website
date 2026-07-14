@@ -37,7 +37,7 @@ export function CreatorPortfolioLivePreview() {
         <span className="size-2.5 rounded-full bg-amber-300/80" />
         <span className="size-2.5 rounded-full bg-emerald-400/80" />
         <span className="ml-2 truncate text-[10px] font-bold uppercase tracking-[0.18em] text-zinc-500">
-          vidcarry.com/creator/your-name
+          ugcviss.com/creator/your-name
         </span>
       </div>
 

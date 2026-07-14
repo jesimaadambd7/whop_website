@@ -32,7 +32,7 @@ export function CreatorOrdersPanel({ orders }: Props) {
       <p className="text-xs font-black uppercase tracking-[0.2em] text-sky-300">Your account</p>
       <h1 className="mt-3 font-display text-5xl font-black tracking-[-0.06em]">Purchases</h1>
       <p className="mt-3 max-w-2xl text-zinc-400">
-        Track package and resource orders, production status, VidCarry replies, and delivery links
+        Track package and resource orders, production status, UGCViss replies, and delivery links
         tied to your account email.
       </p>
 

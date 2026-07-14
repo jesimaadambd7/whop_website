@@ -1,4 +1,4 @@
-import { mediaPath } from "@/lib/media/vidcarry-media";
+import { mediaPath } from "@/lib/media/ugcviss-media";
 
 export type NeazPortfolioVideo = {
   id: string;

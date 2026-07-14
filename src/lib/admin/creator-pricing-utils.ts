@@ -50,7 +50,7 @@ export function toPublicCreatorPricing(pricing: CreatorPricing): PublicCreatorPr
     publicPriceLabel,
     regularPriceLabel,
     headline: `${publicPriceLabel} once. Build it, publish it, keep using it.`,
-    subheadline: `${publicPriceLabel} once. One profile. No recurring VidCarry platform fee within included limits.`,
+    subheadline: `${publicPriceLabel} once. One profile. No recurring UGCViss platform fee within included limits.`,
     offerActive,
     ctaLabel: safePricing.ctaLabel || "Start building",
     available: safePricing.available,

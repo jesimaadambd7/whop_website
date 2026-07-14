@@ -13,9 +13,9 @@ import {
 } from "@/lib/data/portfolio-page";
 
 export const metadata: Metadata = {
-  title: "Creative Portfolio | VidCarry",
+  title: "Creative Portfolio | UGCViss",
   description:
-    "View VidCarry creative portfolio work across UGC ads, ecommerce videos, creator-led content, motion graphics, paid social creative, and short-form content.",
+    "View UGCViss creative portfolio work across UGC ads, ecommerce videos, creator-led content, motion graphics, paid social creative, and short-form content.",
 };
 
 export default function PortfolioPage() {

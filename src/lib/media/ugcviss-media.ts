@@ -1,4 +1,4 @@
-const VIDCARRY_ORIGIN = "https://www.vidcarry.com";
+const MEDIA_CDN_ORIGIN = "https://www.vidcarry.com";
 const CACHE_TTL_MS = 8 * 60 * 1000;
 
 const SCRAPE_SOURCES = [
@@ -32,7 +32,7 @@ function extractMediaUrls(html: string): Map<string, string> {
   for (const match of html.matchAll(MEDIA_PATTERN)) {
     const key = match[1];
     const token = match[2];
-    const signedUrl = `${VIDCARRY_ORIGIN}/api/media/${key}?m=${token}`;
+    const signedUrl = `${MEDIA_CDN_ORIGIN}/api/media/${key}?m=${token}`;
     const existing = map.get(key);
 
     if (!existing || tokenExpiry(token) >= tokenExpiry(existing.split("m=")[1] ?? "")) {
@@ -44,16 +44,16 @@ function extractMediaUrls(html: string): Map<string, string> {
 }
 
 async function fetchHtml(path: string): Promise<string> {
-  const response = await fetch(`${VIDCARRY_ORIGIN}${path}`, {
+  const response = await fetch(`${MEDIA_CDN_ORIGIN}${path}`, {
     headers: {
       Accept: "text/html,application/xhtml+xml",
-      "User-Agent": "Mozilla/5.0 (compatible; VidCarrySite/1.0)",
+      "User-Agent": "Mozilla/5.0 (compatible; UGCVissSite/1.0)",
     },
     next: { revalidate: 0 },
   });
 
   if (!response.ok) {
-    throw new Error(`Failed to load VidCarry page ${path}: ${response.status}`);
+    throw new Error(`Failed to load UGCViss page ${path}: ${response.status}`);
   }
 
   return response.text();
@@ -100,7 +100,7 @@ async function loadMediaUrlMap(force = false): Promise<Map<string, string>> {
   return inflight;
 }
 
-export function invalidateVidcarryMediaCache() {
+export function invalidateUgcvissMediaCache() {
   cache = null;
 }
 
@@ -108,14 +108,14 @@ export function mediaPath(...segments: string[]) {
   return `/api/media/${segments.join("/")}`;
 }
 
-export async function resolveVidcarryMediaUrl(mediaPath: string): Promise<string | null> {
+export async function resolveUgcvissMediaUrl(mediaPath: string): Promise<string | null> {
   const normalized = mediaPath.replace(/^\/+/, "").replace(/\?.*$/, "");
   const map = await loadMediaUrlMap();
   return map.get(normalized) ?? null;
 }
 
-export async function resolveVidcarryMediaUrlFresh(mediaPath: string): Promise<string | null> {
-  invalidateVidcarryMediaCache();
+export async function resolveUgcvissMediaUrlFresh(mediaPath: string): Promise<string | null> {
+  invalidateUgcvissMediaCache();
   const map = await loadMediaUrlMap(true);
   const normalized = mediaPath.replace(/^\/+/, "").replace(/\?.*$/, "");
   return map.get(normalized) ?? null;

@@ -7,9 +7,9 @@ import { siteConfig } from "@/lib/data/site";
 import { privacyLastUpdated, privacySections } from "@/lib/data/privacy";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy - VidCarry",
+  title: "Privacy Policy - UGCViss",
   description:
-    "Read the VidCarry privacy policy and learn how VidCarry may collect, use, retain, and protect website, inquiry, booking, and client communication information.",
+    "Read the UGCViss privacy policy and learn how UGCViss may collect, use, retain, and protect website, inquiry, booking, and client communication information.",
 };
 
 const webPageSchema = {
@@ -17,9 +17,9 @@ const webPageSchema = {
   "@type": "WebPage",
   "@id": `${siteConfig.url}/privacy-policy#webpage`,
   url: `${siteConfig.url}/privacy-policy`,
-  name: "Privacy Policy - VidCarry",
+  name: "Privacy Policy - UGCViss",
   description:
-    "Read the VidCarry privacy policy and learn how VidCarry may collect, use, retain, and protect website, inquiry, booking, and client communication information.",
+    "Read the UGCViss privacy policy and learn how UGCViss may collect, use, retain, and protect website, inquiry, booking, and client communication information.",
   inLanguage: "en",
   isPartOf: { "@id": `${siteConfig.url}/#website` },
   about: { "@id": `${siteConfig.url}/#organization` },
@@ -58,8 +58,8 @@ export default function PrivacyPage() {
 
       <PageHero
         eyebrow="Privacy Policy"
-        title="How VidCarry collects, uses, and protects information."
-        description="This policy explains what information VidCarry may collect through the website, inquiry forms, Calendly bookings, and client communications."
+        title="How UGCViss collects, uses, and protects information."
+        description="This policy explains what information UGCViss may collect through the website, inquiry forms, Calendly bookings, and client communications."
       />
 
       <section className="relative overflow-hidden py-16 sm:py-20">

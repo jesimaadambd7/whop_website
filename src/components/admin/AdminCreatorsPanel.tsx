@@ -219,7 +219,7 @@ export function AdminCreatorsPanel({ initialCreators, stats, activeStatus }: Pro
                   </h2>
                   <p className="mt-2 text-sm text-zinc-400">{creator.email}</p>
                   <p className="mt-1 text-sm text-sky-300">
-                    vidcarry.com/creators/{creator.username}
+                    ugcviss.com/creators/{creator.username}
                   </p>
                   <p className="mt-3 text-xs uppercase tracking-[0.18em] text-zinc-600">
                     Submitted {formatDate(creator.createdAt)}

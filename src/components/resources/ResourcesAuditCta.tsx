@@ -8,7 +8,7 @@ export function ResourcesAuditCta() {
         Get a creative audit instead of guessing the next ad.
       </h2>
       <p className="mt-5 max-w-2xl text-base font-semibold leading-8 text-black/70">
-        Share your site, current creative, and campaign bottleneck. VidCarry will review the fit
+        Share your site, current creative, and campaign bottleneck. UGCViss will review the fit
         and suggest the clearest next move.
       </p>
       <div className="mt-7 flex flex-col gap-3 sm:flex-row">

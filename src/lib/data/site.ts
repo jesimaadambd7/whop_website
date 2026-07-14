@@ -1,9 +1,9 @@
 export const siteConfig = {
-  name: "VidCarry",
+  name: "UGCViss",
   tagline: "Global Creative Production Agency",
   description:
-    "VidCarry helps ecommerce and DTC brands turn product stories into conversion-focused video campaigns.",
-  url: "https://www.vidcarry.com",
+    "UGCViss helps ecommerce and DTC brands turn product stories into conversion-focused video campaigns.",
+  url: "https://www.ugcviss.com",
   email: "nadimmahmudytd@gmail.com",
 };
 

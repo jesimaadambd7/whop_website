@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -32,26 +32,41 @@ type VideoTimelineStripProps = {
 
 export function VideoTimelineStrip({ className }: VideoTimelineStripProps) {
   const prefersReducedMotion = useReducedMotion();
+  const rootRef = useRef<HTMLDivElement>(null);
   const [elapsed, setElapsed] = useState(0);
   const [playhead, setPlayhead] = useState(12);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    if (prefersReducedMotion) return;
+    const node = rootRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { rootMargin: "80px", threshold: 0.05 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (prefersReducedMotion || !visible) return;
 
     const start = Date.now();
+    // 5fps is enough for timecode UI — was 24fps React updates forever
     const id = window.setInterval(() => {
       const secs = ((Date.now() - start) / 1000) % 48;
       setElapsed(secs);
       setPlayhead(8 + (secs / 48) * 84);
-    }, 1000 / 24);
+    }, 200);
 
     return () => clearInterval(id);
-  }, [prefersReducedMotion]);
+  }, [prefersReducedMotion, visible]);
 
   return (
     <div
+      ref={rootRef}
       className={cn(
-        "cine-timeline overflow-hidden rounded-2xl border border-white/10 bg-black/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl",
+        "cine-timeline overflow-hidden rounded-2xl border border-white/10 bg-black/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_8px_32px_rgba(0,0,0,0.4)]",
         className,
       )}
     >
@@ -59,7 +74,9 @@ export function VideoTimelineStrip({ className }: VideoTimelineStripProps) {
         <div className="flex items-center gap-3">
           <span className="flex items-center gap-1.5">
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-rose-500 opacity-50" />
+              {visible && !prefersReducedMotion && (
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-rose-500 opacity-50" />
+              )}
               <span className="relative h-2 w-2 rounded-full bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.8)]" />
             </span>
             <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-rose-400">

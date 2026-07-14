@@ -18,7 +18,7 @@ const proofItems = [
     num: "02",
     title: "Shoot-to-sales workflow",
     description:
-      "VidCarry connects model shoots, creator footage, editing, motion polish, paid social creative, and campaign learning into one sprint instead of one-off asset delivery.",
+      "UGCViss connects model shoots, creator footage, editing, motion polish, paid social creative, and campaign learning into one sprint instead of one-off asset delivery.",
   },
   {
     num: "03",
@@ -44,7 +44,7 @@ export function ProofSection() {
               <CinematicSectionHeading
                 eyebrow="Proof system"
                 title="Real client libraries, production signals, and sales-focused output."
-                description="VidCarry's strongest proof layer is the work system: brand libraries, campaign formats, structured deliverables, and repeatable creative testing assets."
+                description="UGCViss's strongest proof layer is the work system: brand libraries, campaign formats, structured deliverables, and repeatable creative testing assets."
               />
             </Reveal>
 

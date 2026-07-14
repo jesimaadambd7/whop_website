@@ -24,11 +24,11 @@ export function CreatorAuthLayout({
 
       <div className="relative mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <section>
-          <Link href="/" className="group" aria-label="VidCarry home">
+          <Link href="/" className="group" aria-label="UGCViss home">
             <span className="inline-flex items-center">
               <Image
                 src="/assets/brand/vidcarry-logo-transparent.png"
-                alt="VidCarry"
+                alt="UGCViss"
                 width={1774}
                 height={267}
                 priority

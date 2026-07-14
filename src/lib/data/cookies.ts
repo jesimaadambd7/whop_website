@@ -20,7 +20,7 @@ export const cookieSections: LegalSection[] = [
     navLabel: "Essential cookies",
     paragraphs: [
       "Essential cookies are required for the website to work properly. They may support security, page loading, consent storage, and core website functionality.",
-      "VidCarry uses essential consent storage so the cookie banner does not show repeatedly after you accept, decline, or save preferences.",
+      "UGCViss uses essential consent storage so the cookie banner does not show repeatedly after you accept, decline, or save preferences.",
     ],
   },
   {
@@ -39,7 +39,7 @@ export const cookieSections: LegalSection[] = [
     title: "Analytics cookies",
     navLabel: "Analytics cookies",
     paragraphs: [
-      "With your consent, analytics cookies, pixels, and tags may help VidCarry understand website traffic, popular pages, referral sources, campaign performance, and general visitor behavior.",
+      "With your consent, analytics cookies, pixels, and tags may help UGCViss understand website traffic, popular pages, referral sources, campaign performance, and general visitor behavior.",
       "Optional tools may include Google Tag Manager to manage consent-gated tags, Google Analytics 4 for traffic and conversion analytics, Microsoft Clarity for heatmaps and session insights, Meta Pixel for advertising measurement, and LinkedIn Insight Tag for campaign attribution.",
       "Analytics information helps improve page content, navigation, creative resources, and conversion-focused website experiences.",
     ],
@@ -51,7 +51,7 @@ export const cookieSections: LegalSection[] = [
     navLabel: "Third-party cookies and tools",
     paragraphs: [
       "Some embedded tools, links, analytics providers, advertising platforms, or scheduling tools such as Calendly may use cookies or similar technologies according to their own policies.",
-      "VidCarry does not control third-party cookies once you interact with another platform or open an external link.",
+      "UGCViss does not control third-party cookies once you interact with another platform or open an external link.",
     ],
   },
   {
@@ -70,8 +70,8 @@ export const cookieSections: LegalSection[] = [
     title: "Updates and contact",
     navLabel: "Updates and contact",
     paragraphs: [
-      "VidCarry may update this Cookie Policy as the website, tools, and services change. The latest version will be posted on this page.",
-      "For cookie questions, contact VidCarry through the contact page.",
+      "UGCViss may update this Cookie Policy as the website, tools, and services change. The latest version will be posted on this page.",
+      "For cookie questions, contact UGCViss through the contact page.",
     ],
   },
 ];

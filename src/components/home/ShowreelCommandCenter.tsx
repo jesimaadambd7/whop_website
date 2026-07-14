@@ -26,7 +26,7 @@ export function ShowreelCommandCenter({
 
   return (
     <div className="showreel-shell group/showreel relative pb-12 sm:pb-14">
-      <div className="aurora-orb absolute -inset-10 rounded-full bg-sky-400/20 blur-3xl" />
+      <div className="absolute -inset-10 rounded-full bg-[radial-gradient(circle,rgba(56,189,248,0.2),transparent_70%)]" />
 
       <AnimatedGlassCard
         variant="panel"

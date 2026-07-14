@@ -42,7 +42,7 @@ export function FounderTeamCard({ member }: FounderTeamCardProps) {
         />
 
         <div className="founder-team-card__frame relative h-full rounded-[2rem] p-[1.5px]">
-          <div className="founder-team-card__body relative flex h-full flex-col overflow-hidden rounded-[calc(2rem-1.5px)] border border-white/[0.08] bg-[#070b12]/90 p-6 backdrop-blur-xl sm:p-7">
+          <div className="founder-team-card__body relative flex h-full flex-col overflow-hidden rounded-[calc(2rem-1.5px)] border border-white/[0.08] bg-[#070b12]/92 p-6 sm:p-7">
             <div className="founder-team-card__aurora pointer-events-none absolute inset-0" aria-hidden="true" />
             <div className="founder-team-card__grid pointer-events-none absolute inset-0 opacity-[0.35]" aria-hidden="true" />
             <div className="founder-team-card__orb founder-team-card__orb--1 pointer-events-none absolute" aria-hidden="true" />

@@ -21,7 +21,7 @@ export const defaultAdminTeamMembers: AdminTeamMember[] = [
     name: "Neaz Mahmud",
     role: "Founder & CEO",
     initials: "NM",
-    bio: "Leads VidCarry's creative direction, production standards, UGC ad systems, and premium video editing workflow.",
+    bio: "Leads UGCViss's creative direction, production standards, UGC ad systems, and premium video editing workflow.",
     image: "/assets/team/neaz.jpg",
     linkedin: "https://www.linkedin.com/in/neazmahmud/",
     profileHref: "/team/neaz-mahmud",

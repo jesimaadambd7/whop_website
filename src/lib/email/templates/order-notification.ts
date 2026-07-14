@@ -82,8 +82,8 @@ function getKindMeta(kind: OrderEmailTemplateInput["kind"]) {
     return {
       badge: "Order confirmed",
       headline: "Thanks for your order",
-      intro: "We've received your payment and your VidCarry order is confirmed.",
-      preheader: "Your VidCarry order is confirmed.",
+      intro: "We've received your payment and your UGCViss order is confirmed.",
+      preheader: "Your UGCViss order is confirmed.",
       cta: "View order",
     };
   }
@@ -93,7 +93,7 @@ function getKindMeta(kind: OrderEmailTemplateInput["kind"]) {
       badge: "Delivery ready",
       headline: "Your creative delivery is ready",
       intro: "We've completed your order and shared the final files below.",
-      preheader: "Your VidCarry delivery is ready to review.",
+      preheader: "Your UGCViss delivery is ready to review.",
       cta: "View delivery",
     };
   }
@@ -102,8 +102,8 @@ function getKindMeta(kind: OrderEmailTemplateInput["kind"]) {
     return {
       badge: "Order update",
       headline: "Your order status has been updated",
-      intro: "Here's the latest update on your VidCarry project.",
-      preheader: "New update on your VidCarry order.",
+      intro: "Here's the latest update on your UGCViss project.",
+      preheader: "New update on your UGCViss order.",
       cta: "View order",
     };
   }
@@ -112,7 +112,7 @@ function getKindMeta(kind: OrderEmailTemplateInput["kind"]) {
     badge: "New message",
     headline: "You have a new message",
     intro: "Our team sent you an update about your project.",
-    preheader: "New message from the VidCarry team.",
+    preheader: "New message from the UGCViss team.",
     cta: "View message",
   };
 }

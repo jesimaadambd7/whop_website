@@ -32,8 +32,8 @@ export const privacySections: LegalSection[] = [
     navLabel: "Creator accounts, portfolios, and inquiries",
     paragraphs: [
       "Creator Portfolio accounts may include authentication details, public profile information, uploaded media, project metadata, payment and receipt references, storage usage, moderation history, directory preferences, resource downloads, and account settings. Public profile information and approved projects can be indexed by search engines when the profile is public.",
-      "Portfolio inquiries are stored in the creator dashboard and may be emailed to the creator through Resend. Inquiry senders should not include sensitive personal, financial, health, or identity information. VidCarry may retain inquiry and moderation records for fraud prevention, support, legal compliance, and platform safety.",
-      "Creator analytics aggregate profile views, media plays, contact clicks, directory clicks, and inquiries by day. VidCarry does not intentionally retain raw visitor IP addresses in the creator analytics tables.",
+      "Portfolio inquiries are stored in the creator dashboard and may be emailed to the creator through Resend. Inquiry senders should not include sensitive personal, financial, health, or identity information. UGCViss may retain inquiry and moderation records for fraud prevention, support, legal compliance, and platform safety.",
+      "Creator analytics aggregate profile views, media plays, contact clicks, directory clicks, and inquiries by day. UGCViss does not intentionally retain raw visitor IP addresses in the creator analytics tables.",
     ],
   },
   {
@@ -42,7 +42,7 @@ export const privacySections: LegalSection[] = [
     title: "Calendly and booking data",
     navLabel: "Calendly and booking data",
     paragraphs: [
-      "VidCarry uses Calendly to help visitors book calls. When you use the booking widget or open Calendly, Calendly may collect information according to its own privacy practices.",
+      "UGCViss uses Calendly to help visitors book calls. When you use the booking widget or open Calendly, Calendly may collect information according to its own privacy practices.",
       "Booking details may be used to schedule, prepare for, and follow up on the call.",
     ],
   },
@@ -53,7 +53,7 @@ export const privacySections: LegalSection[] = [
     navLabel: "Cookies and analytics",
     paragraphs: [
       "We use essential cookies to make the website work and store cookie consent choices. With consent, we may also use non-essential cookies, pixels, and tags to improve the experience, understand website traffic, measure conversions, and improve advertising.",
-      "Optional analytics and advertising tools may include Google Tag Manager, Google Analytics 4, Microsoft Clarity, Meta Pixel, and LinkedIn Insight Tag. These tools may process technical information such as pages visited, referrers, device/browser details, approximate location, and interaction events, but VidCarry avoids sending sensitive form details or uploaded files into analytics events.",
+      "Optional analytics and advertising tools may include Google Tag Manager, Google Analytics 4, Microsoft Clarity, Meta Pixel, and LinkedIn Insight Tag. These tools may process technical information such as pages visited, referrers, device/browser details, approximate location, and interaction events, but UGCViss avoids sending sensitive form details or uploaded files into analytics events.",
       "More information is available in the Cookie Policy.",
     ],
   },
@@ -73,7 +73,7 @@ export const privacySections: LegalSection[] = [
     title: "International visitors",
     navLabel: "International visitors",
     paragraphs: [
-      "VidCarry works with global brands and service providers. Information may be processed in countries other than where you live, depending on the tools, hosting, contractors, and platforms involved.",
+      "UGCViss works with global brands and service providers. Information may be processed in countries other than where you live, depending on the tools, hosting, contractors, and platforms involved.",
       "Where required, we aim to use reasonable safeguards for cross-border processing.",
     ],
   },
@@ -104,7 +104,7 @@ export const privacySections: LegalSection[] = [
     navLabel: "Your choices",
     paragraphs: [
       "Depending on your location, you may have rights to access, correct, delete, restrict, or object to certain processing of your personal information.",
-      "You can contact VidCarry through the contact page to make a privacy request. We may need to verify your identity before responding.",
+      "You can contact UGCViss through the contact page to make a privacy request. We may need to verify your identity before responding.",
     ],
   },
   {
@@ -113,7 +113,7 @@ export const privacySections: LegalSection[] = [
     title: "Children's privacy",
     navLabel: "Children's privacy",
     paragraphs: [
-      "This website and VidCarry's services are intended for businesses and are not directed to children. We do not knowingly collect personal information from children.",
+      "This website and UGCViss's services are intended for businesses and are not directed to children. We do not knowingly collect personal information from children.",
     ],
   },
   {
@@ -123,7 +123,7 @@ export const privacySections: LegalSection[] = [
     navLabel: "Updates and contact",
     paragraphs: [
       "We may update this Privacy Policy from time to time. The latest version will be posted on this page with the updated date.",
-      "For privacy questions, contact VidCarry through the contact page.",
+      "For privacy questions, contact UGCViss through the contact page.",
     ],
   },
 ];

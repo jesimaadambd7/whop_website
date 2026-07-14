@@ -62,7 +62,7 @@ export const packages: Package[] = [
     workflowSteps: [
       "Complete checkout and short brief",
       "Share footage or request production support",
-      "VidCarry confirms kickoff and delivery date",
+      "UGCViss confirms kickoff and delivery date",
       "Review, revise, and download final assets",
     ],
     href: "/packages/ugc-ad-sprint",
@@ -105,7 +105,7 @@ export const packages: Package[] = [
     ],
     workflowSteps: [
       "Upload footage and references",
-      "VidCarry confirms edit map",
+      "UGCViss confirms edit map",
       "First cuts move into client review",
       "Revisions are completed and finals delivered",
     ],

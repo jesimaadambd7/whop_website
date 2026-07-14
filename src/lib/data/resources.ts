@@ -255,7 +255,7 @@ export const featuredGuides: FeaturedGuide[] = [
 ];
 
 export const guideInsightParagraphs = [
-  "VidCarry looks at the product promise, buyer pain, proof assets, footage quality, hook strength, editing structure, and paid social context before recommending a creative direction.",
+  "UGCViss looks at the product promise, buyer pain, proof assets, footage quality, hook strength, editing structure, and paid social context before recommending a creative direction.",
   "The best next step is usually a focused sprint: shoot the missing proof, edit stronger variants, or test a clearer hook and offer structure.",
 ] as const;
 

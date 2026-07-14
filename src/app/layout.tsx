@@ -39,7 +39,6 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-scroll-behavior="smooth"
       className={`${manrope.variable} ${spaceGrotesk.variable} antialiased`}
     >
       <body className="min-h-screen bg-[#030308] text-white">
@@ -47,7 +46,7 @@ export default function RootLayout({
           <RouteScrollManager />
           <GlobalAmbientBackground />
           <ScrollTimelineProgress />
-          <div className="pointer-events-none fixed inset-0 z-[1] bg-grid opacity-[0.22]" />
+          <div className="pointer-events-none fixed inset-0 z-[1] bg-grid opacity-[0.12] max-md:opacity-[0.06]" />
           <div className="relative z-10">
             <Header />
             <main>{children}</main>

@@ -260,7 +260,7 @@ export function PackageCheckoutView({
                   <Link href="/terms-conditions" className="text-sky-300 hover:text-white">
                     terms
                   </Link>
-                  . Work begins only after VidCarry confirms kickoff; pre-kickoff service payments
+                  . Work begins only after UGCViss confirms kickoff; pre-kickoff service payments
                   are eligible for review under the refund policy.
                 </span>
               </label>

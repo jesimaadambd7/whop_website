@@ -250,7 +250,7 @@ export function CalendlyBookingPanel() {
               <div className="calendly-embed-frame overflow-hidden rounded-[1.35rem] border border-sky-400/20 bg-white shadow-[0_0_48px_rgba(56,189,248,0.14)]">
                 {embedUrl ? (
                   <iframe
-                    title="Book a VidCarry strategy call on Calendly"
+                    title="Book a UGCViss strategy call on Calendly"
                     src={embedUrl}
                     onLoad={() => setIframeLoaded(true)}
                     className="block h-[460px] w-full bg-white sm:h-[500px] lg:h-[560px]"

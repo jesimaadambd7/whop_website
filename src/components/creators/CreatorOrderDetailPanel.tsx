@@ -111,7 +111,7 @@ export function CreatorOrderDetailPanel({ order: initialOrder }: Props) {
           <h2 className="font-display text-3xl font-black">Messages</h2>
           <div className="mt-5 grid gap-3">
             {order.messages.length === 0 ? (
-              <p className="text-sm text-zinc-500">No messages yet. VidCarry updates will appear here.</p>
+              <p className="text-sm text-zinc-500">No messages yet. UGCViss updates will appear here.</p>
             ) : (
               order.messages.map((message) => (
                 <article
@@ -124,7 +124,7 @@ export function CreatorOrderDetailPanel({ order: initialOrder }: Props) {
                   )}
                 >
                   <p className="text-xs font-black uppercase tracking-[0.14em] text-zinc-500">
-                    {message.author === "admin" ? "VidCarry team" : "You"} ·{" "}
+                    {message.author === "admin" ? "UGCViss team" : "You"} ·{" "}
                     {formatDate(message.createdAt)}
                   </p>
                   <p className="mt-2 whitespace-pre-wrap leading-7 text-zinc-300">{message.body}</p>
@@ -137,7 +137,7 @@ export function CreatorOrderDetailPanel({ order: initialOrder }: Props) {
               rows={4}
               value={messageBody}
               onChange={(event) => setMessageBody(event.target.value)}
-              placeholder="Reply to the VidCarry team"
+              placeholder="Reply to the UGCViss team"
               className={inputClass}
               required
             />

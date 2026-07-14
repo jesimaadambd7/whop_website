@@ -24,8 +24,8 @@ export function generateMetadata({ params }: Props): Metadata {
   const client = getClientPortfolio(params.slug);
   if (!client) return { title: "Portfolio" };
 
-  const title = `${client.name} Video Portfolio | VidCarry`;
-  const description = `Watch VidCarry's ${client.name} video work library for UGC ads, product explainers, paid social creatives, and campaign-ready edits.`;
+  const title = `${client.name} Video Portfolio | UGCViss`;
+  const description = `Watch UGCViss's ${client.name} video work library for UGC ads, product explainers, paid social creatives, and campaign-ready edits.`;
   const canonical = `${siteConfig.url}/portfolio/${client.slug}`;
 
   return {
@@ -35,7 +35,7 @@ export function generateMetadata({ params }: Props): Metadata {
       `${client.name} video portfolio`,
       `${client.name} UGC ads`,
       `${client.name} ecommerce ads`,
-      "VidCarry portfolio",
+      "UGCViss portfolio",
       "paid social video creative",
     ],
     alternates: { canonical },
@@ -43,14 +43,14 @@ export function generateMetadata({ params }: Props): Metadata {
       title,
       description,
       url: canonical,
-      siteName: "VidCarry",
+      siteName: "UGCViss",
       locale: "en_US",
       images: [
         {
           url: `${siteConfig.url}/opengraph-image`,
           width: 1200,
           height: 630,
-          alt: `${client.name} video portfolio by VidCarry`,
+          alt: `${client.name} video portfolio by UGCViss`,
         },
       ],
       type: "website",
@@ -72,7 +72,7 @@ function ClientPortfolioSchema({ client }: { client: ClientPortfolio }) {
     "@id": `${pageUrl}#webpage`,
     url: pageUrl,
     name: `${client.name} Video Portfolio`,
-    description: `VidCarry video work library for ${client.name}, including UGC ads, product explainers, paid social creatives, and campaign-ready edits.`,
+    description: `UGCViss video work library for ${client.name}, including UGC ads, product explainers, paid social creatives, and campaign-ready edits.`,
     inLanguage: "en",
     isPartOf: { "@id": `${siteConfig.url}/#website` },
     about: { "@id": `${siteConfig.url}/#organization` },

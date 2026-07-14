@@ -113,10 +113,13 @@ function formatTimestamp(seconds: number) {
 }
 
 export function FrameworkSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [activeBeat, setActiveBeat] = useState(frameworkBeats[0].id);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [inView, setInView] = useState(false);
+  const lastUiUpdate = useRef(0);
 
   const current =
     frameworkBeats.find((beat) => beat.id === activeBeat) ?? frameworkBeats[0];
@@ -138,14 +141,37 @@ export function FrameworkSection() {
   );
 
   useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: "120px", threshold: 0.1 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+
+    if (!inView) {
+      video.pause();
+      return;
+    }
+
+    void video.play().catch(() => undefined);
 
     const onLoaded = () => {
       setDuration(video.duration || 0);
       seekToBeat(frameworkBeats[0]);
     };
-    const onTimeUpdate = () => setCurrentTime(video.currentTime || 0);
+    const onTimeUpdate = () => {
+      const now = performance.now();
+      if (now - lastUiUpdate.current < 200) return;
+      lastUiUpdate.current = now;
+      setCurrentTime(video.currentTime || 0);
+    };
 
     video.addEventListener("loadedmetadata", onLoaded);
     video.addEventListener("timeupdate", onTimeUpdate);
@@ -156,10 +182,11 @@ export function FrameworkSection() {
       video.removeEventListener("loadedmetadata", onLoaded);
       video.removeEventListener("timeupdate", onTimeUpdate);
     };
-  }, [seekToBeat]);
+  }, [inView, seekToBeat]);
 
   return (
-    <SectionShell withGrid withOrb cinematic>
+    <SectionShell withGrid cinematic>
+      <div ref={sectionRef}>
       <Container>
         <Reveal>
           <CinematicSectionHeading
@@ -171,7 +198,7 @@ export function FrameworkSection() {
 
         <Reveal delay={0.1} className="mt-12">
           <div className="framework-studio group/framework relative">
-            <div className="aurora-orb absolute -inset-8 rounded-full bg-sky-400/15 blur-3xl" />
+            <div className="absolute -inset-8 rounded-full bg-[radial-gradient(circle,rgba(56,189,248,0.18),transparent_70%)]" />
 
             <AnimatedGlassCard
               variant="panel"
@@ -257,13 +284,12 @@ export function FrameworkSection() {
                           <video
                             ref={videoRef}
                             src={winningFrameworkVideoSrc}
-                            autoPlay
                             loop
                             muted
                             playsInline
                             controlsList="nodownload noplaybackrate noremoteplayback"
                             disablePictureInPicture
-                            preload="metadata"
+                            preload="none"
                             aria-label="Winning framework example"
                             className="absolute inset-0 h-full w-full object-cover"
                           />
@@ -358,7 +384,7 @@ export function FrameworkSection() {
                           <p className="text-[10px] font-black uppercase tracking-[0.22em] text-zinc-500">
                             Creative note
                           </p>
-                          <p className="text-xs font-bold text-white">VidCarry framework read</p>
+                          <p className="text-xs font-bold text-white">UGCViss framework read</p>
                         </div>
                       </div>
 
@@ -429,6 +455,7 @@ export function FrameworkSection() {
           </div>
         </Reveal>
       </Container>
+      </div>
     </SectionShell>
   );
 }

@@ -1,4 +1,4 @@
-import { mediaPath } from "@/lib/media/vidcarry-media";
+import { mediaPath } from "@/lib/media/ugcviss-media";
 
 export type PortfolioItem = {
   id: string;
@@ -46,7 +46,7 @@ export const portfolioItems: PortfolioItem[] = [
     aspect: "9:16",
     client: "Blissal",
     eyebrow: "Body care",
-    description: "VidCarry backend-managed portfolio video.",
+    description: "UGCViss backend-managed portfolio video.",
     href: "/portfolio/blissal#blissal-shower-routine",
     featured: true,
     videoSrc: mediaPath("portfolio", "project-1782313958588-5a0622e1"),
@@ -58,7 +58,7 @@ export const portfolioItems: PortfolioItem[] = [
     aspect: "9:16",
     client: "RYZE",
     eyebrow: "Ryze",
-    description: "VidCarry backend-managed portfolio video.",
+    description: "UGCViss backend-managed portfolio video.",
     href: "/portfolio/ryze#ma-26-a-dr-ugc-17-d6",
     featured: true,
     videoSrc: mediaPath("portfolio", "project-1781894350462-2943e0ac"),

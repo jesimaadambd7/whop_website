@@ -38,7 +38,7 @@ export const services: Service[] = [
     description:
       "Campaign setup, creative testing, optimization, and reporting across paid social with a clear focus on sales growth.",
     deliverables: ["Campaign setup", "Ad testing plan", "Performance monitoring", "Optimization notes"],
-    idealFor: "Brands that want VidCarry to produce the ads and help run them toward revenue goals.",
+    idealFor: "Brands that want UGCViss to produce the ads and help run them toward revenue goals.",
     image: serviceImage("paid-ads"),
   },
   {

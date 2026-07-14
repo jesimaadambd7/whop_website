@@ -34,7 +34,7 @@ export function NetworkSection() {
             <CinematicSectionHeading
               eyebrow="Global creative network"
               title="A distributed creative network for stronger campaign execution."
-              description="VidCarry is not limited to one local production setup. We coordinate remote creative specialists and on-camera talent across markets, so brands can build ads with the right voice, pace, edit, and commercial context."
+              description="UGCViss is not limited to one local production setup. We coordinate remote creative specialists and on-camera talent across markets, so brands can build ads with the right voice, pace, edit, and commercial context."
               size="large"
             />
 

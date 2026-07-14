@@ -21,9 +21,9 @@ import {
 import { siteConfig } from "@/lib/data/site";
 
 export const metadata: Metadata = {
-  title: "VidCarry Careers - Production, Video Editing & Creative Jobs",
+  title: "UGCViss Careers - Production, Video Editing & Creative Jobs",
   description:
-    "Apply to join VidCarry's global production network across video editing, motion graphics, UGC creative strategy, shoot production, videography, casting, creator partnerships, and paid social ads.",
+    "Apply to join UGCViss's global production network across video editing, motion graphics, UGC creative strategy, shoot production, videography, casting, creator partnerships, and paid social ads.",
 };
 
 const webPageSchema = {
@@ -31,9 +31,9 @@ const webPageSchema = {
   "@type": "WebPage",
   "@id": `${siteConfig.url}/careers#webpage`,
   url: `${siteConfig.url}/careers`,
-  name: "VidCarry Careers - Production, Video Editing & Creative Jobs",
+  name: "UGCViss Careers - Production, Video Editing & Creative Jobs",
   description:
-    "Apply to join VidCarry's global production network across video editing, motion graphics, UGC creative strategy, shoot production, videography, casting, creator partnerships, and paid social ads.",
+    "Apply to join UGCViss's global production network across video editing, motion graphics, UGC creative strategy, shoot production, videography, casting, creator partnerships, and paid social ads.",
   inLanguage: "en",
   isPartOf: { "@id": `${siteConfig.url}/#website` },
   about: { "@id": `${siteConfig.url}/#organization` },
@@ -52,7 +52,7 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 2,
-      name: "VidCarry Careers - Production, Video Editing & Creative Jobs",
+      name: "UGCViss Careers - Production, Video Editing & Creative Jobs",
       item: `${siteConfig.url}/careers`,
     },
   ],
@@ -69,7 +69,7 @@ export default function CareersPage({ searchParams }: CareersPageProps) {
   const selectedRole = selectedRoleId ? getRoleById(selectedRoleId) : undefined;
   const applyHeading = selectedRole
     ? `Apply for ${selectedRole.title}.`
-    : "Apply to join the VidCarry production network.";
+    : "Apply to join the UGCViss production network.";
 
   return (
     <>
@@ -94,7 +94,7 @@ export default function CareersPage({ searchParams }: CareersPageProps) {
 
       <PageHero
         eyebrow="Careers"
-        title="Join VidCarry's production network."
+        title="Join UGCViss's production network."
         description="We are building a global team of editors, motion designers, strategists, producers, videographers, casting partners, and paid ads specialists who can turn products into sales-focused creative."
       />
 
@@ -113,7 +113,7 @@ export default function CareersPage({ searchParams }: CareersPageProps) {
                 We hire people who can make campaign work move faster.
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-8 text-zinc-400 sm:text-lg">
-                VidCarry works with ecommerce and DTC brands that need model shoots, UGC ads, paid
+                UGCViss works with ecommerce and DTC brands that need model shoots, UGC ads, paid
                 social creatives, editing, motion graphics, creator production, and ad campaign
                 support. If your work can lift that standard, we want to see it.
               </p>
@@ -163,7 +163,7 @@ export default function CareersPage({ searchParams }: CareersPageProps) {
               What we value
             </p>
             <h2 className="font-display text-3xl font-black tracking-[-0.04em] text-white sm:text-5xl">
-              The kind of people who fit VidCarry.
+              The kind of people who fit UGCViss.
             </h2>
             <p className="mt-5 text-base leading-8 text-zinc-400 sm:text-lg">
               We are a production and performance creative team. The best fit is someone who brings
@@ -234,7 +234,7 @@ export default function CareersPage({ searchParams }: CareersPageProps) {
               Hiring process
             </p>
             <h2 className="font-display text-3xl font-black tracking-[-0.04em] text-white sm:text-5xl">
-              How applications move through VidCarry.
+              How applications move through UGCViss.
             </h2>
             <p className="mt-5 text-base leading-8 text-zinc-400 sm:text-lg">
               We keep the process practical. Portfolio quality and communication matter more than
@@ -278,7 +278,7 @@ export default function CareersPage({ searchParams }: CareersPageProps) {
             </h2>
             <p className="mt-5 text-base leading-8 text-zinc-400 sm:text-lg">
               When you apply, make it easy for us to understand your best work, your workflow, and
-              where you can help the VidCarry production system.
+              where you can help the UGCViss production system.
             </p>
           </Reveal>
 
@@ -341,7 +341,7 @@ export default function CareersPage({ searchParams }: CareersPageProps) {
             </h2>
             <p className="mt-5 text-base leading-8 text-zinc-400 sm:text-lg">
               Fill this out with your best links and clear availability. This application saves your
-              details for VidCarry review, but it does not guarantee hiring or project assignment.
+              details for UGCViss review, but it does not guarantee hiring or project assignment.
             </p>
           </Reveal>
 

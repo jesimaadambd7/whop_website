@@ -4,9 +4,9 @@ import { ContactInquirySection } from "@/components/contact/ContactInquirySectio
 import { ContactScheduleSection } from "@/components/contact/ContactScheduleSection";
 
 export const metadata: Metadata = {
-  title: "Book a Call - VidCarry Creative & Paid Ads Agency",
+  title: "Book a Call - UGCViss Creative & Paid Ads Agency",
   description:
-    "Book a VidCarry strategy call through Calendly or send a project brief for your next model shoot, UGC ad batch, video editing sprint, or paid ads campaign.",
+    "Book a UGCViss strategy call through Calendly or send a project brief for your next model shoot, UGC ad batch, video editing sprint, or paid ads campaign.",
 };
 
 export default function ContactPage() {

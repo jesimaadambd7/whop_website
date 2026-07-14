@@ -73,7 +73,7 @@ export function CareersApplicationSuccessCard() {
             transition={{ delay: 0.22, duration: 0.4 }}
             className="mt-5 font-display text-3xl font-black tracking-[-0.05em] text-white sm:text-4xl"
           >
-            Thanks for applying to VidCarry.
+            Thanks for applying to UGCViss.
           </motion.h3>
 
           <motion.p

@@ -3,7 +3,7 @@ export const creatorBenefits = [
     step: "01",
     title: "No website maintenance",
     description:
-      "Skip separate design, development, hosting setup, plugin updates, and recurring VidCarry platform fees.",
+      "Skip separate design, development, hosting setup, plugin updates, and recurring UGCViss platform fees.",
   },
   {
     step: "02",
@@ -15,7 +15,7 @@ export const creatorBenefits = [
     step: "03",
     title: "Discovery beyond a share link",
     description:
-      "Approved opt-in profiles can appear in the searchable VidCarry creator directory with role and availability filters.",
+      "Approved opt-in profiles can appear in the searchable UGCViss creator directory with role and availability filters.",
   },
   {
     step: "04",
@@ -27,11 +27,11 @@ export const creatorBenefits = [
     step: "05",
     title: "A full creative resource vault",
     description:
-      "Active lifetime members receive personal access to every current and future published VidCarry resource.",
+      "Active lifetime members receive personal access to every current and future published UGCViss resource.",
   },
   {
     step: "06",
-    title: "A path into the VidCarry network",
+    title: "A path into the UGCViss network",
     description:
       "Opt in for review, featured placement, collaboration shortlists, and possible team invitations. Selection is never guaranteed.",
   },
@@ -54,12 +54,12 @@ export const creatorRoles = [
 
 export const creatorPricingFeatures = [
   "One SEO-ready creator profile",
-  "Unlimited VidCarry secure cloud hosting and unlimited hosted projects",
+  "Unlimited UGCViss secure cloud hosting and unlimited hosted projects",
   "Unlimited YouTube, Vimeo, and external embeds",
   "Three premium portfolio themes",
   "Analytics and inquiry inbox",
   "Public creator directory eligibility",
-  "All current and future VidCarry resources",
+  "All current and future UGCViss resources",
 ] as const;
 
 export const creatorSteps = [
@@ -89,27 +89,27 @@ export const creatorComparisonRows = [
   {
     label: "Setup",
     diy: "Design, development, hosting and plugins",
-    vidcarry: "Guided profile and three themes",
+    ugcviss: "Guided profile and three themes",
   },
   {
     label: "Cost model",
     diy: "Build fee plus ongoing hosting",
-    vidcarry: "One-time payment within limits",
+    ugcviss: "One-time payment within limits",
   },
   {
     label: "Creative media",
     diy: "Manual layouts and storage setup",
-    vidcarry: "Mixed media, embeds and auto ratios",
+    ugcviss: "Mixed media, embeds and auto ratios",
   },
   {
     label: "Discovery",
     diy: "You bring every visitor",
-    vidcarry: "SEO profile plus directory eligibility",
+    ugcviss: "SEO profile plus directory eligibility",
   },
   {
     label: "Operations",
     diy: "Separate analytics, forms and downloads",
-    vidcarry: "Analytics, inquiries and resources included",
+    ugcviss: "Analytics, inquiries and resources included",
   },
 ] as const;
 
@@ -127,12 +127,12 @@ export const creatorTerms = [
   {
     title: "Fair-use limits",
     description:
-      "The lifetime plan has no recurring VidCarry platform fee within purchased storage and project limits. Embeds remain unlimited.",
+      "The lifetime plan has no recurring UGCViss platform fee within purchased storage and project limits. Embeds remain unlimited.",
   },
   {
     title: "Opportunities",
     description:
-      "Featured placement, leads, collaborations, or VidCarry employment are possible but never promised or guaranteed.",
+      "Featured placement, leads, collaborations, or UGCViss employment are possible but never promised or guaranteed.",
   },
 ] as const;
 
@@ -140,12 +140,12 @@ export const creatorFaqs = [
   {
     question: "Is the creator payment really one time?",
     answer:
-      "Yes. There is no recurring VidCarry platform fee within your purchased storage and hosted-project limits. Third-party tools and external services may have their own costs.",
+      "Yes. There is no recurring UGCViss platform fee within your purchased storage and hosted-project limits. Third-party tools and external services may have their own costs.",
   },
   {
     question: "What counts toward 2GB and 25 projects?",
     answer:
-      "Files hosted in your VidCarry secure cloud count toward storage and hosted-project limits. YouTube, Vimeo, and eligible external embeds are unlimited and do not consume hosted storage.",
+      "Files hosted in your UGCViss secure cloud count toward storage and hosted-project limits. YouTube, Vimeo, and eligible external embeds are unlimited and do not consume hosted storage.",
   },
   {
     question: "Can any creator publish immediately?",
@@ -153,18 +153,18 @@ export const creatorFaqs = [
       "No. Profiles and new media are reviewed for quality, ownership, safety, and platform fit. Existing approved work stays live while new media is reviewed.",
   },
   {
-    question: "Will VidCarry find clients or hire me?",
+    question: "Will UGCViss find clients or hire me?",
     answer:
-      "The directory, features, and talent review can improve discovery, but client inquiries, projects, collaboration, and VidCarry employment are never guaranteed.",
+      "The directory, features, and talent review can improve discovery, but client inquiries, projects, collaboration, and UGCViss employment are never guaranteed.",
   },
   {
     question: "Can I get a refund?",
     answer:
-      "You may request a refund within seven days only if the portfolio has not been published and no premium VidCarry resource has been downloaded.",
+      "You may request a refund within seven days only if the portfolio has not been published and no premium UGCViss resource has been downloaded.",
   },
   {
     question: "Who owns my work?",
     answer:
-      "You keep ownership of your original work. You grant VidCarry only the permission needed to host, review, display, and promote approved portfolio content.",
+      "You keep ownership of your original work. You grant UGCViss only the permission needed to host, review, display, and promote approved portfolio content.",
   },
 ] as const;

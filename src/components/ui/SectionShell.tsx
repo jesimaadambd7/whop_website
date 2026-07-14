@@ -26,21 +26,19 @@ export function SectionShell({
       id={id}
       className={cn(
         "relative scroll-mt-24 overflow-hidden bg-transparent py-20 sm:scroll-mt-28 sm:py-24",
+        "content-visibility-section",
         bordered && "border-y border-white/10",
-        tone === "elevated" && "bg-white/[0.025] backdrop-blur-[2px]",
-        tone === "deep" && "bg-black/20 backdrop-blur-[2px]",
+        tone === "elevated" && "bg-white/[0.025]",
+        tone === "deep" && "bg-black/20",
         !bordered && tone === "default" && "border-b border-white/5",
         className,
       )}
     >
       {withGrid && (
-        <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.14]" />
+        <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.1]" />
       )}
       {cinematic && (
-        <>
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-400/20 to-transparent" />
-          <div className="cine-film-grain pointer-events-none absolute inset-0 opacity-[0.02]" aria-hidden="true" />
-        </>
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-400/20 to-transparent" />
       )}
       {withOrb && (
         <>

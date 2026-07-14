@@ -11,9 +11,9 @@ import { featuredGuides, intentPages } from "@/lib/data/resources";
 import { loadPublishedVaultResources } from "@/lib/data/load-resources";
 
 export const metadata: Metadata = {
-  title: "VidCarry Resources - UGC Ads, Video Production & Creative Testing",
+  title: "UGCViss Resources - UGC Ads, Video Production & Creative Testing",
   description:
-    "Read VidCarry resources about UGC ads, ecommerce video production, paid social creative testing, product shoots, video editing, and performance creative systems.",
+    "Read UGCViss resources about UGC ads, ecommerce video production, paid social creative testing, product shoots, video editing, and performance creative systems.",
 };
 
 export default async function ResourcesPage() {
@@ -38,7 +38,7 @@ export default async function ResourcesPage() {
             </h2>
             <p className="mt-5 text-base leading-8 text-zinc-400 sm:text-lg">
               Built for editors, creative strategists, designers, AI video operators, and creators
-              who want VidCarry&apos;s internal systems, prompts, and production thinking.
+              who want UGCViss&apos;s internal systems, prompts, and production thinking.
             </p>
           </Reveal>
 

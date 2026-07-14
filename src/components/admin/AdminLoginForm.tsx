@@ -54,7 +54,7 @@ export function AdminLoginForm() {
             required
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            placeholder="you@vidcarry.com"
+            placeholder="you@ugcviss.com"
             className={inputClass}
           />
         </div>

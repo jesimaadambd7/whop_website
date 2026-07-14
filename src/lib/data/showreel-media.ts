@@ -1,4 +1,4 @@
-import { mediaPath } from "@/lib/media/vidcarry-media";
+import { mediaPath } from "@/lib/media/ugcviss-media";
 
 export type ShowreelVideo = {
   title: string;
@@ -9,7 +9,7 @@ export type ShowreelVideo = {
   ratio: "4/5" | "9/16";
 };
 
-/** Pool passed to the hero showreel carousel (matches vidcarry.com). */
+/** Pool passed to the hero showreel carousel (matches ugcviss.com). */
 export const showreelVideos: ShowreelVideo[] = [
   {
     title: "UGC Ad Edit 11",

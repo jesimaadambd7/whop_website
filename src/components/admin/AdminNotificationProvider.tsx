@@ -18,7 +18,7 @@ import type {
 } from "@/lib/admin/notification-types";
 import { cn } from "@/lib/utils";
 
-const STORAGE_KEY = "vidcarry_admin_notification_seen_v2";
+const STORAGE_KEY = "ugcviss_admin_notification_seen_v2";
 const POLL_MS = 20_000;
 const TOAST_LIFETIME_MS = 9_000;
 const MAX_TOASTS = 4;

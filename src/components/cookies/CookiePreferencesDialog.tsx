@@ -120,7 +120,7 @@ export function CookiePreferencesDialog() {
               />
               <PreferenceRow
                 title="Analytics cookies"
-                description="Help VidCarry understand traffic, page performance, and campaign behavior."
+                description="Help UGCViss understand traffic, page performance, and campaign behavior."
                 checked={draftPreferences.analytics}
                 onChange={(value) => setDraftPreference("analytics", value)}
               />

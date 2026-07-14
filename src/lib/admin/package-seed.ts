@@ -10,12 +10,12 @@ export const defaultCreatorPricing: CreatorPricing = {
   available: true,
   features: [
     "One SEO-ready creator profile",
-    "Unlimited VidCarry secure cloud hosting and unlimited hosted projects",
+    "Unlimited UGCViss secure cloud hosting and unlimited hosted projects",
     "Unlimited YouTube, Vimeo, and external embeds",
     "Three premium portfolio themes",
     "Analytics and inquiry inbox",
     "Public creator directory eligibility",
-    "All current and future VidCarry resources",
+    "All current and future UGCViss resources",
   ],
 };
 
@@ -53,7 +53,7 @@ export const defaultAdminPackages: AdminPackage[] = [
     processSteps: [
       "Complete checkout and short brief",
       "Share footage or request production support",
-      "VidCarry confirms kickoff and delivery date",
+      "UGCViss confirms kickoff and delivery date",
       "Review, revise, and download final assets",
     ],
     thumbnail: "/assets/thumbnails/packages/ugc-ad-sprint.svg",
@@ -108,7 +108,7 @@ export const defaultAdminPackages: AdminPackage[] = [
     ],
     processSteps: [
       "Upload footage and references",
-      "VidCarry confirms edit map",
+      "UGCViss confirms edit map",
       "First cuts move into client review",
       "Revisions are completed and finals delivered",
     ],

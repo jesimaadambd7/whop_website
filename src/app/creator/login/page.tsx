@@ -21,7 +21,7 @@ export default function CreatorLoginPage() {
     <CreatorAuthLayout
       eyebrow="Creator login"
       title="Your work, resources, leads, and analytics."
-      description="Manage your portfolio from one focused dashboard without maintaining another website or paying a recurring VidCarry platform fee."
+      description="Manage your portfolio from one focused dashboard without maintaining another website or paying a recurring UGCViss platform fee."
     >
       <Suspense fallback={<p className="text-sm text-zinc-500">Loading login...</p>}>
         <CreatorLoginForm />

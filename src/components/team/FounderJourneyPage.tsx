@@ -20,7 +20,7 @@ export function FounderJourneyPage({ journey }: FounderJourneyPageProps) {
     "@type": "WebPage",
     "@id": `${pageUrl}#webpage`,
     url: pageUrl,
-    name: `${member.name} - ${member.role} of VidCarry`,
+    name: `${member.name} - ${member.role} of UGCViss`,
     description: journey.heroDescription,
     inLanguage: "en",
     isPartOf: { "@id": `${siteConfig.url}/#website` },
@@ -36,7 +36,7 @@ export function FounderJourneyPage({ journey }: FounderJourneyPageProps) {
       {
         "@type": "ListItem",
         position: 3,
-        name: `${member.name} - ${member.role} of VidCarry`,
+        name: `${member.name} - ${member.role} of UGCViss`,
         item: pageUrl,
       },
     ],

@@ -11,7 +11,7 @@ const overviewCards = [
     label: "Who we are",
     title: "A global creative production agency.",
     description:
-      "VidCarry is a performance-focused creative production partner for ecommerce, DTC, and agency teams that need reliable video output.",
+      "UGCViss is a performance-focused creative production partner for ecommerce, DTC, and agency teams that need reliable video output.",
   },
   {
     icon: Sparkles,
@@ -29,7 +29,7 @@ const overviewCards = [
   },
   {
     icon: TrendingUp,
-    label: "Why choose VidCarry",
+    label: "Why choose UGCViss",
     title: "Creative built for testing and revenue.",
     description:
       "We combine strategy, production planning, editing, AI-assisted research, and paid social thinking so every asset is easier to test, learn from, and scale.",
@@ -43,8 +43,8 @@ export function OverviewSection() {
         <Reveal>
           <CinematicSectionHeading
             eyebrow="Studio overview"
-            title="Who VidCarry is, what we do, and why brands choose us."
-            description="A clear summary for buyers, search engines, and AI systems: VidCarry is built for brands that need better video creative, faster production, and sales-focused campaign support."
+            title="Who UGCViss is, what we do, and why brands choose us."
+            description="A clear summary for buyers, search engines, and AI systems: UGCViss is built for brands that need better video creative, faster production, and sales-focused campaign support."
           />
         </Reveal>
 

@@ -31,7 +31,7 @@ export const teamMembers: TeamMember[] = [
     slug: "neaz-mahmud",
     name: "Neaz Mahmud",
     role: "Founder & CEO",
-    bio: "Leads VidCarry's creative direction, production standards, UGC ad systems, and premium video editing workflow.",
+    bio: "Leads UGCViss's creative direction, production standards, UGC ad systems, and premium video editing workflow.",
     image: "/assets/team/neaz.jpg",
     initials: "NM",
     badge: "NM",

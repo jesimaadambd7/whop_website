@@ -19,16 +19,16 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Creator Portfolio Hosting - VidCarry",
+  title: "Creator Portfolio Hosting - UGCViss",
   description:
-    "Build a premium creator portfolio with mixed-media hosting, directory discovery, analytics, inquiries, and lifetime VidCarry resource access for one payment.",
+    "Build a premium creator portfolio with mixed-media hosting, directory discovery, analytics, inquiries, and lifetime UGCViss resource access for one payment.",
 };
 
 export default async function CreatorPortfoliosPage() {
   const pricing = await loadCreatorPricing();
   const comparisonRows = creatorComparisonRows.map((row) =>
     row.label === "Cost model"
-      ? { ...row, vidcarry: pricing.comparisonPriceLabel }
+      ? { ...row, ugcviss: pricing.comparisonPriceLabel }
       : row,
   );
 
@@ -40,7 +40,7 @@ export default async function CreatorPortfoliosPage() {
         <Container>
           <Reveal className="mb-10 max-w-3xl sm:mb-14">
             <p className="mb-4 text-xs font-black uppercase tracking-[0.34em] text-sky-400">
-              Why VidCarry
+              Why UGCViss
             </p>
             <h2 className="font-display text-3xl font-black tracking-[-0.04em] text-white sm:text-5xl">
               Portfolio infrastructure without becoming your own web team.
@@ -182,7 +182,7 @@ export default async function CreatorPortfoliosPage() {
             <div className="grid grid-cols-3 border-b border-white/10 bg-black/70 px-5 py-4 text-xs font-black uppercase tracking-[0.15em] text-zinc-500">
               <span>What matters</span>
               <span>DIY website</span>
-              <span className="text-sky-300">VidCarry</span>
+              <span className="text-sky-300">UGCViss</span>
             </div>
             {comparisonRows.map((row) => (
               <div
@@ -191,7 +191,7 @@ export default async function CreatorPortfoliosPage() {
               >
                 <strong className="text-white">{row.label}</strong>
                 <span className="text-zinc-500">{row.diy}</span>
-                <span className="text-zinc-200">{row.vidcarry}</span>
+                <span className="text-zinc-200">{row.ugcviss}</span>
               </div>
             ))}
           </Reveal>

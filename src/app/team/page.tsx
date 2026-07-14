@@ -15,9 +15,9 @@ import {
 } from "@/lib/data/team";
 
 export const metadata: Metadata = {
-  title: "VidCarry Team - Production, UGC Editing & Paid Ads",
+  title: "UGCViss Team - Production, UGC Editing & Paid Ads",
   description:
-    "Meet the VidCarry team across model shoot production, UGC editing, performance ads, creative strategy, and web systems.",
+    "Meet the UGCViss team across model shoot production, UGC editing, performance ads, creative strategy, and web systems.",
 };
 
 export default async function TeamPage() {
@@ -27,7 +27,7 @@ export default async function TeamPage() {
     <>
       <PageHero
         eyebrow="Team"
-        title="Meet the people carrying VidCarry's shoot-to-sales production."
+        title="Meet the people carrying UGCViss's shoot-to-sales production."
         description="Our team brings together model shoot production, performance video ads, UGC editing, paid ad thinking, creative strategy, and the systems needed to keep growth work moving."
       />
 

@@ -14,7 +14,7 @@ export function ServicesSection() {
           <CinematicSectionHeading
             eyebrow="Services"
             title="Creative production built for launch, testing, and scale."
-            description="From strategy and production planning to UGC edits, motion polish, paid social assets, and launch support, VidCarry covers the creative layer brands need to move faster."
+            description="From strategy and production planning to UGC edits, motion polish, paid social assets, and launch support, UGCViss covers the creative layer brands need to move faster."
           />
         </Reveal>
 

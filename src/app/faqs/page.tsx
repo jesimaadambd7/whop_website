@@ -7,9 +7,9 @@ import { Container } from "@/components/ui/Container";
 import { allFaqs, faqCategories } from "@/lib/data/faqs";
 
 export const metadata: Metadata = {
-  title: "VidCarry FAQs - UGC Ads, Video Production, Editing & Paid Ads",
+  title: "UGCViss FAQs - UGC Ads, Video Production, Editing & Paid Ads",
   description:
-    "Detailed VidCarry FAQs about UGC ads, model and product shoots, video editing, motion graphics, paid social ads, creative strategy, pricing, timelines, and agency support.",
+    "Detailed UGCViss FAQs about UGC ads, model and product shoots, video editing, motion graphics, paid social ads, creative strategy, pricing, timelines, and agency support.",
 };
 
 const faqSchema = {
@@ -35,7 +35,7 @@ export default function FaqsPage() {
 
       <PageHero
         eyebrow="FAQs"
-        title="Detailed answers before you book a VidCarry sprint."
+        title="Detailed answers before you book a UGCViss sprint."
         description="Learn how our UGC ads, model shoots, video editing, motion graphics, paid social creatives, creator sourcing, and campaign support work before we build your next sales-focused creative system."
       />
 

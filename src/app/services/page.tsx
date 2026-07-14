@@ -12,9 +12,9 @@ import { loadPackages } from "@/lib/data/packages";
 import { services, serviceBottlenecks } from "@/lib/data/services";
 
 export const metadata: Metadata = {
-  title: "UGC Ads & Video Editing Services | VidCarry",
+  title: "UGC Ads & Video Editing Services | UGCViss",
   description:
-    "Explore VidCarry services for UGC ads, video editing, motion graphics, paid social creatives, creator sourcing, production planning, and paid ads support.",
+    "Explore UGCViss services for UGC ads, video editing, motion graphics, paid social creatives, creator sourcing, production planning, and paid ads support.",
 };
 
 function SectionIntro({

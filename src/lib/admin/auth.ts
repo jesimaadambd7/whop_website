@@ -3,11 +3,11 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { siteConfig } from "@/lib/data/site";
 
-const SESSION_COOKIE = "vidcarry_admin_session";
+const SESSION_COOKIE = "ugcviss_admin_session";
 const SESSION_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 
 function sessionSecret() {
-  return process.env.ADMIN_SESSION_SECRET || "vidcarry-dev-admin-secret";
+  return process.env.ADMIN_SESSION_SECRET || "ugcviss-dev-admin-secret";
 }
 
 export function getAdminEmails() {

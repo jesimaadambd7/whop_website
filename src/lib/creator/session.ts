@@ -4,11 +4,11 @@ import { redirect } from "next/navigation";
 import { getCreatorById } from "@/lib/admin/creator-store";
 import type { CreatorAccountPublic } from "@/lib/admin/creator-types";
 
-const SESSION_COOKIE = "vidcarry_creator_session";
+const SESSION_COOKIE = "ugcviss_creator_session";
 const SESSION_TTL_MS = 14 * 24 * 60 * 60 * 1000;
 
 function sessionSecret() {
-  return process.env.CREATOR_SESSION_SECRET || process.env.ADMIN_SESSION_SECRET || "vidcarry-dev-creator-secret";
+  return process.env.CREATOR_SESSION_SECRET || process.env.ADMIN_SESSION_SECRET || "ugcviss-dev-creator-secret";
 }
 
 function signPayload(payload: string) {

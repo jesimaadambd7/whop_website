@@ -29,7 +29,7 @@ export async function POST(request: Request) {
 
     if (creator.status === "rejected") {
       return NextResponse.json(
-        { error: "This account was not approved. Contact hello@vidcarry.com for help." },
+        { error: "This account was not approved. Contact hello@ugcviss.com for help." },
         { status: 403 },
       );
     }

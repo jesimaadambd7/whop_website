@@ -15,7 +15,7 @@ export function FaqSection() {
             <CinematicSectionHeading
               eyebrow="FAQs"
               title="Questions before we build your next ad sprint?"
-              description="Quick answers about pricing, shoots, paid ads, account access, and whether VidCarry is the right fit for your brand."
+              description="Quick answers about pricing, shoots, paid ads, account access, and whether UGCViss is the right fit for your brand."
               size="large"
             />
 

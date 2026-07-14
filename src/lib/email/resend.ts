@@ -7,7 +7,7 @@ export async function sendResendEmail(input: SendEmailInput) {
   }
 
   const from =
-    process.env.EMAIL_FROM?.trim() || "VidCarry <onboarding@resend.dev>";
+    process.env.EMAIL_FROM?.trim() || "UGCViss <onboarding@resend.dev>";
   const replyTo = input.replyTo?.trim() || process.env.EMAIL_REPLY_TO?.trim();
 
   const response = await fetch("https://api.resend.com/emails", {

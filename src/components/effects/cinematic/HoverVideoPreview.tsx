@@ -26,14 +26,20 @@ export function HoverVideoPreview({
 }: HoverVideoPreviewProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hovering, setHovering] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
 
   const handleEnter = useCallback(() => {
+    if (!videoSrc) return;
     setHovering(true);
-    const video = videoRef.current;
-    if (!video || !videoSrc) return;
-    video.currentTime = 0;
-    video.play().catch(() => undefined);
+    setMounted(true);
+    // Play after mount in next tick
+    requestAnimationFrame(() => {
+      const video = videoRef.current;
+      if (!video) return;
+      video.currentTime = 0;
+      video.play().catch(() => undefined);
+    });
   }, [videoSrc]);
 
   const handleLeave = useCallback(() => {
@@ -59,6 +65,7 @@ export function HoverVideoPreview({
         alt={alt}
         src={posterSrc ?? fallbackSrc}
         loading={eager ? "eager" : "lazy"}
+        decoding="async"
         className={cn(
           "h-full w-full object-cover transition duration-500",
           showVideo ? "scale-105 opacity-0" : "scale-100 opacity-100",
@@ -66,7 +73,8 @@ export function HoverVideoPreview({
         )}
       />
 
-      {videoSrc && (
+      {/* Mount video only on hover — keeps scroll light with posters */}
+      {videoSrc && mounted && (
         <video
           ref={videoRef}
           src={videoSrc}
@@ -74,13 +82,16 @@ export function HoverVideoPreview({
           muted
           loop
           playsInline
-          preload="none"
+          preload="metadata"
           aria-hidden="true"
           className={cn(
             "absolute inset-0 h-full w-full object-cover transition duration-500",
             showVideo ? "scale-100 opacity-100" : "scale-105 opacity-0",
           )}
-          onCanPlay={() => setVideoReady(true)}
+          onCanPlay={() => {
+            setVideoReady(true);
+            if (hovering) videoRef.current?.play().catch(() => undefined);
+          }}
         />
       )}
 
@@ -95,7 +106,7 @@ export function HoverVideoPreview({
       {children}
 
       {videoSrc && !showVideo && (
-        <div className="pointer-events-none absolute bottom-4 right-4 rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.16em] text-white/80 backdrop-blur">
+        <div className="pointer-events-none absolute bottom-4 right-4 rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.16em] text-white/80">
           Preview
         </div>
       )}

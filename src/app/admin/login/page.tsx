@@ -17,13 +17,13 @@ export default function AdminLoginPage() {
       <section className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div>
           <p className="text-sm font-black uppercase tracking-[0.28em] text-sky-300">
-            VidCarry admin
+            UGCViss admin
           </p>
           <h1 className="mt-5 max-w-2xl text-4xl font-black tracking-[-0.05em] text-white sm:text-6xl">
             Submission inbox, replies, and lead review.
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-8 text-zinc-400">
-            Sign in with an approved VidCarry admin email. From here, the team can review
+            Sign in with an approved UGCViss admin email. From here, the team can review
             submissions, change status, and reply by email.
           </p>
           <p className="mt-6 text-xs uppercase tracking-[0.22em] text-zinc-600">

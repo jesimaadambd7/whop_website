@@ -9,7 +9,7 @@ type AdminSectionHeaderProps = {
 };
 
 export function AdminSectionHeader({
-  eyebrow = "VidCarry admin",
+  eyebrow = "UGCViss admin",
   title,
   description,
   showSignOut = true,

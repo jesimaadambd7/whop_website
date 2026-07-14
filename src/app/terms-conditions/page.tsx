@@ -7,9 +7,9 @@ import { siteConfig } from "@/lib/data/site";
 import { termsLastUpdated, termsSections } from "@/lib/data/terms";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions - VidCarry",
+  title: "Terms & Conditions - UGCViss",
   description:
-    "Read the VidCarry terms and conditions for website use, creative services, project scope, payments, revisions, asset usage, and paid ads support.",
+    "Read the UGCViss terms and conditions for website use, creative services, project scope, payments, revisions, asset usage, and paid ads support.",
 };
 
 const webPageSchema = {
@@ -17,9 +17,9 @@ const webPageSchema = {
   "@type": "WebPage",
   "@id": `${siteConfig.url}/terms-conditions#webpage`,
   url: `${siteConfig.url}/terms-conditions`,
-  name: "Terms & Conditions - VidCarry",
+  name: "Terms & Conditions - UGCViss",
   description:
-    "Read the VidCarry terms and conditions for website use, creative services, project scope, payments, revisions, asset usage, and paid ads support.",
+    "Read the UGCViss terms and conditions for website use, creative services, project scope, payments, revisions, asset usage, and paid ads support.",
   inLanguage: "en",
   isPartOf: { "@id": `${siteConfig.url}/#website` },
   about: { "@id": `${siteConfig.url}/#organization` },
@@ -58,8 +58,8 @@ export default function TermsPage() {
 
       <PageHero
         eyebrow="Terms & Conditions"
-        title="Terms for using VidCarry services and website."
-        description="These terms explain how VidCarry works with clients, handles creative services, and governs use of this website."
+        title="Terms for using UGCViss services and website."
+        description="These terms explain how UGCViss works with clients, handles creative services, and governs use of this website."
       />
 
       <section className="relative overflow-hidden py-16 sm:py-20">

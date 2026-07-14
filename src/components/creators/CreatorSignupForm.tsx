@@ -93,7 +93,7 @@ export function CreatorSignupForm() {
           </label>
           <div className="mt-2 flex overflow-hidden rounded-2xl border border-white/10 bg-black/55 focus-within:border-sky-300">
             <span className="grid place-items-center border-r border-white/10 px-4 text-sm font-bold text-zinc-600">
-              vidcarry.com/creators/
+              ugcviss.com/creators/
             </span>
             <input
               id="username"

@@ -13,7 +13,7 @@ import {
   useRedisStorage,
 } from "@/lib/admin/persistent-storage";
 
-const BLOB_PREFIX = "vidcarry-data";
+const BLOB_PREFIX = "ugcviss-data";
 
 function writableStorePath(fileName: string) {
   return path.join(getDataDir(), fileName);
@@ -28,7 +28,7 @@ function blobPath(fileName: string) {
 }
 
 function redisKey(fileName: string) {
-  return `vidcarry:store:${fileName}`;
+  return `ugcviss:store:${fileName}`;
 }
 
 export { getPersistentStorageStatus, useBlobStorage, useRedisStorage } from "@/lib/admin/persistent-storage";

@@ -17,7 +17,7 @@ export function isServerlessRuntime() {
 
 export function getDataDir() {
   if (isServerlessRuntime()) {
-    return path.join("/tmp", "vidcarry-data");
+    return path.join("/tmp", "ugcviss-data");
   }
   return path.join(process.cwd(), "data");
 }

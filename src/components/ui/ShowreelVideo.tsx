@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { type ShowreelVideo, heroShowreelVideo } from "@/lib/data/showreel-media";
 import { cn } from "@/lib/utils";
 
@@ -39,13 +40,26 @@ function CarouselCard({
   slide,
   position,
   onSelect,
+  sectionVisible,
 }: {
   slide: ShowreelVideo;
   position: CardPosition;
   onSelect: () => void;
+  sectionVisible: boolean;
 }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const isCenter = position === "center";
   const isSide = !isCenter;
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (isCenter && sectionVisible) {
+      void video.play().catch(() => undefined);
+    } else {
+      video.pause();
+    }
+  }, [isCenter, sectionVisible, slide.videoSrc]);
 
   const frameClass = cn(
     "relative mx-auto block overflow-hidden rounded-[1.45rem] border border-white/15 bg-black shadow-[0_26px_70px_rgba(0,0,0,0.42)]",
@@ -56,10 +70,10 @@ function CarouselCard({
   const content = isCenter ? (
     <span className={cn(frameClass, "pointer-events-auto")} aria-current="true">
       <video
+        ref={videoRef}
         key={slide.videoSrc}
         src={slide.videoSrc}
         poster={slide.posterSrc}
-        autoPlay
         loop
         muted
         playsInline
@@ -84,15 +98,14 @@ function CarouselCard({
           src={slide.posterSrc}
           alt={`${slide.title} poster`}
           draggable={false}
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 h-full w-full object-cover opacity-90"
         />
         <div className="absolute inset-0 rounded-[1.45rem] bg-black/30" />
-        <div
-          className={cn(
-            "absolute top-1/2 h-16 w-16 -translate-y-1/2 rounded-full border border-sky-300/25 bg-sky-300/10 blur-xl",
-            position === "left" ? "-right-5" : "-left-5",
-          )}
-        />
+        <div className="absolute bottom-3 left-3 right-3 truncate text-[10px] font-bold uppercase tracking-[0.16em] text-white/80">
+          {slide.title}
+        </div>
       </div>
     </button>
   );
@@ -123,8 +136,25 @@ export function ShowreelCarousel({
   activeIndex: number;
   onSelect: (i: number) => void;
 }) {
+  const rootRef = useRef<HTMLDivElement>(null);
+  const [sectionVisible, setSectionVisible] = useState(true);
+
+  useEffect(() => {
+    const node = rootRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setSectionVisible(entry.isIntersecting),
+      { rootMargin: "100px", threshold: 0.1 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="relative mt-5 overflow-visible rounded-[1.75rem] border border-white/10 p-4">
+    <div
+      ref={rootRef}
+      className="relative mt-5 overflow-visible rounded-[1.75rem] border border-white/10 p-4"
+    >
       <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[1.75rem] bg-[radial-gradient(circle_at_25%_15%,rgba(0,168,255,0.35),transparent_32%),linear-gradient(135deg,#020617,#082f49_48%,#00a8ff)]" />
       <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[1.75rem] bg-[linear-gradient(120deg,rgba(255,255,255,0.12),transparent_38%,rgba(0,0,0,0.55))]" />
 
@@ -140,6 +170,7 @@ export function ShowreelCarousel({
                 slide={slide}
                 position={getPosition(i, activeIndex, videos.length)}
                 onSelect={() => onSelect(i)}
+                sectionVisible={sectionVisible}
               />
             ))}
           </div>
@@ -157,7 +188,7 @@ export function ShowreelCarousel({
           ].map((box) => (
             <div
               key={box.label}
-              className="showreel-metric-tile flex min-h-[4.5rem] flex-col justify-center rounded-2xl border border-white/15 bg-black/35 p-3 backdrop-blur"
+              className="showreel-metric-tile flex min-h-[4.5rem] flex-col justify-center rounded-2xl border border-white/15 bg-black/35 p-3"
             >
               <p className="font-display text-2xl font-black tracking-[-0.05em] text-white">
                 {box.value}
@@ -192,14 +223,32 @@ export function ShowreelVideo({
 }) {
   const src = videoSrc ?? heroShowreelVideo.videoSrc;
   const poster = posterSrc ?? heroShowreelVideo.posterSrc;
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const node = rootRef.current;
+    const video = videoRef.current;
+    if (!node || !video || !autoPlay) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) void video.play().catch(() => undefined);
+        else video.pause();
+      },
+      { rootMargin: "80px", threshold: 0.15 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [autoPlay, src]);
 
   return (
-    <div className={cn("w-full", className)}>
+    <div ref={rootRef} className={cn("w-full", className)}>
       <span className="relative pointer-events-auto mx-auto block aspect-[4/5] w-full max-w-[300px] overflow-hidden rounded-[1.45rem] border border-white/15 bg-black shadow-[0_26px_70px_rgba(0,0,0,0.42)]">
         <video
+          ref={videoRef}
           src={src}
           poster={poster}
-          autoPlay={autoPlay}
           loop={loop}
           muted={muted}
           playsInline
@@ -207,8 +256,7 @@ export function ShowreelVideo({
           disablePictureInPicture
           preload="metadata"
           aria-label={label ?? "Showreel"}
-          draggable={false}
-          className="absolute inset-0 h-full w-full bg-black object-contain"
+          className="absolute inset-0 h-full w-full object-cover"
         />
       </span>
     </div>

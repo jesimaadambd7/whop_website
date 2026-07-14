@@ -24,10 +24,10 @@ export function CreatorDashboardShell({ creator, children }: Props) {
       <header className="border-b border-white/10 bg-[#05070b]/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-5 sm:px-8">
           <div className="flex items-center gap-5">
-            <Link href="/" aria-label="VidCarry home">
+            <Link href="/" aria-label="UGCViss home">
               <Image
                 src="/assets/brand/vidcarry-logo-transparent.png"
-                alt="VidCarry"
+                alt="UGCViss"
                 width={1774}
                 height={267}
                 className="h-auto w-[140px] object-contain sm:w-[160px]"

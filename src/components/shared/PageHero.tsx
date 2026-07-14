@@ -17,8 +17,7 @@ export function PageHero({
   return (
     <section className="relative overflow-hidden border-b border-white/10 py-20 sm:py-28">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(0,168,255,0.2),transparent_28%),radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.08),transparent_22%)]" />
-      <div className="aurora-orb absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 rounded-full bg-sky-400/10 blur-3xl" />
-      <div className="scanline-overlay pointer-events-none absolute inset-0 opacity-40" />
+      <div className="absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(56,189,248,0.16),transparent_70%)]" />
 
       <Container className="relative">
         <Reveal

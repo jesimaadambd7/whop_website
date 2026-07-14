@@ -1,7 +1,7 @@
 import {
-  resolveVidcarryMediaUrl,
-  resolveVidcarryMediaUrlFresh,
-} from "@/lib/media/vidcarry-media";
+  resolveUgcvissMediaUrl,
+  resolveUgcvissMediaUrlFresh,
+} from "@/lib/media/ugcviss-media";
 
 export const dynamic = "force-dynamic";
 
@@ -11,7 +11,7 @@ async function proxyMedia(
 ): Promise<Response> {
   const headers: HeadersInit = {
     Referer: "https://www.vidcarry.com/",
-    "User-Agent": "Mozilla/5.0 (compatible; VidCarrySite/1.0)",
+    "User-Agent": "Mozilla/5.0 (compatible; UGCVissSite/1.0)",
   };
 
   const range = request.headers.get("Range");
@@ -57,7 +57,7 @@ export async function GET(
   { params }: { params: { path: string[] } },
 ) {
   const mediaPath = params.path.join("/");
-  let signedUrl = await resolveVidcarryMediaUrl(mediaPath);
+  let signedUrl = await resolveUgcvissMediaUrl(mediaPath);
 
   if (!signedUrl) {
     return Response.json({ error: "Media not found" }, { status: 404 });
@@ -66,7 +66,7 @@ export async function GET(
   let response = await proxyMedia(signedUrl, request);
 
   if (response.status === 403) {
-    signedUrl = await resolveVidcarryMediaUrlFresh(mediaPath);
+    signedUrl = await resolveUgcvissMediaUrlFresh(mediaPath);
     if (signedUrl) {
       response = await proxyMedia(signedUrl, request);
     }

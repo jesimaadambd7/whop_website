@@ -36,12 +36,12 @@ function getOrderEmailSubject(order: AdminOrder, kind: OrderEmailKind) {
     return `Order confirmed — ${order.orderNumber}`;
   }
   if (kind === "delivery") {
-    return `Your VidCarry delivery is ready — ${order.orderNumber}`;
+    return `Your UGCViss delivery is ready — ${order.orderNumber}`;
   }
   if (kind === "status") {
-    return `VidCarry order update — ${order.orderNumber}`;
+    return `UGCViss order update — ${order.orderNumber}`;
   }
-  return `New message about your VidCarry order — ${order.orderNumber}`;
+  return `New message about your UGCViss order — ${order.orderNumber}`;
 }
 
 async function sendOrderEmail(

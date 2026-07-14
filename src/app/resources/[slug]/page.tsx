@@ -22,11 +22,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonical = `${siteConfig.url}/resources/${resource.slug}`;
 
   return {
-    title: `${resource.title} | VidCarry Resources`,
+    title: `${resource.title} | UGCViss Resources`,
     description: resource.description,
     alternates: { canonical },
     openGraph: {
-      title: `${resource.title} | VidCarry Resources`,
+      title: `${resource.title} | UGCViss Resources`,
       description: resource.description,
       url: canonical,
       images: [
@@ -47,7 +47,7 @@ function ResourceProductSchema({ resource }: { resource: VaultResource }) {
     name: resource.title,
     description: resource.description,
     image: [`${siteConfig.url}${resource.thumbnail}`],
-    brand: { "@type": "Brand", name: "VidCarry" },
+    brand: { "@type": "Brand", name: "UGCViss" },
     category: resource.schemaCategory,
     offers: {
       "@type": "Offer",

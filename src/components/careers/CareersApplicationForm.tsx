@@ -320,7 +320,7 @@ export function CareersApplicationForm({ selectedRoleId }: CareersApplicationFor
                   name="intro"
                   required
                   rows={6}
-                  placeholder="Why do you want to work with VidCarry? What type of production work are you strongest at? Share 2-3 specific examples."
+                  placeholder="Why do you want to work with UGCViss? What type of production work are you strongest at? Share 2-3 specific examples."
                   className={inputClass}
                 />
               </div>
@@ -336,7 +336,7 @@ export function CareersApplicationForm({ selectedRoleId }: CareersApplicationFor
                   className="mt-1 h-4 w-4 rounded border-white/20 bg-black text-sky-400 focus:ring-sky-400"
                 />
                 <span>
-                  I agree that VidCarry can review my application, portfolio links, and contact
+                  I agree that UGCViss can review my application, portfolio links, and contact
                   details for hiring, freelance, or production network opportunities under the{" "}
                   <Link
                     href="/privacy-policy"

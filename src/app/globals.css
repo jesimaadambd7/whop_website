@@ -1384,44 +1384,82 @@ body {
     radial-gradient(circle at 75% 65%, rgba(56, 189, 248, 0.03) 0%, transparent 38%);
 }
 
-.site-ambient__orb {
-  animation: site-ambient-drift 18s ease-in-out infinite;
+/* Soft radial glows — no blur filters (major scroll jank fix) */
+.site-ambient__glow {
+  border-radius: 9999px;
+  pointer-events: none;
+  will-change: transform;
+  animation: site-ambient-drift 22s ease-in-out infinite;
 }
 
-.site-ambient__orb--2 {
-  animation-delay: -5s;
-  animation-duration: 22s;
+.site-ambient__glow--1 {
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.22) 0%, transparent 68%);
 }
 
-.site-ambient__orb--3 {
-  animation-delay: -10s;
-  animation-duration: 20s;
+.site-ambient__glow--2 {
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.12) 0%, transparent 70%);
+  animation-delay: -7s;
+  animation-duration: 26s;
 }
 
-.site-ambient__orb--4 {
-  animation-delay: -14s;
+.site-ambient__glow--3 {
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.14) 0%, transparent 68%);
+  animation-delay: -12s;
   animation-duration: 24s;
 }
 
 @keyframes site-ambient-drift {
   0%,
   100% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.75;
+    transform: translate3d(0, 0, 0) scale(1);
   }
-  33% {
-    transform: translate(3%, -2%) scale(1.06);
-    opacity: 1;
-  }
-  66% {
-    transform: translate(-2%, 2%) scale(0.96);
-    opacity: 0.85;
+  50% {
+    transform: translate3d(2%, -1.5%, 0) scale(1.04);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .site-ambient__orb {
+  .site-ambient__glow {
     animation: none;
+  }
+}
+
+/* Below-fold sections skip offscreen layout/paint work */
+.content-visibility-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 900px;
+}
+
+@media (max-width: 767px) {
+  .site-ambient__glow--2,
+  .site-ambient__glow--3 {
+    display: none;
+  }
+
+  .site-ambient__glow {
+    animation: none;
+  }
+
+  .cine-film-grain,
+  .cine-light-leak,
+  .cine-bokeh,
+  .cine-monitor-glow {
+    animation: none !important;
+    display: none !important;
+  }
+
+  .orb,
+  .aurora-orb {
+    display: none !important;
+  }
+
+  .client-marquee-track,
+  .cine-reel-track {
+    animation-duration: 90s !important;
+  }
+
+  .content-visibility-section {
+    contain-intrinsic-size: 1px 720px;
   }
 }
 
@@ -1451,18 +1489,19 @@ body {
 .orb {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(80px);
   pointer-events: none;
+  /* Soft gradient instead of live blur filter */
+  opacity: 0.85;
 }
 
 .orb-sky {
-  background: rgba(0, 188, 254, 0.12);
-  animation: float 8s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(0, 188, 254, 0.18) 0%, transparent 70%);
+  animation: float 10s ease-in-out infinite;
 }
 
 .orb-amber {
-  background: rgba(255, 210, 54, 0.06);
-  animation: float 10s ease-in-out infinite reverse;
+  background: radial-gradient(circle, rgba(255, 210, 54, 0.1) 0%, transparent 70%);
+  animation: float 12s ease-in-out infinite reverse;
 }
 
 ::-webkit-scrollbar {

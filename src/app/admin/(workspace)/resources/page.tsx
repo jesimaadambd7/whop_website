@@ -19,7 +19,7 @@ export default async function AdminResourcesPage() {
         </h1>
         <p className="mt-4 max-w-3xl text-lg leading-8 text-zinc-400">
           Create locked resources for editors, strategists, designers, AI UGC creators, and buyers
-          who pay to download VidCarry assets.
+          who pay to download UGCViss assets.
         </p>
 
         <AdminResourcesPanel initialResources={resources} />

@@ -30,20 +30,20 @@ const neazMember = teamMembers.find((member) => member.slug === "neaz-mahmud")!;
 export const neazMahmudJourney: FounderJourney = {
   member: neazMember,
   heroEyebrow: "Founder journey",
-  heroTitle: "Neaz Mahmud's journey from editor to VidCarry founder.",
+  heroTitle: "Neaz Mahmud's journey from editor to UGCViss founder.",
   heroDescription:
-    "The story behind VidCarry starts with editing craft, grows through production and UGC ad systems, and now leads into a full shoot-to-sales creative agency built for ecommerce brands.",
+    "The story behind UGCViss starts with editing craft, grows through production and UGC ad systems, and now leads into a full shoot-to-sales creative agency built for ecommerce brands.",
   heroStats: [
     { value: "Founder", label: "Leadership" },
     { value: "Production", label: "Creative base" },
     { value: "Sales ads", label: "Agency focus" },
   ],
   profileBio:
-    "Leads VidCarry's creative direction, production standards, model shoots, UGC ad systems, and premium video editing workflow.",
+    "Leads UGCViss's creative direction, production standards, model shoots, UGC ad systems, and premium video editing workflow.",
   timelineEyebrow: "Timeline",
   timelineTitle: "The chapters behind the agency.",
   timelineDescription:
-    "A concise founder timeline showing how editing craft, production direction, and performance creative came together into VidCarry.",
+    "A concise founder timeline showing how editing craft, production direction, and performance creative came together into UGCViss.",
   chapters: [
     {
       step: "01",
@@ -76,22 +76,22 @@ export const neazMahmudJourney: FounderJourney = {
     {
       step: "05",
       eyebrow: "Chapter 05",
-      title: "Founded VidCarry",
+      title: "Founded UGCViss",
       description:
-        "VidCarry was created to bring shoot planning, UGC production, video editing, motion polish, and sales-focused paid ads support into one agency workflow.",
+        "UGCViss was created to bring shoot planning, UGC production, video editing, motion polish, and sales-focused paid ads support into one agency workflow.",
     },
     {
       step: "06",
       eyebrow: "Now",
       title: "Leading a shoot-to-sales creative team",
       description:
-        "Today, Neaz leads VidCarry as Founder and CEO, shaping the creative standard and helping brands turn products into campaign-ready video assets.",
+        "Today, Neaz leads UGCViss as Founder and CEO, shaping the creative standard and helping brands turn products into campaign-ready video assets.",
     },
   ],
   founderNoteEyebrow: "Founder note",
   founderNoteTitle:
     "The agency is built around one simple belief: good video should move the sale forward.",
   founderNoteBody:
-    "VidCarry is not only an editing team. It is a production and creative partner built to help brands plan better footage, create sharper ads, and launch more useful creative into paid social campaigns.",
-  ctaTitle: "Want Neaz and the VidCarry team to shape your next creative sprint?",
+    "UGCViss is not only an editing team. It is a production and creative partner built to help brands plan better footage, create sharper ads, and launch more useful creative into paid social campaigns.",
+  ctaTitle: "Want Neaz and the UGCViss team to shape your next creative sprint?",
 };

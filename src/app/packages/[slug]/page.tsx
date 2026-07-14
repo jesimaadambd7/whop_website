@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: pkg.description,
     alternates: { canonical },
     openGraph: {
-      title: `${pkg.title} | VidCarry`,
+      title: `${pkg.title} | UGCViss`,
       description: pkg.description,
       url: canonical,
       images: [

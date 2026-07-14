@@ -13,7 +13,7 @@ export function CreatorHero({ pricing }: { pricing: PublicCreatorPricing }) {
         <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <Reveal>
             <p className="inline-flex rounded-full border border-sky-400/25 bg-sky-400/10 px-4 py-2 text-xs font-black uppercase tracking-[0.25em] text-sky-300">
-              VidCarry Creator Portfolio
+              UGCViss Creator Portfolio
             </p>
             <h1 className="mt-6 max-w-4xl font-display text-6xl font-black leading-[0.92] tracking-[-0.075em] text-white sm:text-7xl lg:text-8xl">
               Your work deserves more than a folder link.
@@ -21,7 +21,7 @@ export function CreatorHero({ pricing }: { pricing: PublicCreatorPricing }) {
             <p className="mt-7 max-w-2xl text-lg leading-9 text-zinc-300">
               Launch a premium mixed-media portfolio, get discovered in a curated creative
               directory, receive client inquiries, understand engagement, and unlock the
-              complete VidCarry resource vault.
+              complete UGCViss resource vault.
             </p>
 
             <div className="mt-9">

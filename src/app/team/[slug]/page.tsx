@@ -44,7 +44,7 @@ export default async function TeamMemberPage({ params }: Props) {
           </Reveal>
         </Container>
       </section>
-      <CtaBanner title="Work with VidCarry on your next creative sprint." />
+      <CtaBanner title="Work with UGCViss on your next creative sprint." />
     </>
   );
 }

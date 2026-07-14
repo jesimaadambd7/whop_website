@@ -11,32 +11,32 @@ export type FaqCategory = {
 
 export const homeFaqs: Faq[] = [
   {
-    question: "What services does VidCarry offer?",
+    question: "What services does UGCViss offer?",
     answer:
-      "VidCarry offers UGC ads production, model and product shoot production, video editing, motion graphics, paid social ad creatives, YouTube editing, short-form content, creative strategy, creator sourcing, talent production, and paid ads support for ecommerce, DTC, and agency teams.",
+      "UGCViss offers UGC ads production, model and product shoot production, video editing, motion graphics, paid social ad creatives, YouTube editing, short-form content, creative strategy, creator sourcing, talent production, and paid ads support for ecommerce, DTC, and agency teams.",
   },
   {
     question: "How much does a project cost?",
     answer:
-      "Project cost depends on the scope: shoot production, UGC volume, editing complexity, motion graphics, usage needs, timelines, and whether paid ads support is included. VidCarry can scope one-time creative sprints, monthly support, or custom packages after reviewing your goals.",
+      "Project cost depends on the scope: shoot production, UGC volume, editing complexity, motion graphics, usage needs, timelines, and whether paid ads support is included. UGCViss can scope one-time creative sprints, monthly support, or custom packages after reviewing your goals.",
   },
   {
     question: "Do you work worldwide?",
     answer:
-      "Yes. VidCarry works with brands, agencies, creators, editors, and production partners worldwide. The workflow is remote-first, with global talent coordination when a project needs specific creators, actors, models, influencers, locations, or market-fit content.",
+      "Yes. UGCViss works with brands, agencies, creators, editors, and production partners worldwide. The workflow is remote-first, with global talent coordination when a project needs specific creators, actors, models, influencers, locations, or market-fit content.",
   },
   {
     question: "Do you offer UGC creators?",
     answer:
-      "Yes. VidCarry can source and coordinate UGC creators, models, actors, influencers, and on-camera talent depending on the campaign brief, product category, usage rights, budget, and delivery timeline.",
+      "Yes. UGCViss can source and coordinate UGC creators, models, actors, influencers, and on-camera talent depending on the campaign brief, product category, usage rights, budget, and delivery timeline.",
   },
   {
     question: "Do you only edit videos, or can you shoot content too?",
     answer:
-      "We can do both. VidCarry supports model and product shoots, UGC creator production, video editing, motion graphics, short-form content, and paid social ad creatives, so brands do not need to manage separate teams for every step.",
+      "We can do both. UGCViss supports model and product shoots, UGC creator production, video editing, motion graphics, short-form content, and paid social ad creatives, so brands do not need to manage separate teams for every step.",
   },
   {
-    question: "Can VidCarry help run ads after producing the creatives?",
+    question: "Can UGCViss help run ads after producing the creatives?",
     answer:
       "Yes. We can help with paid social ad creatives and campaign support, including launch planning, creative testing direction, performance monitoring, and optimization notes focused on sales outcomes.",
   },
@@ -50,12 +50,12 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "How much does a project cost?",
         answer:
-          "Project cost depends on the scope: shoot production, UGC volume, editing complexity, motion graphics, usage needs, timelines, and whether paid ads support is included. VidCarry can scope one-time creative sprints, monthly support, or custom packages after reviewing your goals.",
+          "Project cost depends on the scope: shoot production, UGC volume, editing complexity, motion graphics, usage needs, timelines, and whether paid ads support is included. UGCViss can scope one-time creative sprints, monthly support, or custom packages after reviewing your goals.",
       },
       {
         question: "Do you work worldwide?",
         answer:
-          "Yes. VidCarry works with brands, agencies, creators, editors, and production partners worldwide. The workflow is remote-first, with global talent coordination when a project needs specific creators, actors, models, influencers, locations, or market-fit content.",
+          "Yes. UGCViss works with brands, agencies, creators, editors, and production partners worldwide. The workflow is remote-first, with global talent coordination when a project needs specific creators, actors, models, influencers, locations, or market-fit content.",
       },
       {
         question: "Do you work with one-time projects or long-term partnerships?",
@@ -65,7 +65,7 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "What types of brands are a good fit?",
         answer:
-          "VidCarry is a strong fit for ecommerce, DTC, product-led brands, and agencies that need reliable video production support. We are especially useful when a team needs model shoots, UGC ads, editing, and sales-focused creative under one workflow.",
+          "UGCViss is a strong fit for ecommerce, DTC, product-led brands, and agencies that need reliable video production support. We are especially useful when a team needs model shoots, UGC ads, editing, and sales-focused creative under one workflow.",
       },
       {
         question: "What budget should a brand have before booking a call?",
@@ -73,7 +73,7 @@ export const faqCategories: FaqCategory[] = [
           "The best fit is usually a brand that has a clear product, active or planned paid social campaigns, and enough budget to produce multiple creative variations instead of one isolated video. If you are unsure, the call helps us decide whether a lean edit sprint or a larger shoot-to-sales sprint makes sense.",
       },
       {
-        question: "Can startups work with VidCarry?",
+        question: "Can startups work with UGCViss?",
         answer:
           "Yes, if the product, offer, and launch plan are ready enough for serious creative testing. Early-stage brands usually benefit from a focused batch of UGC ads, product demos, or short-form edits before committing to a larger production system.",
       },
@@ -84,24 +84,24 @@ export const faqCategories: FaqCategory[] = [
     title: "Production and UGC",
     items: [
       {
-        question: "What services does VidCarry offer?",
+        question: "What services does UGCViss offer?",
         answer:
-          "VidCarry offers UGC ads production, model and product shoot production, video editing, motion graphics, paid social ad creatives, YouTube editing, short-form content, creative strategy, creator sourcing, talent production, and paid ads support for ecommerce, DTC, and agency teams.",
+          "UGCViss offers UGC ads production, model and product shoot production, video editing, motion graphics, paid social ad creatives, YouTube editing, short-form content, creative strategy, creator sourcing, talent production, and paid ads support for ecommerce, DTC, and agency teams.",
       },
       {
         question: "Do you offer UGC creators?",
         answer:
-          "Yes. VidCarry can source and coordinate UGC creators, models, actors, influencers, and on-camera talent depending on the campaign brief, product category, usage rights, budget, and delivery timeline.",
+          "Yes. UGCViss can source and coordinate UGC creators, models, actors, influencers, and on-camera talent depending on the campaign brief, product category, usage rights, budget, and delivery timeline.",
       },
       {
         question: "Do you only edit videos, or can you shoot content too?",
         answer:
-          "We can do both. VidCarry supports model and product shoots, UGC creator production, video editing, motion graphics, short-form content, and paid social ad creatives, so brands do not need to manage separate teams for every step.",
+          "We can do both. UGCViss supports model and product shoots, UGC creator production, video editing, motion graphics, short-form content, and paid social ad creatives, so brands do not need to manage separate teams for every step.",
       },
       {
         question: "What is UGC ads production?",
         answer:
-          "UGC ads production is the process of planning, scripting, sourcing, shooting, and editing creator-style ads that feel native to TikTok, Reels, Shorts, and Meta placements. VidCarry builds these around hooks, product proof, objections, benefits, and a clear call to action.",
+          "UGC ads production is the process of planning, scripting, sourcing, shooting, and editing creator-style ads that feel native to TikTok, Reels, Shorts, and Meta placements. UGCViss builds these around hooks, product proof, objections, benefits, and a clear call to action.",
       },
       {
         question: "Can you source creators and models for our product?",
@@ -109,19 +109,19 @@ export const faqCategories: FaqCategory[] = [
           "Yes. We can help with creator sourcing, model casting, brief writing, production coordination, and footage planning. The goal is to capture footage that already matches the ad angles and editing structure, instead of trying to fix weak footage later.",
       },
       {
-        question: "Can VidCarry work with actors, influencers, or celebrities?",
+        question: "Can UGCViss work with actors, influencers, or celebrities?",
         answer:
-          "Yes. VidCarry can coordinate actors, UGC creators, influencers, and celebrity talent when the campaign fit, budget, schedule, and usage rights align. This is useful when a brand needs higher trust, recognizable faces, local-market relevance, or stronger social proof.",
+          "Yes. UGCViss can coordinate actors, UGC creators, influencers, and celebrity talent when the campaign fit, budget, schedule, and usage rights align. This is useful when a brand needs higher trust, recognizable faces, local-market relevance, or stronger social proof.",
       },
       {
         question: "Do you have a global remote production team?",
         answer:
-          "Yes. VidCarry works with a global remote network across multiple countries, including editors, creative operators, strategists, production support, creators, actors, models, influencers, and other on-camera talent depending on the project need.",
+          "Yes. UGCViss works with a global remote network across multiple countries, including editors, creative operators, strategists, production support, creators, actors, models, influencers, and other on-camera talent depending on the project need.",
       },
       {
         question: "Do you shoot product demos and lifestyle content?",
         answer:
-          "Yes. Product demos, model-led lifestyle scenes, before-after shots, hands-in-frame demos, unboxings, testimonial-style clips, and routine-based footage can all be part of a VidCarry production sprint.",
+          "Yes. Product demos, model-led lifestyle scenes, before-after shots, hands-in-frame demos, unboxings, testimonial-style clips, and routine-based footage can all be part of a UGCViss production sprint.",
       },
       {
         question: "Can we send you raw footage to turn into ads?",
@@ -137,7 +137,7 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "What makes your video editing different from normal editing?",
         answer:
-          "VidCarry editing is built for retention and sales, not only polish. We think about the first three seconds, pacing, captions, product clarity, proof moments, objections, offer framing, and where the viewer should take action.",
+          "UGCViss editing is built for retention and sales, not only polish. We think about the first three seconds, pacing, captions, product clarity, proof moments, objections, offer framing, and where the viewer should take action.",
       },
       {
         question: "Do you create motion graphics and product callouts?",
@@ -147,7 +147,7 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "Can you make videos in 9:16 vertical format?",
         answer:
-          "Yes. VidCarry primarily builds social-first videos in 9:16 vertical format for Reels, TikTok, Shorts, and mobile-first paid social. We can also create alternate exports when a campaign needs different placements.",
+          "Yes. UGCViss primarily builds social-first videos in 9:16 vertical format for Reels, TikTok, Shorts, and mobile-first paid social. We can also create alternate exports when a campaign needs different placements.",
       },
       {
         question: "Do you handle YouTube video editing?",
@@ -161,7 +161,7 @@ export const faqCategories: FaqCategory[] = [
     title: "Paid ads and strategy",
     items: [
       {
-        question: "Can VidCarry help run ads after producing the creatives?",
+        question: "Can UGCViss help run ads after producing the creatives?",
         answer:
           "Yes. We can help with paid social ad creatives and campaign support, including launch planning, creative testing direction, performance monitoring, and optimization notes focused on sales outcomes.",
       },
@@ -178,7 +178,7 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "Can you manage Meta or TikTok ads for us?",
         answer:
-          "We can support paid social campaign setup, creative testing, optimization notes, and performance monitoring depending on the engagement. For some clients, VidCarry produces the creative; for others, we also help guide or manage the launch and testing process.",
+          "We can support paid social campaign setup, creative testing, optimization notes, and performance monitoring depending on the engagement. For some clients, UGCViss produces the creative; for others, we also help guide or manage the launch and testing process.",
       },
       {
         question: "How many ad variations should we test?",
@@ -204,7 +204,7 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "How long does delivery take?",
         answer:
-          "Delivery time depends on scope. Editing-only projects can move faster, while creator sourcing, product shipping, model shoots, scripts, motion graphics, and multiple ad variants require more coordination. VidCarry confirms the delivery schedule before production starts.",
+          "Delivery time depends on scope. Editing-only projects can move faster, while creator sourcing, product shipping, model shoots, scripts, motion graphics, and multiple ad variants require more coordination. UGCViss confirms the delivery schedule before production starts.",
       },
       {
         question: "What deliverables do we receive?",
@@ -225,12 +225,12 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "Do you support other agencies as a white-label production partner?",
         answer:
-          "Yes. Agencies can use VidCarry for editing capacity, UGC ad production, motion graphics, creator-style cuts, short-form content, and campaign creative support when their internal team needs more reliable output.",
+          "Yes. Agencies can use UGCViss for editing capacity, UGC ad production, motion graphics, creator-style cuts, short-form content, and campaign creative support when their internal team needs more reliable output.",
       },
       {
-        question: "Can VidCarry work with our internal creative or media buying team?",
+        question: "Can UGCViss work with our internal creative or media buying team?",
         answer:
-          "Yes. We can plug into your existing team as a production and creative partner. Your team can own strategy and media buying while VidCarry supports footage, editing, creative variations, and ad-ready exports.",
+          "Yes. We can plug into your existing team as a production and creative partner. Your team can own strategy and media buying while UGCViss supports footage, editing, creative variations, and ad-ready exports.",
       },
       {
         question: "Do you use AI in the creative process?",

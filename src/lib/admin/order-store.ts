@@ -241,13 +241,13 @@ export function buildDeliveryNotificationMessage(urls: string[]) {
   }
 
   return [
-    "Thank you! Your video delivery has been completed successfully through VidCarry.",
+    "Thank you! Your video delivery has been completed successfully through UGCViss.",
     "",
     ...publicUrls,
     "",
     "Please review the final file and let us know if everything looks good. If you need any small revisions, feel free to share your feedback.",
     "",
-    "Thanks again for choosing VidCarry!",
+    "Thanks again for choosing UGCViss!",
   ].join("\n");
 }
 

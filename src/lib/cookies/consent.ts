@@ -1,4 +1,4 @@
-export const COOKIE_CONSENT_STORAGE_KEY = "vidcarry-cookie-consent";
+export const COOKIE_CONSENT_STORAGE_KEY = "ugcviss-cookie-consent";
 
 export type CookieConsentChoice = "accepted" | "declined" | "custom";
 
@@ -43,5 +43,5 @@ export function writeCookieConsent(record: CookieConsentRecord) {
   if (typeof window === "undefined") return;
 
   window.localStorage.setItem(COOKIE_CONSENT_STORAGE_KEY, JSON.stringify(record));
-  window.dispatchEvent(new CustomEvent("vidcarry:cookie-consent", { detail: record }));
+  window.dispatchEvent(new CustomEvent("ugcviss:cookie-consent", { detail: record }));
 }

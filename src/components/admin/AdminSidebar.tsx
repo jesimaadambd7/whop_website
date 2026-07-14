@@ -24,7 +24,7 @@ export function AdminSidebar() {
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="text-[10px] font-black uppercase tracking-[0.28em] text-sky-300">
-              VidCarry OS
+              UGCViss OS
             </p>
             <h2 className="mt-2 text-xl font-black tracking-[-0.04em]">Admin workspace</h2>
             <p className="mt-2 text-xs leading-5 text-zinc-600">

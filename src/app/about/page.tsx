@@ -7,14 +7,14 @@ import { Reveal } from "@/components/ui/Reveal";
 import { stats, talentPool } from "@/lib/data/site";
 
 export const metadata: Metadata = {
-  title: "About VidCarry - Creative Production & Paid Ads Team",
+  title: "About UGCViss - Creative Production & Paid Ads Team",
   description:
-    "Learn how VidCarry combines strategy, production planning, UGC creative, video editing, motion design, and paid social execution for sales-focused brand growth.",
+    "Learn how UGCViss combines strategy, production planning, UGC creative, video editing, motion design, and paid social execution for sales-focused brand growth.",
 };
 
 const missionParagraphs = [
   "Brands do not lose because they lack ideas. They lose because production, editing, and paid ads get slow, scattered, or disconnected from sales goals.",
-  "VidCarry exists to carry that production and growth load. We help ecommerce brands, DTC teams, and partner agencies turn offers, footage, talent, and strategy into clean ads ready to launch.",
+  "UGCViss exists to carry that production and growth load. We help ecommerce brands, DTC teams, and partner agencies turn offers, footage, talent, and strategy into clean ads ready to launch.",
   "Our network includes remote creative specialists and vetted on-camera talent, giving campaigns the right mix of voice, trust, polish, and market fit without slowing the production cycle.",
   "We also use AI tools where they help with research, scripting, storyboard planning, and faster creative preparation.",
   "The result is a studio workflow that feels premium, direct, and practical: strong angles, clean production, crisp edits, motion polish, and campaigns your team can run toward sales.",
@@ -105,9 +105,9 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="About VidCarry"
+        eyebrow="About UGCViss"
         title="A modern production and growth studio built for creative velocity."
-        description="VidCarry helps brands build a faster, cleaner creative engine for performance video, from strategy and production planning to editing, motion, and campaign-ready delivery."
+        description="UGCViss helps brands build a faster, cleaner creative engine for performance video, from strategy and production planning to editing, motion, and campaign-ready delivery."
       />
 
       <section className="relative scroll-mt-24 overflow-hidden py-20 sm:scroll-mt-28 sm:py-24">
@@ -268,7 +268,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <CtaBanner title="Want VidCarry behind your next shoot-to-sales sprint?" />
+      <CtaBanner title="Want UGCViss behind your next shoot-to-sales sprint?" />
     </>
   );
 }

@@ -2,7 +2,7 @@ import { vaultResources } from "@/lib/data/resources";
 import type { AdminResource } from "@/lib/admin/resource-types";
 
 const LOCKED_CONTENT: Record<string, string> = {
-  "100-ai-ugc-prompt-vault": `VidCarry 100+ AI UGC Prompt Vault - Starter Unlock
+  "100-ai-ugc-prompt-vault": `UGCViss 100+ AI UGC Prompt Vault - Starter Unlock
 
 Use these as working prompts, then customize them with product proof, audience language, and your offer.
 
@@ -16,8 +16,8 @@ Use these as working prompts, then customize them with product proof, audience l
 
 5. Rewrite this weak hook into 15 high-retention hooks with curiosity, specificity, and buyer language: [paste hook].
 
-VidCarry workflow note: the best prompts start with actual product proof, customer reviews, objections, and offer details. Do not let AI invent claims you cannot support.`,
-  "ai-product-video-workflow-sop": `VidCarry AI Product Video Workflow SOP - Starter Unlock
+UGCViss workflow note: the best prompts start with actual product proof, customer reviews, objections, and offer details. Do not let AI invent claims you cannot support.`,
+  "ai-product-video-workflow-sop": `UGCViss AI Product Video Workflow SOP - Starter Unlock
 
 Phase 1: Research
 - Collect website copy, product benefits, customer reviews, competitor ads, and common objections.
@@ -41,7 +41,7 @@ Phase 5: Editing
 
 Phase 6: QA
 - Check claim safety, offer accuracy, mobile readability, pacing, and whether the product is understood in 5 seconds.`,
-  "winning-video-ad-hook-framework-deck": `VidCarry Winning Video Ad Hook Framework - Starter Unlock
+  "winning-video-ad-hook-framework-deck": `UGCViss Winning Video Ad Hook Framework - Starter Unlock
 
 Hook types to test:
 
@@ -71,7 +71,7 @@ Use when education is needed quickly.
 
 CTA transition formula:
 Hook -> Pain -> Product proof -> Why now -> CTA.`,
-  "creative-strategy-research-template": `VidCarry Creative Strategy Research Template - Starter Unlock
+  "creative-strategy-research-template": `UGCViss Creative Strategy Research Template - Starter Unlock
 
 Research sections:
 
@@ -98,7 +98,7 @@ Research sections:
 
 5. Creative Angle Score
 Score each angle from 1-5 for clarity, visual proof, emotional pull, uniqueness, and offer fit.`,
-  "retention-editing-checklist-for-paid-social": `VidCarry Retention Editing Checklist - Starter Unlock
+  "retention-editing-checklist-for-paid-social": `UGCViss Retention Editing Checklist - Starter Unlock
 
 Before exporting a paid social video, check:
 

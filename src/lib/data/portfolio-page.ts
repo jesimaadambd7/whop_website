@@ -1,7 +1,7 @@
-import { mediaPath } from "@/lib/media/vidcarry-media";
+import { mediaPath } from "@/lib/media/ugcviss-media";
 import type { PortfolioItem } from "@/lib/data/portfolio";
 
-/** Full portfolio grid items for /portfolio page (matches vidcarry.com). */
+/** Full portfolio grid items for /portfolio page (matches ugcviss.com). */
 export const portfolioPageItems: PortfolioItem[] = [
   {
     id: "ugc-01",
@@ -22,7 +22,7 @@ export const portfolioPageItems: PortfolioItem[] = [
     aspect: "9:16",
     eyebrow: "Body care",
     clientType: "Body care",
-    description: "VidCarry backend-managed portfolio video.",
+    description: "UGCViss backend-managed portfolio video.",
     href: "/portfolio/blissal#blissal-shower-routine",
     videoSrc: mediaPath("portfolio", "project-1782313958588-5a0622e1"),
   },
@@ -33,7 +33,7 @@ export const portfolioPageItems: PortfolioItem[] = [
     aspect: "9:16",
     eyebrow: "Ryze",
     clientType: "Ryze",
-    description: "VidCarry backend-managed portfolio video.",
+    description: "UGCViss backend-managed portfolio video.",
     href: "/portfolio/ryze#ma-26-a-dr-ugc-17-d6",
     videoSrc: mediaPath("portfolio", "project-1781894350462-2943e0ac"),
     posterSrc: mediaPath("portfolio", "project-1781894350462-2943e0ac", "poster"),
@@ -45,7 +45,7 @@ export const portfolioPageItems: PortfolioItem[] = [
     aspect: "9:16",
     eyebrow: "Coffee and beverages",
     clientType: "Coffee and beverages",
-    description: "VidCarry backend-managed portfolio video.",
+    description: "UGCViss backend-managed portfolio video.",
     href: "/portfolio/ryze#dr-ugc-ryze-mushroom-hot-cocoa",
     videoSrc: mediaPath("portfolio", "project-1782061472881-83272c43"),
     posterSrc: mediaPath("portfolio", "project-1782061472881-83272c43", "poster"),
@@ -57,7 +57,7 @@ export const portfolioPageItems: PortfolioItem[] = [
     aspect: "9:16",
     eyebrow: "Coffee and beverages",
     clientType: "Coffee and beverages",
-    description: "VidCarry backend-managed portfolio video.",
+    description: "UGCViss backend-managed portfolio video.",
     href: "/portfolio/ryze#ryze-dr-ugc-menopause-memory",
     videoSrc: mediaPath("portfolio", "project-1782061615389-bee3b0f0"),
     posterSrc: mediaPath("portfolio", "project-1782061615389-bee3b0f0", "poster"),
@@ -312,17 +312,17 @@ export const portfolioClientLibraries: ClientLibraryEntry[] = [
       {
         title: "MA_26_A_DR-UGC_(17)_D6",
         category: "UGC Ads",
-        description: "Published from the VidCarry portfolio control panel.",
+        description: "Published from the UGCViss portfolio control panel.",
       },
       {
         title: "DR-UGC-RYZE-MUSHROOM-HOT-COCOA",
         category: "UGC Ads",
-        description: "Published from the VidCarry portfolio control panel.",
+        description: "Published from the UGCViss portfolio control panel.",
       },
       {
         title: "RYZE-DR-UGC-MENOPAUSE-MEMORY",
         category: "UGC Ads",
-        description: "Published from the VidCarry portfolio control panel.",
+        description: "Published from the UGCViss portfolio control panel.",
       },
     ],
   },
@@ -412,7 +412,7 @@ export const portfolioClientLibraries: ClientLibraryEntry[] = [
       {
         title: "BLISSAL _Shower_Routine",
         category: "UGC Ads",
-        description: "Published from the VidCarry portfolio control panel.",
+        description: "Published from the UGCViss portfolio control panel.",
       },
       {
         title: "Blissal Body Care Short-Form Ads",

@@ -48,7 +48,7 @@ export function HeroSection() {
                 <Clapperboard size={12} className="text-amber-300/80" />
                 Creative direction · Edit · Motion · Paid social
               </span>
-              VidCarry helps ecommerce and DTC brands turn product stories into
+              UGCViss helps ecommerce and DTC brands turn product stories into
               conversion-focused video campaigns, from creative strategy and
               production to editing, motion, and paid social execution. We use
               AI-assisted research and scripting where it improves speed, clarity,

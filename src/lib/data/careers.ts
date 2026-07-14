@@ -32,7 +32,7 @@ export const careerValues = [
     number: "02",
     title: "Production ownership",
     description:
-      "VidCarry needs people who can own their part of the workflow, communicate early, organize files, and protect quality under deadlines.",
+      "UGCViss needs people who can own their part of the workflow, communicate early, organize files, and protect quality under deadlines.",
   },
   {
     number: "03",
@@ -56,7 +56,7 @@ export const careerRoles: CareerRole[] = [
       "Edit 9:16 ads for Meta, TikTok, Reels, and Shorts from raw creator, model, or product footage.",
       "Build multiple hook, intro, caption, CTA, and offer variations from one creative direction.",
       "Use rhythm, captions, sound design, product callouts, and clean structure to make ads easier to watch and buy from.",
-      "Organize project files clearly and deliver exports that match VidCarry's quality standards.",
+      "Organize project files clearly and deliver exports that match UGCViss's quality standards.",
     ],
     requirements: [
       "Strong portfolio of short-form ads, UGC edits, ecommerce videos, or social content.",
@@ -225,7 +225,7 @@ export const careerRoles: CareerRole[] = [
     type: "Project-based / Retainer potential",
     commitment: "Launch, testing, optimization, and reporting",
     description:
-      "Help launch and optimize paid social campaigns using VidCarry's creative assets, with a clear focus on testing, learning, and sales outcomes.",
+      "Help launch and optimize paid social campaigns using UGCViss's creative assets, with a clear focus on testing, learning, and sales outcomes.",
     responsibilities: [
       "Set up or support Meta, TikTok, or paid social campaign launches for ecommerce brands.",
       "Track creative performance, identify winning angles, and share clear optimization notes.",
@@ -287,7 +287,7 @@ export const applicationChecklist = [
   "Portfolio or reel link with your strongest relevant work.",
   "Your exact role in the projects you share.",
   "Tools, workflow, availability, timezone, and expected rate.",
-  "One short intro explaining why VidCarry should work with you.",
+  "One short intro explaining why UGCViss should work with you.",
 ];
 
 export const experienceLevels = [

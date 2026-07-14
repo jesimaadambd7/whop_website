@@ -42,7 +42,6 @@ export function PortfolioMediaPlayer({
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
   const [hovering, setHovering] = useState(false);
-  const hasMedia = Boolean(item.videoSrc || item.posterSrc);
 
   const handlePlay = useCallback(() => {
     const video = videoRef.current;
@@ -74,7 +73,7 @@ export function PortfolioMediaPlayer({
     video.currentTime = 0;
   }, [hoverPreview, playing]);
 
-  const showPlayButton = hasMedia && !playing && !(hoverPreview && hovering);
+  const showPlayButton = !playing && !(hoverPreview && hovering);
 
   return (
     <div
@@ -112,12 +111,13 @@ export function PortfolioMediaPlayer({
         <MediaPlaceholder />
       )}
 
-      {hasMedia && showPlayButton && (
+      {showPlayButton && (
         <button
           type="button"
           onClick={handlePlay}
-          className="absolute inset-0 z-20 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sky-300"
-          aria-label={`Play ${item.title}`}
+          disabled={!item.videoSrc}
+          className="absolute inset-0 z-20 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sky-300 disabled:cursor-default"
+          aria-label={item.videoSrc ? `Play ${item.title}` : `${item.title} preview`}
         >
           <span className="grid h-16 w-16 place-items-center rounded-full border border-white/35 bg-black/55 text-xs font-black uppercase tracking-[0.12em] text-white shadow-[0_0_45px_rgba(0,168,255,0.24)] backdrop-blur transition hover:scale-110 hover:border-sky-300 hover:bg-sky-400 hover:text-black">
             {hoverPreview && item.videoSrc ? "Preview" : "Play"}

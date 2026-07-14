@@ -51,7 +51,6 @@ export function PortfolioVideoTile({
 }: PortfolioVideoTileProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
-  const canPlay = Boolean(videoSrc);
   const showPlaceholder = !videoSrc && !posterSrc;
 
   const handlePlay = useCallback(() => {
@@ -98,12 +97,13 @@ export function PortfolioVideoTile({
 
       {showPlaceholder && <MediaPlaceholder />}
 
-      {canPlay && !playing && (
+      {!playing && (
         <button
           type="button"
           onClick={handlePlay}
-          className="absolute inset-0 z-20 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sky-300"
-          aria-label={`Play ${title}`}
+          disabled={!videoSrc}
+          className="absolute inset-0 z-20 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sky-300 disabled:cursor-default"
+          aria-label={videoSrc ? `Play ${title}` : `${title} preview`}
         >
           <span className="grid h-16 w-16 place-items-center rounded-full border border-white/35 bg-black/55 text-xs font-black uppercase tracking-[0.12em] text-white shadow-[0_0_45px_rgba(0,168,255,0.24)] backdrop-blur transition hover:scale-110 hover:border-sky-300 hover:bg-sky-400 hover:text-black">
             Play

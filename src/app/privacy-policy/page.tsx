@@ -5,12 +5,15 @@ import { PageHero } from "@/components/shared/PageHero";
 import { Container } from "@/components/ui/Container";
 import { siteConfig } from "@/lib/data/site";
 import { privacyLastUpdated, privacySections } from "@/lib/data/privacy";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy - UGCViss",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Privacy Policy",
   description:
-    "Read the UGCViss privacy policy and learn how UGCViss may collect, use, retain, and protect website, inquiry, booking, and client communication information.",
-};
+    "Read how UGCViss collects, uses, retains, and protects website, inquiry, booking, and client communication information.",
+  path: "/privacy-policy",
+  keywords: ["UGCViss privacy policy"],
+});
 
 const webPageSchema = {
   "@context": "https://schema.org",

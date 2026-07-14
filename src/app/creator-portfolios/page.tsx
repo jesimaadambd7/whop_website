@@ -15,14 +15,22 @@ import {
   creatorTerms,
   creatorFaqs,
 } from "@/lib/data/creator-portfolios";
+import { buildPageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Creator Portfolio Hosting - UGCViss",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Creator Portfolio Hosting for UGC Editors & Creators",
   description:
-    "Build a premium creator portfolio with mixed-media hosting, directory discovery, analytics, inquiries, and lifetime UGCViss resource access for one payment.",
-};
+    "Launch a premium creator portfolio with media hosting, directory discovery, analytics, client inquiries, and UGCViss resource access in one membership.",
+  path: "/creator-portfolios",
+  keywords: [
+    "creator portfolio hosting",
+    "UGC editor portfolio",
+    "creator directory",
+    "video editor portfolio website",
+  ],
+});
 
 export default async function CreatorPortfoliosPage() {
   const pricing = await loadCreatorPricing();

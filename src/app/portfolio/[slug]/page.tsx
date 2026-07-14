@@ -13,6 +13,7 @@ import {
 } from "@/lib/data/client-portfolio";
 import { siteConfig } from "@/lib/data/site";
 import { cn } from "@/lib/utils";
+import { buildPageMetadata } from "@/lib/seo";
 
 type Props = { params: { slug: string } };
 
@@ -24,43 +25,18 @@ export function generateMetadata({ params }: Props): Metadata {
   const client = getClientPortfolio(params.slug);
   if (!client) return { title: "Portfolio" };
 
-  const title = `${client.name} Video Portfolio | UGCViss`;
-  const description = `Watch UGCViss's ${client.name} video work library for UGC ads, product explainers, paid social creatives, and campaign-ready edits.`;
-  const canonical = `${siteConfig.url}/portfolio/${client.slug}`;
-
-  return {
-    title,
-    description,
+  return buildPageMetadata({
+    title: `${client.name} Video Portfolio — UGC Ads & Paid Social Creatives`,
+    description: `See UGCViss ${client.name} campaign work including UGC ads, product explainers, paid social cutdowns, and ecommerce video creatives for ${client.industry.toLowerCase()}.`,
+    path: `/portfolio/${client.slug}`,
     keywords: [
       `${client.name} video portfolio`,
       `${client.name} UGC ads`,
       `${client.name} ecommerce ads`,
-      "UGCViss portfolio",
+      `${client.industry} video ads`,
       "paid social video creative",
     ],
-    alternates: { canonical },
-    openGraph: {
-      title,
-      description,
-      url: canonical,
-      siteName: "UGCViss",
-      locale: "en_US",
-      images: [
-        {
-          url: `${siteConfig.url}/opengraph-image`,
-          width: 1200,
-          height: 630,
-          alt: `${client.name} video portfolio by UGCViss`,
-        },
-      ],
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-    },
-  };
+  });
 }
 
 function ClientPortfolioSchema({ client }: { client: ClientPortfolio }) {

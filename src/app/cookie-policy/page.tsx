@@ -5,12 +5,15 @@ import { PageHero } from "@/components/shared/PageHero";
 import { Container } from "@/components/ui/Container";
 import { cookieLastUpdated, cookieSections } from "@/lib/data/cookies";
 import { siteConfig } from "@/lib/data/site";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Cookie Policy - UGCViss",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Cookie Policy",
   description:
-    "Read the UGCViss cookie policy and learn how essential and optional cookies support the website experience.",
-};
+    "Learn how UGCViss uses essential and optional cookies to support website experience, preferences, and analytics.",
+  path: "/cookie-policy",
+  keywords: ["UGCViss cookie policy"],
+});
 
 const webPageSchema = {
   "@context": "https://schema.org",

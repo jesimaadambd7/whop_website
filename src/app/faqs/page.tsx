@@ -5,12 +5,20 @@ import { FaqSidebar } from "@/components/faqs/FaqSidebar";
 import { FaqPageCta } from "@/components/faqs/FaqPageCta";
 import { Container } from "@/components/ui/Container";
 import { allFaqs, faqCategories } from "@/lib/data/faqs";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "UGCViss FAQs - UGC Ads, Video Production, Editing & Paid Ads",
+export const metadata: Metadata = buildPageMetadata({
+  title: "FAQs — UGC Ads, Video Production, Editing & Paid Ads",
   description:
-    "Detailed UGCViss FAQs about UGC ads, model and product shoots, video editing, motion graphics, paid social ads, creative strategy, pricing, timelines, and agency support.",
-};
+    "Answers about UGCViss UGC ads, product shoots, video editing, motion graphics, paid social creatives, pricing, timelines, revisions, and agency workflows.",
+  path: "/faqs",
+  keywords: [
+    "UGC ads FAQ",
+    "video production pricing questions",
+    "paid social creative FAQ",
+    "video editing agency FAQ",
+  ],
+});
 
 const faqSchema = {
   "@context": "https://schema.org",

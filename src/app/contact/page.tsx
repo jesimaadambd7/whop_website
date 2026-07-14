@@ -2,12 +2,20 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/shared/PageHero";
 import { ContactInquirySection } from "@/components/contact/ContactInquirySection";
 import { ContactScheduleSection } from "@/components/contact/ContactScheduleSection";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Book a Call - UGCViss Creative & Paid Ads Agency",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Book a Call — UGC Ads & Video Creative Strategy",
   description:
-    "Book a UGCViss strategy call through Calendly or send a project brief for your next model shoot, UGC ad batch, video editing sprint, or paid ads campaign.",
-};
+    "Book a UGCViss strategy call or send a brief for your next UGC ad batch, product shoot, video editing sprint, motion package, or paid social campaign.",
+  path: "/contact",
+  keywords: [
+    "book UGC agency call",
+    "hire video creative agency",
+    "UGC ads consultation",
+    "ecommerce video production inquiry",
+  ],
+});
 
 export default function ContactPage() {
   return (

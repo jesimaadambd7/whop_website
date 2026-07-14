@@ -7,6 +7,7 @@ import {
 } from "@/lib/data/load-resources";
 import type { VaultResource } from "@/lib/data/resources";
 import { siteConfig } from "@/lib/data/site";
+import { buildPageMetadata } from "@/lib/seo";
 
 type Props = { params: { slug: string } };
 
@@ -19,25 +20,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const resource = await getPublishedVaultResourceBySlug(params.slug);
   if (!resource) return { title: "Resource" };
 
-  const canonical = `${siteConfig.url}/resources/${resource.slug}`;
-
-  return {
-    title: `${resource.title} | UGCViss Resources`,
+  return buildPageMetadata({
+    title: `${resource.title} — UGC Creative Resource`,
     description: resource.description,
-    alternates: { canonical },
-    openGraph: {
-      title: `${resource.title} | UGCViss Resources`,
-      description: resource.description,
-      url: canonical,
-      images: [
-        {
-          url: `${siteConfig.url}${resource.thumbnail}`,
-          alt: resource.title,
-        },
-      ],
-      type: "website",
+    path: `/resources/${resource.slug}`,
+    keywords: [
+      resource.title,
+      resource.categoryLabel,
+      "UGC resource",
+      "video creative template",
+      "paid social creative guide",
+    ],
+    image: {
+      url: resource.thumbnail,
+      alt: resource.thumbnailAlt || resource.title,
     },
-  };
+  });
 }
 
 function ResourceProductSchema({ resource }: { resource: VaultResource }) {

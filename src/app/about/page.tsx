@@ -5,12 +5,20 @@ import { AnimatedGlassCard } from "@/components/ui/AnimatedGlassCard";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { stats, talentPool } from "@/lib/data/site";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About UGCViss - Creative Production & Paid Ads Team",
+export const metadata: Metadata = buildPageMetadata({
+  title: "About UGCViss — Creative Production & Paid Ads Team",
   description:
-    "Learn how UGCViss combines strategy, production planning, UGC creative, video editing, motion design, and paid social execution for sales-focused brand growth.",
-};
+    "Learn how UGCViss builds sales-focused video campaigns with UGC creative, product shoots, video editing, motion design, and paid social execution for ecommerce brands.",
+  path: "/about",
+  keywords: [
+    "about UGCViss",
+    "video creative agency team",
+    "UGC production studio",
+    "ecommerce creative agency",
+  ],
+});
 
 const missionParagraphs = [
   "Brands do not lose because they lack ideas. They lose because production, editing, and paid ads get slow, scattered, or disconnected from sales goals.",

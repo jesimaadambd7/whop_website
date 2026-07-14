@@ -9,12 +9,20 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { featuredGuides, intentPages } from "@/lib/data/resources";
 import { loadPublishedVaultResources } from "@/lib/data/load-resources";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "UGCViss Resources - UGC Ads, Video Production & Creative Testing",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Resources — UGC Ads, Video Production & Creative Testing Guides",
   description:
-    "Read UGCViss resources about UGC ads, ecommerce video production, paid social creative testing, product shoots, video editing, and performance creative systems.",
-};
+    "Practical UGCViss resources on UGC ads, ecommerce video production, paid social creative testing, product shoots, editing systems, and performance creative workflows.",
+  path: "/resources",
+  keywords: [
+    "UGC ads guides",
+    "video creative resources",
+    "paid social testing frameworks",
+    "ecommerce video production tips",
+  ],
+});
 
 export default async function ResourcesPage() {
   const vaultResources = await loadPublishedVaultResources();

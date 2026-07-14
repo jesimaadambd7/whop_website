@@ -11,12 +11,20 @@ import {
   portfolioPageItems,
   portfolioClientLibraries,
 } from "@/lib/data/portfolio-page";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Creative Portfolio | UGCViss",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Creative Portfolio — UGC Ads & Ecommerce Video Work",
   description:
-    "View UGCViss creative portfolio work across UGC ads, ecommerce videos, creator-led content, motion graphics, paid social creative, and short-form content.",
-};
+    "Browse UGCViss portfolio work across UGC ads, ecommerce videos, creator-led content, motion graphics, paid social creatives, and short-form performance ads.",
+  path: "/portfolio",
+  keywords: [
+    "UGC ads portfolio",
+    "ecommerce video portfolio",
+    "paid social creative examples",
+    "video ad agency portfolio",
+  ],
+});
 
 export default function PortfolioPage() {
   return (

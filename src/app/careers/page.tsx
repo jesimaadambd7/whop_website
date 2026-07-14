@@ -19,12 +19,20 @@ import {
   productionStandards,
 } from "@/lib/data/careers";
 import { siteConfig } from "@/lib/data/site";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "UGCViss Careers - Production, Video Editing & Creative Jobs",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Careers — Video Editing, UGC & Creative Production Jobs",
   description:
-    "Apply to join UGCViss's global production network across video editing, motion graphics, UGC creative strategy, shoot production, videography, casting, creator partnerships, and paid social ads.",
-};
+    "Apply to join UGCViss across video editing, motion graphics, UGC strategy, shoot production, creator partnerships, and paid social creative roles.",
+  path: "/careers",
+  keywords: [
+    "video editing jobs",
+    "UGC creative careers",
+    "remote video production jobs",
+    "paid social creative jobs",
+  ],
+});
 
 const webPageSchema = {
   "@context": "https://schema.org",

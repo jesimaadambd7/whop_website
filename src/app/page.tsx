@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { HeroSection } from "@/components/home/HeroSection";
 import { OverviewSection } from "@/components/home/OverviewSection";
 import { ClientsSection } from "@/components/home/ClientsSection";
@@ -18,6 +19,21 @@ import { CtaSection } from "@/components/home/CtaSection";
 import { FilmStripDivider } from "@/components/effects/cinematic/FilmStripDivider";
 import { loadPackages } from "@/lib/data/packages";
 import { loadTeamMembers } from "@/lib/data/team";
+import { siteConfig } from "@/lib/data/site";
+import { buildPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: `${siteConfig.name} | UGC Ads, Video Editing & Paid Social Creative Agency`,
+  description: siteConfig.description,
+  path: "/",
+  keywords: [
+    "UGC ad agency",
+    "ecommerce video ads",
+    "DTC paid social creatives",
+    "performance video creative studio",
+    "product video shoot agency",
+  ],
+});
 
 export default async function HomePage() {
   const packages = await loadPackages();

@@ -10,12 +10,21 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { loadPackages } from "@/lib/data/packages";
 import { services, serviceBottlenecks } from "@/lib/data/services";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "UGC Ads & Video Editing Services | UGCViss",
+export const metadata: Metadata = buildPageMetadata({
+  title: "UGC Ads, Video Editing & Paid Social Services",
   description:
-    "Explore UGCViss services for UGC ads, video editing, motion graphics, paid social creatives, creator sourcing, production planning, and paid ads support.",
-};
+    "Explore UGCViss services for UGC ads, video editing, motion graphics, paid social creatives, creator sourcing, product shoots, and performance ad support for DTC brands.",
+  path: "/services",
+  keywords: [
+    "UGC ads services",
+    "video editing services",
+    "paid social creative services",
+    "product shoot production",
+    "motion graphics for ads",
+  ],
+});
 
 function SectionIntro({
   eyebrow,

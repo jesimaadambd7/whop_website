@@ -5,12 +5,15 @@ import { PageHero } from "@/components/shared/PageHero";
 import { Container } from "@/components/ui/Container";
 import { siteConfig } from "@/lib/data/site";
 import { termsLastUpdated, termsSections } from "@/lib/data/terms";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Terms & Conditions - UGCViss",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Terms & Conditions",
   description:
-    "Read the UGCViss terms and conditions for website use, creative services, project scope, payments, revisions, asset usage, and paid ads support.",
-};
+    "UGCViss terms for website use, creative services, project scope, payments, revisions, asset usage, and paid ads support.",
+  path: "/terms-conditions",
+  keywords: ["UGCViss terms and conditions"],
+});
 
 const webPageSchema = {
   "@context": "https://schema.org",

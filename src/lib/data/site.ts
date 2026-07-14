@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: "UGCViss",
-  tagline: "Global Creative Production Agency",
+  tagline: "UGC Ads, Video Editing & Paid Social Creative",
   description:
-    "UGCViss helps ecommerce and DTC brands turn product stories into conversion-focused video campaigns.",
+    "UGCViss is a performance video creative agency for ecommerce and DTC brands. We produce UGC ads, product shoots, video editing, motion graphics, and paid social creatives built to drive sales.",
   url: "https://www.ugcviss.com",
   email: "nadimmahmudytd@gmail.com",
 };

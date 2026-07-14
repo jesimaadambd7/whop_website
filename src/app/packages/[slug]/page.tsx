@@ -4,6 +4,7 @@ import { PackageDetailView } from "@/components/packages/PackageDetailView";
 import { loadPackageBySlug, loadPackages } from "@/lib/data/packages";
 import type { Package } from "@/lib/data/packages";
 import { siteConfig } from "@/lib/data/site";
+import { buildPageMetadata } from "@/lib/seo";
 
 type Props = { params: { slug: string } };
 
@@ -16,25 +17,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const pkg = await loadPackageBySlug(params.slug);
   if (!pkg) return { title: "Package" };
 
-  const canonical = `${siteConfig.url}/packages/${pkg.slug}`;
-
-  return {
-    title: pkg.title,
-    description: pkg.description,
-    alternates: { canonical },
-    openGraph: {
-      title: `${pkg.title} | UGCViss`,
-      description: pkg.description,
-      url: canonical,
-      images: [
-        {
-          url: `${siteConfig.url}${pkg.thumbnail}`,
-          alt: `${pkg.title} thumbnail`,
-        },
-      ],
-      type: "website",
+  return buildPageMetadata({
+    title: `${pkg.title} — ${pkg.badge}`,
+    description: pkg.heroDescription || pkg.description,
+    path: `/packages/${pkg.slug}`,
+    keywords: [
+      pkg.title,
+      pkg.badge,
+      "UGC creative sprint",
+      "video production package",
+      "paid social creative package",
+    ],
+    image: {
+      url: pkg.thumbnail,
+      alt: `${pkg.title} package`,
     },
-  };
+  });
 }
 
 function PackageServiceSchema({ pkg }: { pkg: Package }) {

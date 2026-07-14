@@ -13,12 +13,20 @@ import {
   sortTeamWithFounderFirst,
   teamCulture,
 } from "@/lib/data/team";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "UGCViss Team - Production, UGC Editing & Paid Ads",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Team — Production, UGC Editing & Paid Ads Specialists",
   description:
-    "Meet the UGCViss team across model shoot production, UGC editing, performance ads, creative strategy, and web systems.",
-};
+    "Meet the UGCViss team behind model shoots, UGC editing, performance ads, creative strategy, and production systems for ecommerce brands.",
+  path: "/team",
+  keywords: [
+    "UGC agency team",
+    "video editing team",
+    "performance ads specialists",
+    "creative production crew",
+  ],
+});
 
 export default async function TeamPage() {
   const teamMembers = sortTeamWithFounderFirst(await loadTeamMembers());

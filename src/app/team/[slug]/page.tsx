@@ -5,6 +5,7 @@ import { CtaBanner } from "@/components/shared/CtaBanner";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { loadTeamMemberBySlug, loadTeamMembers } from "@/lib/data/team";
+import { buildPageMetadata } from "@/lib/seo";
 
 type Props = { params: { slug: string } };
 
@@ -18,7 +19,15 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const member = await loadTeamMemberBySlug(params.slug);
   if (!member) return { title: "Team" };
-  return { title: `${member.name} - ${member.role}` };
+
+  return buildPageMetadata({
+    title: `${member.name} — ${member.role}`,
+    description:
+      member.bio ||
+      `${member.name} is ${member.role} at UGCViss, helping brands ship UGC ads, video edits, and performance creative.`,
+    path: member.profileHref.startsWith("/") ? member.profileHref : `/team/${member.slug}`,
+    keywords: [member.name, member.role, "UGCViss team"],
+  });
 }
 
 export default async function TeamMemberPage({ params }: Props) {

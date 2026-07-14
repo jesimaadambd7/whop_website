@@ -5,7 +5,7 @@ import {
   buildOrderEmailHtml,
   buildOrderEmailPlainText,
 } from "@/lib/email/templates/order-notification";
-import { siteConfig } from "@/lib/data/site";
+import { getSupportEmail } from "@/lib/data/site";
 import { getPublicSiteUrl } from "@/lib/public-site-url";
 
 type OrderEmailKind = "delivery" | "message" | "status" | "confirmation";
@@ -69,7 +69,7 @@ async function sendOrderEmail(
     subject: getOrderEmailSubject(order, kind),
     text: buildOrderEmailPlainText(templateInput),
     html: buildOrderEmailHtml(templateInput),
-    replyTo: process.env.EMAIL_REPLY_TO?.trim() || siteConfig.email,
+    replyTo: getSupportEmail(),
   });
 }
 

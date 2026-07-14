@@ -1,4 +1,4 @@
-import { siteConfig } from "@/lib/data/site";
+import { siteConfig, getSupportEmail } from "@/lib/data/site";
 import { getPublicSiteUrl } from "@/lib/public-site-url";
 
 export type OrderEmailTemplateInput = {
@@ -147,7 +147,7 @@ export function buildOrderEmailHtml(input: OrderEmailTemplateInput) {
   const greeting = input.customerName.trim()
     ? `Hi ${escapeHtml(input.customerName)},`
     : "Hi there,";
-  const supportEmail = process.env.EMAIL_REPLY_TO?.trim() || siteConfig.email;
+  const supportEmail = getSupportEmail();
   const year = new Date().getFullYear();
 
   return `<!DOCTYPE html>
@@ -271,7 +271,7 @@ export function buildOrderEmailHtml(input: OrderEmailTemplateInput) {
 export function buildOrderEmailPlainText(input: OrderEmailTemplateInput) {
   const meta = getKindMeta(input.kind);
   const greeting = input.customerName.trim() ? `Hi ${input.customerName},` : "Hi there,";
-  const supportEmail = process.env.EMAIL_REPLY_TO?.trim() || siteConfig.email;
+  const supportEmail = getSupportEmail();
 
   return [
     greeting,

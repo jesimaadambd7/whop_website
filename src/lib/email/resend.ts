@@ -1,4 +1,5 @@
 import type { SendEmailInput } from "@/lib/email/send";
+import { getSupportEmail } from "@/lib/data/site";
 
 export async function sendResendEmail(input: SendEmailInput) {
   const apiKey = process.env.RESEND_API_KEY?.trim();
@@ -8,7 +9,7 @@ export async function sendResendEmail(input: SendEmailInput) {
 
   const from =
     process.env.EMAIL_FROM?.trim() || "UGCViss <onboarding@resend.dev>";
-  const replyTo = input.replyTo?.trim() || process.env.EMAIL_REPLY_TO?.trim();
+  const replyTo = input.replyTo?.trim() || getSupportEmail();
 
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",

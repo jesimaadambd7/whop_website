@@ -1,6 +1,6 @@
 import type { Submission, SubmissionType } from "@/lib/admin/types";
 import { sendEmail } from "@/lib/email/send";
-import { siteConfig } from "@/lib/data/site";
+import { siteConfig, getSupportEmail } from "@/lib/data/site";
 
 function getInquiryTypeLabel(type: SubmissionType) {
   if (type === "creative-audit") return "Creative audit request";
@@ -37,7 +37,7 @@ function escapeHtml(value: string) {
 
 function buildInquiryReplyHtml(submission: Submission, body: string) {
   const greeting = submission.name.trim() ? `Hi ${escapeHtml(submission.name)},` : "Hi there,";
-  const supportEmail = process.env.EMAIL_REPLY_TO?.trim() || siteConfig.email;
+  const supportEmail = getSupportEmail();
   const formattedBody = escapeHtml(body.trim()).split("\n").join("<br />");
 
   return `<!DOCTYPE html>
@@ -87,7 +87,7 @@ export async function notifyInquiryReply(submission: Submission, body: string) {
     subject: `Re: your ${getInquiryTypeLabel(submission.type)} — ${siteConfig.name}`,
     text: buildInquiryReplyText(submission, body),
     html: buildInquiryReplyHtml(submission, body),
-    replyTo: process.env.EMAIL_REPLY_TO?.trim() || siteConfig.email,
+    replyTo: getSupportEmail(),
   });
 }
 
@@ -112,7 +112,7 @@ function buildInquiryConfirmationText(submission: Submission) {
 
 function buildInquiryConfirmationHtml(submission: Submission) {
   const greeting = submission.name.trim() ? `Hi ${escapeHtml(submission.name)},` : "Hi there,";
-  const supportEmail = process.env.EMAIL_REPLY_TO?.trim() || siteConfig.email;
+  const supportEmail = getSupportEmail();
   const summary = escapeHtml(submission.summary).split("\n").join("<br />");
 
   return `<!DOCTYPE html>
@@ -177,6 +177,6 @@ export async function notifyInquiryConfirmation(submission: Submission) {
     subject: `We received your inquiry — ${siteConfig.name}`,
     text: buildInquiryConfirmationText(submission),
     html: buildInquiryConfirmationHtml(submission),
-    replyTo: process.env.EMAIL_REPLY_TO?.trim() || siteConfig.email,
+    replyTo: getSupportEmail(),
   });
 }

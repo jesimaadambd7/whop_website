@@ -7,6 +7,15 @@ export const siteConfig = {
   email: "support@ugcviss.com",
 };
 
+/** Public support address. Ignores stale Gmail EMAIL_REPLY_TO overrides. */
+export function getSupportEmail() {
+  const fromEnv = process.env.EMAIL_REPLY_TO?.trim();
+  if (fromEnv && /@ugcviss\.com$/i.test(fromEnv)) {
+    return fromEnv;
+  }
+  return siteConfig.email;
+}
+
 export const navigation = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },

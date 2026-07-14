@@ -4,7 +4,7 @@ export const siteConfig = {
   description:
     "UGCViss is a performance video creative agency for ecommerce and DTC brands. We produce UGC ads, product shoots, video editing, motion graphics, and paid social creatives built to drive sales.",
   url: "https://www.ugcviss.com",
-  email: "nadimmahmudytd@gmail.com",
+  email: "support@ugcviss.com",
 };
 
 export const navigation = [

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { CookiePreferencesButton } from "@/components/cookies/CookiePreferencesButton";
 import { footerLinks, siteConfig } from "@/lib/data/site";
@@ -22,13 +23,14 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-3">
           {/* Brand */}
           <div>
-            <Link href="/" className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-sky-400/30 bg-sky-400/10">
-                <span className="font-display text-sm font-bold text-sky-400">V</span>
-              </div>
-              <span className="font-display text-lg font-bold tracking-tight text-white">
-                {siteConfig.name}
-              </span>
+            <Link href="/" className="group inline-flex items-center" aria-label="UGCViss home">
+              <Image
+                src="/assets/brand/ugcviss-logo-transparent.png"
+                alt="UGCViss"
+                width={1425}
+                height={269}
+                className="h-auto w-[160px] object-contain transition duration-300 group-hover:brightness-125 sm:w-[180px]"
+              />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-zinc-500">
               Performance video creative studio for ecommerce and DTC brands. UGC ads,

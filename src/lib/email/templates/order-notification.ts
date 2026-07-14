@@ -14,6 +14,34 @@ function getSiteUrl() {
   return process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || siteConfig.url;
 }
 
+function normalizeOrigin(url: string) {
+  const trimmed = url.trim().replace(/\/$/, "");
+  if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+    return trimmed;
+  }
+  return `https://${trimmed}`;
+}
+
+/** Host used for images inside emails (must be a public HTTPS origin). */
+function getEmailAssetBaseUrl() {
+  const explicit =
+    process.env.EMAIL_ASSET_BASE_URL?.trim() ||
+    process.env.EMAIL_LOGO_BASE_URL?.trim();
+  if (explicit) return normalizeOrigin(explicit);
+
+  // Prefer the Vercel deployment host — custom domains may not be live yet.
+  const vercelProd = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+  if (vercelProd) return normalizeOrigin(vercelProd);
+
+  const vercelUrl = process.env.VERCEL_URL?.trim();
+  if (vercelUrl) return normalizeOrigin(vercelUrl);
+
+  const siteUrl = getSiteUrl();
+  if (siteUrl && !siteUrl.includes("localhost")) return siteUrl;
+
+  return null;
+}
+
 function escapeHtml(value: string) {
   return value
     .replace(/&/g, "&amp;")
@@ -44,12 +72,11 @@ function getLogoUrl() {
   const custom = process.env.EMAIL_LOGO_URL?.trim();
   if (custom) return custom;
 
-  const siteUrl = getSiteUrl();
-  if (!siteUrl.includes("localhost")) {
-    return `${siteUrl}/assets/brand/ugcviss-logo-transparent.png`;
-  }
+  const base = getEmailAssetBaseUrl();
+  if (!base) return null;
 
-  return null;
+  // Served from /brand (not /assets) so the vidcarry asset rewrite never proxies it away.
+  return `${base}/brand/ugcviss-logo-email.png`;
 }
 
 function renderBrandHeader() {
@@ -62,14 +89,14 @@ function renderBrandHeader() {
         width="180"
         height="48"
         alt="${escapeHtml(siteConfig.name)}"
-        style="display:block;margin:0 auto;border:0;outline:none;text-decoration:none;max-width:180px;height:auto;"
+        style="display:block;margin:0 auto;border:0;outline:none;text-decoration:none;max-width:180px;height:auto;border-radius:10px;"
       />
     </a>`;
   }
 
   return `<a href="${getSiteUrl()}" style="text-decoration:none;display:inline-block;">
-    <div style="font-size:34px;line-height:1;font-weight:800;letter-spacing:-0.04em;color:#ffffff;">
-      Vid<span style="color:#38bdf8;">Carry</span>
+    <div style="font-size:34px;line-height:1;font-weight:800;letter-spacing:-0.04em;color:#38bdf8;">
+      ${escapeHtml(siteConfig.name)}
     </div>
     <div style="margin-top:8px;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#71717a;">
       Creative Production Agency

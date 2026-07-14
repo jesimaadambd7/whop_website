@@ -46,7 +46,7 @@ function getLogoUrl() {
 
   const siteUrl = getSiteUrl();
   if (!siteUrl.includes("localhost")) {
-    return `${siteUrl}/assets/brand/vidcarry-logo-transparent.png`;
+    return `${siteUrl}/assets/brand/ugcviss-logo-transparent.png`;
   }
 
   return null;

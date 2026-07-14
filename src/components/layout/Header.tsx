@@ -28,10 +28,10 @@ export function Header() {
         <Link href="/" className="group" aria-label="UGCViss home">
           <span className="inline-flex items-center">
             <Image
-              src="/assets/brand/vidcarry-logo-transparent.png"
+              src="/assets/brand/ugcviss-logo-transparent.png"
               alt="UGCViss"
-              width={1774}
-              height={267}
+              width={1425}
+              height={269}
               priority
               className="h-auto w-[180px] object-contain transition duration-300 group-hover:brightness-125 sm:w-[210px] lg:w-[230px]"
             />

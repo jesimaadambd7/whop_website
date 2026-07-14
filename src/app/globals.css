@@ -897,15 +897,15 @@ body {
   }
 
   .founder-team-card__halo {
-    background: radial-gradient(circle, rgba(0, 188, 254, 0.22) 0%, transparent 70%);
-    opacity: 0.45;
-    filter: blur(18px);
-    animation: founder-halo-pulse 4s ease-in-out infinite;
+    background: radial-gradient(circle, rgba(0, 188, 254, 0.18) 0%, transparent 72%);
+    opacity: 0.4;
+    filter: blur(16px);
+    animation: founder-halo-pulse 5.5s ease-in-out infinite;
   }
 
   .founder-team-card__halo--gold {
-    background: radial-gradient(circle, rgba(255, 210, 54, 0.14) 0%, transparent 72%);
-    animation-delay: -2s;
+    background: radial-gradient(circle, rgba(255, 210, 54, 0.1) 0%, transparent 74%);
+    animation-delay: -2.5s;
   }
 
   .founder-team-card__frame {
@@ -913,18 +913,18 @@ body {
     background: conic-gradient(
       from var(--founder-angle, 0deg),
       transparent 0deg,
-      rgba(255, 210, 54, 0.35) 55deg,
-      rgba(56, 189, 248, 1) 115deg,
-      rgba(125, 211, 252, 0.85) 155deg,
-      rgba(255, 210, 54, 0.4) 215deg,
+      rgba(255, 210, 54, 0.28) 55deg,
+      rgba(56, 189, 248, 0.95) 115deg,
+      rgba(125, 211, 252, 0.7) 155deg,
+      rgba(255, 210, 54, 0.32) 215deg,
       transparent 285deg,
-      rgba(56, 189, 248, 0.45) 330deg,
+      rgba(56, 189, 248, 0.35) 330deg,
       transparent 360deg
     );
-    animation: founder-border-spin 3.5s linear infinite;
+    animation: founder-border-spin 6s linear infinite;
     box-shadow:
-      0 0 24px rgba(0, 188, 254, 0.25),
-      0 0 48px rgba(255, 210, 54, 0.08);
+      0 0 20px rgba(0, 188, 254, 0.18),
+      0 0 40px rgba(255, 210, 54, 0.06);
   }
 
   .founder-team-card__body {
@@ -936,79 +936,74 @@ body {
 
   .group\/founder:hover .founder-team-card__body,
   .founder-team-card:hover .founder-team-card__body {
-    border-color: rgba(56, 189, 248, 0.35);
+    border-color: rgba(56, 189, 248, 0.4);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.12),
       0 28px 72px rgba(0, 0, 0, 0.55),
-      0 0 56px rgba(0, 188, 254, 0.18);
+      0 0 48px rgba(0, 188, 254, 0.16);
   }
 
   .founder-team-card__aurora {
+    opacity: 0.55;
     background:
-      radial-gradient(circle at 12% 8%, rgba(0, 188, 254, 0.2), transparent 42%),
-      radial-gradient(circle at 88% 92%, rgba(255, 210, 54, 0.12), transparent 38%),
-      radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.06), transparent 55%);
-    animation: founder-aurora-shift 8s ease-in-out infinite;
+      radial-gradient(circle at 14% 10%, rgba(0, 188, 254, 0.12), transparent 38%),
+      radial-gradient(circle at 86% 88%, rgba(255, 210, 54, 0.07), transparent 34%);
+    animation: founder-aurora-shift 10s ease-in-out infinite;
   }
 
   .founder-team-card__grid {
+    opacity: 0.22;
     background-image:
-      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
     background-size: 28px 28px;
-    mask-image: radial-gradient(circle at 50% 40%, black, transparent 78%);
+    mask-image: radial-gradient(circle at 50% 28%, black, transparent 72%);
   }
 
   .founder-team-card__orb {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     border-radius: 9999px;
-    filter: blur(28px);
-    opacity: 0.5;
+    filter: blur(30px);
+    opacity: 0.32;
   }
 
   .founder-team-card__orb--1 {
-    top: -20px;
-    right: -24px;
-    background: rgba(0, 188, 254, 0.35);
-    animation: founder-orb-drift-1 7s ease-in-out infinite;
+    top: -18px;
+    right: -20px;
+    background: rgba(0, 188, 254, 0.28);
+    animation: founder-orb-drift-1 9s ease-in-out infinite;
   }
 
   .founder-team-card__orb--2 {
-    bottom: -28px;
-    left: -20px;
-    background: rgba(255, 210, 54, 0.28);
-    animation: founder-orb-drift-2 9s ease-in-out infinite;
+    bottom: -24px;
+    left: -18px;
+    background: rgba(255, 210, 54, 0.18);
+    animation: founder-orb-drift-2 11s ease-in-out infinite;
   }
 
   .founder-team-card__shine {
     background: linear-gradient(
       105deg,
-      transparent 36%,
-      rgba(255, 255, 255, 0.14) 48%,
-      rgba(0, 188, 254, 0.2) 52%,
-      transparent 64%
+      transparent 38%,
+      rgba(255, 255, 255, 0.1) 48%,
+      rgba(0, 188, 254, 0.14) 52%,
+      transparent 62%
     );
     transform: translateX(-130%);
-    animation: founder-shine-sweep 4.5s ease-in-out infinite;
-    opacity: 0.85;
+    opacity: 0;
+    mask-image: linear-gradient(180deg, black 0%, black 42%, transparent 68%);
   }
 
-  .founder-team-card__scanline {
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 3px,
-      rgba(255, 255, 255, 0.015) 3px,
-      rgba(255, 255, 255, 0.015) 4px
-    );
-    opacity: 0.4;
-    mix-blend-mode: overlay;
+  .group\/founder:hover .founder-team-card__shine,
+  .founder-team-card:hover .founder-team-card__shine {
+    opacity: 0.9;
+    animation: founder-shine-sweep 2.4s ease-in-out 1;
   }
 
   .founder-team-card__badge {
-    animation: founder-badge-glow 3s ease-in-out infinite;
-    box-shadow: 0 0 20px rgba(255, 210, 54, 0.15);
+    animation: founder-badge-glow 4s ease-in-out infinite;
+    box-shadow: 0 0 16px rgba(255, 210, 54, 0.12);
   }
 
   .founder-team-card__arrow {
@@ -1024,22 +1019,22 @@ body {
   }
 
   .founder-team-card__ring {
-    border: 1px dashed rgba(56, 189, 248, 0.45);
-    animation: founder-ring-spin 12s linear infinite;
+    border: 1px dashed rgba(56, 189, 248, 0.4);
+    animation: founder-ring-spin 16s linear infinite;
   }
 
   .founder-team-card__avatar-wrap {
-    animation: founder-avatar-float 5s ease-in-out infinite;
+    animation: founder-avatar-float 6.5s ease-in-out infinite;
   }
 
   .founder-team-card__avatar {
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    transition: transform 0.45s ease, box-shadow 0.45s ease;
   }
 
   .group\/founder:hover .founder-team-card__avatar,
   .founder-team-card:hover .founder-team-card__avatar {
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 0 56px rgba(0, 188, 254, 0.38);
+    transform: translateY(-3px) scale(1.025);
+    box-shadow: 0 0 48px rgba(0, 188, 254, 0.32);
   }
 
   .founder-team-card__name {
@@ -1048,70 +1043,58 @@ body {
 
   .group\/founder:hover .founder-team-card__name,
   .founder-team-card:hover .founder-team-card__name {
-    color: #e0f2fe;
-    text-shadow: 0 0 24px rgba(0, 188, 254, 0.35);
+    color: #f0f9ff;
+    text-shadow: 0 0 20px rgba(0, 188, 254, 0.28);
   }
 
   .founder-team-card__role {
-    background: linear-gradient(
-      120deg,
-      #7dd3fc 0%,
-      #e0f2fe 35%,
-      #fde68a 70%,
-      #7dd3fc 100%
-    );
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: cine-title-shimmer 6s linear infinite;
+    color: #fde68a;
+    text-shadow: 0 0 18px rgba(251, 191, 36, 0.25);
+  }
+
+  .founder-team-card__bio {
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
   }
 
   .founder-team-card__chip {
-    animation: founder-chip-pulse 4s ease-in-out infinite;
-  }
-
-  .group\/founder:hover .founder-team-card__shine,
-  .founder-team-card:hover .founder-team-card__shine {
-    animation-duration: 2.2s;
-    opacity: 1;
+    animation: founder-chip-pulse 5s ease-in-out infinite;
   }
 
   .member-team-card__halo {
-    background: radial-gradient(circle, rgba(0, 188, 254, 0.2) 0%, transparent 70%);
-    opacity: 0.45;
-    filter: blur(18px);
-    animation: member-halo-pulse 4.5s ease-in-out infinite;
+    background: radial-gradient(circle, rgba(0, 188, 254, 0.16) 0%, transparent 72%);
+    opacity: 0.38;
+    filter: blur(16px);
+    animation: member-halo-pulse 6s ease-in-out infinite;
   }
 
   .member-team-card__halo--soft {
-    background: radial-gradient(circle, rgba(125, 211, 252, 0.12) 0%, transparent 72%);
-    animation-delay: -2.2s;
+    background: radial-gradient(circle, rgba(125, 211, 252, 0.1) 0%, transparent 74%);
+    animation-delay: -2.8s;
   }
 
   .member-team-card__frame {
     isolation: isolate;
     background: linear-gradient(
       90deg,
-      rgba(56, 189, 248, 0.15) 0%,
-      rgba(56, 189, 248, 0.95) 25%,
-      rgba(186, 230, 253, 0.85) 50%,
-      rgba(56, 189, 248, 0.95) 75%,
-      rgba(56, 189, 248, 0.15) 100%
+      rgba(56, 189, 248, 0.12) 0%,
+      rgba(56, 189, 248, 0.85) 28%,
+      rgba(186, 230, 253, 0.75) 50%,
+      rgba(56, 189, 248, 0.85) 72%,
+      rgba(56, 189, 248, 0.12) 100%
     );
-    background-size: 280% 100%;
-    animation: member-border-wave 5s ease-in-out infinite;
+    background-size: 260% 100%;
+    animation: member-border-wave 7s ease-in-out infinite;
     box-shadow:
-      0 0 20px rgba(0, 188, 254, 0.18),
-      0 0 40px rgba(0, 188, 254, 0.06);
+      0 0 18px rgba(0, 188, 254, 0.14),
+      0 0 34px rgba(0, 188, 254, 0.05);
   }
 
   .group\/member:hover .member-team-card__frame,
   .member-team-card:hover .member-team-card__frame {
-    animation-duration: 3s;
+    animation-duration: 4s;
     box-shadow:
-      0 0 28px rgba(0, 188, 254, 0.28),
-      0 0 56px rgba(0, 188, 254, 0.1);
+      0 0 24px rgba(0, 188, 254, 0.22),
+      0 0 48px rgba(0, 188, 254, 0.08);
   }
 
   .member-team-card__body {
@@ -1123,77 +1106,68 @@ body {
 
   .group\/member:hover .member-team-card__body,
   .member-team-card:hover .member-team-card__body {
-    border-color: rgba(56, 189, 248, 0.32);
+    border-color: rgba(56, 189, 248, 0.38);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.11),
       0 26px 68px rgba(0, 0, 0, 0.5),
-      0 0 48px rgba(0, 188, 254, 0.14);
+      0 0 42px rgba(0, 188, 254, 0.12);
   }
 
   .member-team-card__aurora {
+    opacity: 0.5;
     background:
-      radial-gradient(circle at 85% 10%, rgba(56, 189, 248, 0.16), transparent 40%),
-      radial-gradient(circle at 10% 90%, rgba(125, 211, 252, 0.1), transparent 36%);
-    animation: member-aurora-drift 7s ease-in-out infinite;
+      radial-gradient(circle at 84% 12%, rgba(56, 189, 248, 0.1), transparent 36%),
+      radial-gradient(circle at 12% 88%, rgba(125, 211, 252, 0.06), transparent 32%);
+    animation: member-aurora-drift 9s ease-in-out infinite;
   }
 
   .member-team-card__mesh {
+    opacity: 0.18;
     background-image:
-      linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+      linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
     background-size: 24px 24px;
-    mask-image: radial-gradient(circle at 50% 42%, black, transparent 80%);
-    animation: member-mesh-slide 12s linear infinite;
+    mask-image: radial-gradient(circle at 50% 30%, black, transparent 74%);
+    animation: member-mesh-slide 18s linear infinite;
   }
 
   .member-team-card__orb {
-    width: 100px;
-    height: 100px;
+    width: 92px;
+    height: 92px;
     border-radius: 9999px;
-    filter: blur(26px);
-    opacity: 0.45;
+    filter: blur(28px);
+    opacity: 0.28;
   }
 
   .member-team-card__orb--1 {
-    top: -16px;
-    left: -18px;
-    background: rgba(56, 189, 248, 0.32);
-    animation: member-orb-float 8s ease-in-out infinite;
+    top: -14px;
+    left: -16px;
+    background: rgba(56, 189, 248, 0.26);
+    animation: member-orb-float 10s ease-in-out infinite;
   }
 
   .member-team-card__shine {
     background: linear-gradient(
       180deg,
-      transparent 30%,
-      rgba(255, 255, 255, 0.08) 48%,
-      rgba(56, 189, 248, 0.16) 52%,
+      transparent 28%,
+      rgba(255, 255, 255, 0.07) 48%,
+      rgba(56, 189, 248, 0.12) 52%,
       transparent 70%
     );
     transform: translateY(-120%);
     opacity: 0;
+    mask-image: linear-gradient(180deg, black 0%, black 40%, transparent 66%);
   }
 
   .group\/member:hover .member-team-card__shine,
   .member-team-card:hover .member-team-card__shine {
     opacity: 0.85;
-    animation: member-shine-vertical 2.8s ease-in-out infinite;
-  }
-
-  .member-team-card__waves {
-    background: repeating-linear-gradient(
-      -12deg,
-      transparent,
-      transparent 18px,
-      rgba(56, 189, 248, 0.03) 18px,
-      rgba(56, 189, 248, 0.03) 19px
-    );
-    opacity: 0.35;
-    animation: member-waves-drift 14s linear infinite;
+    animation: member-shine-vertical 2.6s ease-in-out 1;
   }
 
   .member-team-card__badge {
-    animation: member-badge-glow 3.5s ease-in-out infinite;
-    box-shadow: 0 0 16px rgba(56, 189, 248, 0.12);
+    animation: member-badge-glow 4.5s ease-in-out infinite;
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.1);
   }
 
   .member-team-card__arrow {
@@ -1209,22 +1183,22 @@ body {
   }
 
   .member-team-card__ring {
-    border: 1px solid rgba(56, 189, 248, 0.35);
-    animation: member-ring-pulse 3.5s ease-in-out infinite;
+    border: 1px solid rgba(56, 189, 248, 0.32);
+    animation: member-ring-pulse 4.5s ease-in-out infinite;
   }
 
   .member-team-card__avatar-wrap {
-    animation: member-avatar-bob 6s ease-in-out infinite;
+    animation: member-avatar-bob 7s ease-in-out infinite;
   }
 
   .member-team-card__avatar {
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    transition: transform 0.45s ease, box-shadow 0.45s ease;
   }
 
   .group\/member:hover .member-team-card__avatar,
   .member-team-card:hover .member-team-card__avatar {
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 0 48px rgba(0, 188, 254, 0.3);
+    transform: translateY(-3px) scale(1.025);
+    box-shadow: 0 0 42px rgba(0, 188, 254, 0.26);
   }
 
   .member-team-card__name {
@@ -1233,27 +1207,21 @@ body {
 
   .group\/member:hover .member-team-card__name,
   .member-team-card:hover .member-team-card__name {
-    color: #e0f2fe;
-    text-shadow: 0 0 20px rgba(56, 189, 248, 0.28);
+    color: #f0f9ff;
+    text-shadow: 0 0 18px rgba(56, 189, 248, 0.24);
   }
 
   .member-team-card__role {
-    background: linear-gradient(
-      120deg,
-      #38bdf8 0%,
-      #bae6fd 40%,
-      #7dd3fc 70%,
-      #38bdf8 100%
-    );
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: member-role-shimmer 5s linear infinite;
+    color: #7dd3fc;
+    text-shadow: 0 0 16px rgba(56, 189, 248, 0.22);
+  }
+
+  .member-team-card__bio {
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
   }
 
   .member-team-card__chip {
-    animation: member-chip-glow 4.5s ease-in-out infinite;
+    animation: member-chip-glow 5.5s ease-in-out infinite;
   }
 }
 
@@ -1298,13 +1266,14 @@ body {
   .member-team-card__halo,
   .member-team-card__halo--soft {
     animation: none !important;
-    opacity: 0.28 !important;
+    opacity: 0.22 !important;
     transform: none !important;
   }
 
   .founder-team-card__aurora,
   .member-team-card__aurora {
     animation: none !important;
+    opacity: 0.35 !important;
   }
 
   .founder-team-card__ring,
@@ -1316,18 +1285,23 @@ body {
 
   .founder-team-card__role {
     animation: none !important;
-    color: #bae6fd;
-    background: none;
-    -webkit-background-clip: unset;
-    background-clip: unset;
+    color: #fde68a !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
   }
 
   .member-team-card__role {
     animation: none !important;
-    color: #38bdf8;
-    background: none;
-    -webkit-background-clip: unset;
-    background-clip: unset;
+    color: #7dd3fc !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+  }
+
+  .founder-team-card__bio,
+  .member-team-card__bio {
+    color: #e4e4e7 !important;
   }
 
   .founder-team-card__badge,
@@ -2075,12 +2049,12 @@ body {
 @keyframes founder-aurora-shift {
   0%,
   100% {
-    opacity: 0.75;
+    opacity: 0.5;
     transform: scale(1);
   }
   50% {
-    opacity: 1;
-    transform: scale(1.06);
+    opacity: 0.7;
+    transform: scale(1.03);
   }
 }
 
@@ -2177,11 +2151,11 @@ body {
   0%,
   100% {
     transform: translateX(0) scale(1);
-    opacity: 0.8;
+    opacity: 0.45;
   }
   50% {
-    transform: translateX(6px) scale(1.04);
-    opacity: 1;
+    transform: translateX(4px) scale(1.02);
+    opacity: 0.65;
   }
 }
 

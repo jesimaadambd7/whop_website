@@ -28,8 +28,8 @@ export function MemberTeamCard({ member, variant = "compact" }: MemberTeamCardPr
       ? {}
       : {
           initial: false as const,
-          whileHover: { y: -8, scale: 1.012 },
-          transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const },
+          whileHover: { y: -6, scale: 1.01 },
+          transition: { type: "spring" as const, stiffness: 320, damping: 24 },
         };
 
   const cardBody = (
@@ -44,15 +44,14 @@ export function MemberTeamCard({ member, variant = "compact" }: MemberTeamCardPr
       />
 
       <div className="member-team-card__frame relative h-full rounded-[2rem] p-[1.5px]">
-        <div className="member-team-card__body relative flex h-full flex-col overflow-hidden rounded-[calc(2rem-1.5px)] border border-white/[0.08] bg-[#070b12]/92 p-6 sm:p-7">
+        <div className="member-team-card__body relative flex h-full flex-col overflow-hidden rounded-[calc(2rem-1.5px)] border border-white/10 bg-[#050912] p-6 sm:p-7">
           <div className="member-team-card__aurora pointer-events-none absolute inset-0" aria-hidden="true" />
-          <div className="member-team-card__mesh pointer-events-none absolute inset-0 opacity-30" aria-hidden="true" />
+          <div className="member-team-card__mesh pointer-events-none absolute inset-0" aria-hidden="true" />
           <div className="member-team-card__orb member-team-card__orb--1 pointer-events-none absolute" aria-hidden="true" />
           <div className="member-team-card__shine pointer-events-none absolute inset-0" aria-hidden="true" />
-          <div className="member-team-card__waves pointer-events-none absolute inset-0" aria-hidden="true" />
 
           <div className="relative z-[1] flex items-start justify-between gap-3">
-            <span className="member-team-card__badge inline-flex items-center gap-1.5 rounded-full border border-sky-400/35 bg-sky-400/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-sky-100">
+            <span className="member-team-card__badge inline-flex items-center gap-1.5 rounded-full border border-sky-400/40 bg-sky-400/15 px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-sky-50">
               <Sparkles size={12} className="text-sky-300" />
               {member.badge}
             </span>
@@ -67,7 +66,7 @@ export function MemberTeamCard({ member, variant = "compact" }: MemberTeamCardPr
                 className="member-team-card__ring pointer-events-none absolute inset-[-10px] rounded-[2rem]"
                 aria-hidden="true"
               />
-              <div className="member-team-card__avatar relative h-28 w-28 overflow-hidden rounded-[1.75rem] border border-sky-400/35 bg-sky-400/10 p-1 shadow-[0_0_36px_rgba(0,188,254,0.18)]">
+              <div className="member-team-card__avatar relative h-28 w-28 overflow-hidden rounded-[1.75rem] border border-sky-400/40 bg-sky-400/10 p-1 shadow-[0_0_36px_rgba(0,188,254,0.18)]">
                 <div className="relative h-full w-full overflow-hidden rounded-[1.45rem]">
                   {member.image ? (
                     <Image
@@ -90,28 +89,30 @@ export function MemberTeamCard({ member, variant = "compact" }: MemberTeamCardPr
             <h3 className="member-team-card__name mt-5 font-display text-2xl font-black tracking-[-0.04em] text-white sm:text-[1.7rem]">
               {member.name}
             </h3>
-            <p className="member-team-card__role mt-1 text-sm font-bold">{member.role}</p>
+            <p className="member-team-card__role mt-2 text-sm font-bold text-sky-300">
+              {member.role}
+            </p>
           </div>
 
-          <p className="relative z-[1] mt-5 flex-1 text-center text-sm leading-7 text-zinc-400">
+          <p className="member-team-card__bio relative z-[1] mt-5 flex-1 text-center text-[15px] leading-7 text-zinc-200">
             {member.bio}
           </p>
 
           {(member.linkedin || !isPage) && (
-            <div className="relative z-[3] mt-6 flex flex-wrap items-center justify-center gap-2 border-t border-white/10 pt-5">
+            <div className="relative z-[3] mt-6 flex flex-wrap items-center justify-center gap-2">
               {member.linkedin && (
                 <a
                   href={member.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative z-[3] inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-400 transition hover:border-sky-400/30 hover:text-sky-200"
+                  className="relative z-[3] inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/8 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-200 transition hover:border-sky-400/40 hover:text-sky-100"
                 >
                   <Link2 size={12} />
                   LinkedIn
                 </a>
               )}
               {!isPage && (
-                <span className="member-team-card__chip inline-flex items-center rounded-full border border-sky-400/25 bg-sky-400/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-sky-200">
+                <span className="member-team-card__chip inline-flex items-center rounded-full border border-sky-400/30 bg-sky-400/15 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-sky-100">
                   Creative crew
                 </span>
               )}

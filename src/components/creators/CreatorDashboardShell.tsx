@@ -26,10 +26,10 @@ export function CreatorDashboardShell({ creator, children }: Props) {
           <div className="flex items-center gap-5">
             <Link href="/" aria-label="UGCViss home">
               <Image
-                src="/assets/brand/vidcarry-logo-transparent.png"
+                src="/assets/brand/ugcviss-logo-transparent.png"
                 alt="UGCViss"
-                width={1774}
-                height={267}
+                width={1425}
+                height={269}
                 className="h-auto w-[140px] object-contain sm:w-[160px]"
               />
             </Link>

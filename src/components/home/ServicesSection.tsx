@@ -19,9 +19,9 @@ export function ServicesSection() {
         </Reveal>
 
         <Stagger className="grid auto-rows-fr items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3" stagger={0.08}>
-          {services.map((service, i) => (
+          {services.map((service) => (
             <StaggerItem key={service.id} className="h-full">
-              <ServiceCard service={service} eager={i < 3} />
+              <ServiceCard service={service} />
             </StaggerItem>
           ))}
         </Stagger>

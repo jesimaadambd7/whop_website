@@ -1442,10 +1442,14 @@ body {
 
   .cine-film-grain,
   .cine-light-leak,
-  .cine-bokeh,
-  .cine-monitor-glow {
+  .cine-bokeh {
     animation: none !important;
     display: none !important;
+  }
+
+  /* Keep showreel visible — this class wraps the hero command center */
+  .cine-monitor-glow {
+    animation: none !important;
   }
 
   .orb,

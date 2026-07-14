@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { type ShowreelVideo, heroShowreelVideo } from "@/lib/data/showreel-media";
 import { cn } from "@/lib/utils";
 
-type CardPosition = "left" | "center" | "right";
+type CardPosition = "left" | "center" | "right" | "hidden";
 
 const positionStyles: Record<
-  CardPosition,
+  Exclude<CardPosition, "hidden">,
   { transform: string; origin: string; zIndex: number }
 > = {
   left: {
@@ -33,7 +33,7 @@ function getPosition(slideIndex: number, activeIndex: number, total: number): Ca
   const rightIndex = (activeIndex - 1 + total) % total;
   if (slideIndex === leftIndex) return "left";
   if (slideIndex === rightIndex) return "right";
-  return "center";
+  return "hidden";
 }
 
 function CarouselCard({
@@ -41,25 +41,28 @@ function CarouselCard({
   position,
   onSelect,
   sectionVisible,
+  allowVideo,
 }: {
   slide: ShowreelVideo;
-  position: CardPosition;
+  position: Exclude<CardPosition, "hidden">;
   onSelect: () => void;
   sectionVisible: boolean;
+  allowVideo: boolean;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const isCenter = position === "center";
   const isSide = !isCenter;
+  const mountVideo = isCenter && allowVideo && sectionVisible;
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    if (isCenter && sectionVisible) {
+    if (mountVideo) {
       void video.play().catch(() => undefined);
     } else {
       video.pause();
     }
-  }, [isCenter, sectionVisible, slide.videoSrc]);
+  }, [mountVideo, slide.videoSrc]);
 
   const frameClass = cn(
     "relative mx-auto block overflow-hidden rounded-[1.45rem] border border-white/15 bg-black shadow-[0_26px_70px_rgba(0,0,0,0.42)]",
@@ -67,23 +70,39 @@ function CarouselCard({
     isSide && "cursor-pointer opacity-80 transition hover:opacity-100",
   );
 
+  const poster = (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={slide.posterSrc}
+      alt=""
+      draggable={false}
+      loading={isCenter ? "eager" : "lazy"}
+      decoding="async"
+      fetchPriority={isCenter ? "high" : "low"}
+      className="absolute inset-0 h-full w-full object-cover"
+    />
+  );
+
   const content = isCenter ? (
     <span className={cn(frameClass, "pointer-events-auto")} aria-current="true">
-      <video
-        ref={videoRef}
-        key={slide.videoSrc}
-        src={slide.videoSrc}
-        poster={slide.posterSrc}
-        loop
-        muted
-        playsInline
-        controlsList="nodownload noplaybackrate noremoteplayback"
-        disablePictureInPicture
-        preload="metadata"
-        aria-label={slide.title}
-        draggable={false}
-        className="absolute inset-0 h-full w-full bg-black object-cover"
-      />
+      {poster}
+      {mountVideo ? (
+        <video
+          ref={videoRef}
+          key={slide.videoSrc}
+          src={slide.videoSrc}
+          poster={slide.posterSrc}
+          loop
+          muted
+          playsInline
+          controlsList="nodownload noplaybackrate noremoteplayback"
+          disablePictureInPicture
+          preload="none"
+          aria-label={slide.title}
+          draggable={false}
+          className="absolute inset-0 h-full w-full bg-black object-cover"
+        />
+      ) : null}
     </span>
   ) : (
     <button
@@ -93,15 +112,7 @@ function CarouselCard({
       className={frameClass}
     >
       <div className="pointer-events-none relative h-full w-full">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={slide.posterSrc}
-          alt={`${slide.title} poster`}
-          draggable={false}
-          loading="lazy"
-          decoding="async"
-          className="absolute inset-0 h-full w-full object-cover opacity-90"
-        />
+        {poster}
         <div className="absolute inset-0 rounded-[1.45rem] bg-black/30" />
         <div className="absolute bottom-3 left-3 right-3 truncate text-[10px] font-bold uppercase tracking-[0.16em] text-white/80">
           {slide.title}
@@ -137,18 +148,34 @@ export function ShowreelCarousel({
   onSelect: (i: number) => void;
 }) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const [sectionVisible, setSectionVisible] = useState(true);
+  const [sectionVisible, setSectionVisible] = useState(false);
+  const [allowVideo, setAllowVideo] = useState(false);
 
   useEffect(() => {
     const node = rootRef.current;
     if (!node) return;
     const observer = new IntersectionObserver(
       ([entry]) => setSectionVisible(entry.isIntersecting),
-      { rootMargin: "100px", threshold: 0.1 },
+      { rootMargin: "80px", threshold: 0.15 },
     );
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
+
+  // Defer video element until after first paint / idle so posters own LCP
+  useEffect(() => {
+    if (!sectionVisible) return;
+    const win = window as Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+    if (typeof win.requestIdleCallback === "function") {
+      const id = win.requestIdleCallback(() => setAllowVideo(true), { timeout: 1200 });
+      return () => win.cancelIdleCallback?.(id);
+    }
+    const t = window.setTimeout(() => setAllowVideo(true), 450);
+    return () => window.clearTimeout(t);
+  }, [sectionVisible]);
 
   return (
     <div
@@ -164,15 +191,20 @@ export function ShowreelCarousel({
           style={{ perspective: "1200px" }}
         >
           <div className="absolute inset-0" style={{ transformStyle: "preserve-3d" }}>
-            {videos.map((slide, i) => (
-              <CarouselCard
-                key={slide.videoSrc}
-                slide={slide}
-                position={getPosition(i, activeIndex, videos.length)}
-                onSelect={() => onSelect(i)}
-                sectionVisible={sectionVisible}
-              />
-            ))}
+            {videos.map((slide, i) => {
+              const position = getPosition(i, activeIndex, videos.length);
+              if (position === "hidden") return null;
+              return (
+                <CarouselCard
+                  key={slide.videoSrc}
+                  slide={slide}
+                  position={position}
+                  onSelect={() => onSelect(i)}
+                  sectionVisible={sectionVisible}
+                  allowVideo={allowVideo}
+                />
+              );
+            })}
           </div>
         </div>
 
@@ -225,39 +257,54 @@ export function ShowreelVideo({
   const poster = posterSrc ?? heroShowreelVideo.posterSrc;
   const videoRef = useRef<HTMLVideoElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
     const node = rootRef.current;
-    const video = videoRef.current;
-    if (!node || !video || !autoPlay) return;
+    if (!node || !autoPlay) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) void video.play().catch(() => undefined);
-        else video.pause();
+        if (entry.isIntersecting) setShouldLoad(true);
       },
       { rootMargin: "80px", threshold: 0.15 },
     );
     observer.observe(node);
     return () => observer.disconnect();
-  }, [autoPlay, src]);
+  }, [autoPlay]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !shouldLoad) return;
+    void video.play().catch(() => undefined);
+  }, [shouldLoad, src]);
 
   return (
     <div ref={rootRef} className={cn("w-full", className)}>
       <span className="relative pointer-events-auto mx-auto block aspect-[4/5] w-full max-w-[300px] overflow-hidden rounded-[1.45rem] border border-white/15 bg-black shadow-[0_26px_70px_rgba(0,0,0,0.42)]">
-        <video
-          ref={videoRef}
-          src={src}
-          poster={poster}
-          loop={loop}
-          muted={muted}
-          playsInline
-          controlsList="nodownload noplaybackrate noremoteplayback"
-          disablePictureInPicture
-          preload="metadata"
-          aria-label={label ?? "Showreel"}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={poster}
+          alt=""
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 h-full w-full object-cover"
         />
+        {shouldLoad ? (
+          <video
+            ref={videoRef}
+            src={src}
+            poster={poster}
+            loop={loop}
+            muted={muted}
+            playsInline
+            controlsList="nodownload noplaybackrate noremoteplayback"
+            disablePictureInPicture
+            preload="none"
+            aria-label={label ?? "Showreel"}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        ) : null}
       </span>
     </div>
   );

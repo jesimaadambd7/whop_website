@@ -9,6 +9,9 @@ export type ShowreelVideo = {
   ratio: "4/5" | "9/16";
 };
 
+/** Local compressed posters for hero carousel (keeps first paint light). */
+const localShowreelPoster = (id: string) => `/assets/showreel/${id}.webp`;
+
 /** Pool passed to the hero showreel carousel (matches ugcviss.com). */
 export const showreelVideos: ShowreelVideo[] = [
   {
@@ -16,7 +19,7 @@ export const showreelVideos: ShowreelVideo[] = [
     client: "Selected Work",
     category: "UGC Ads",
     videoSrc: mediaPath("portfolio", "project_viscap_youe2tzd9h"),
-    posterSrc: mediaPath("portfolio", "project_viscap_youe2tzd9h", "poster"),
+    posterSrc: localShowreelPoster("youe2tzd9h"),
     ratio: "4/5",
   },
   {
@@ -24,7 +27,7 @@ export const showreelVideos: ShowreelVideo[] = [
     client: "Selected Work",
     category: "UGC Ads",
     videoSrc: mediaPath("portfolio", "project_viscap_x6u7z8x5qb"),
-    posterSrc: mediaPath("portfolio", "project_viscap_x6u7z8x5qb", "poster"),
+    posterSrc: localShowreelPoster("x6u7z8x5qb"),
     ratio: "9/16",
   },
   {
@@ -32,7 +35,7 @@ export const showreelVideos: ShowreelVideo[] = [
     client: "RYZE",
     category: "UGC Ads",
     videoSrc: mediaPath("portfolio", "project-1782061472881-83272c43"),
-    posterSrc: mediaPath("portfolio", "project-1782061472881-83272c43", "poster"),
+    posterSrc: localShowreelPoster("83272c43"),
     ratio: "9/16",
   },
   {

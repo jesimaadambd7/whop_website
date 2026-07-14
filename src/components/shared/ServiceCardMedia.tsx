@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -45,13 +46,16 @@ export function ServiceCardMedia({ service, eager = false }: ServiceCardMediaPro
         }
         transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          alt={`${service.title} illustration`}
-          className="service-media__visual service-media__image h-full w-full object-cover"
-          loading={eager ? "eager" : "lazy"}
-          src={service.image}
-        />
+        <div className="relative h-full w-full">
+          <Image
+            alt={`${service.title} illustration`}
+            className="service-media__visual service-media__image object-cover"
+            src={service.image}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            priority={eager}
+          />
+        </div>
       </motion.div>
 
       <div aria-hidden className="service-media__mesh pointer-events-none absolute inset-0" />

@@ -8,7 +8,7 @@ export type Service = {
   image: string;
 };
 
-const serviceImage = (id: string) => `/assets/services/${id}.png`;
+const serviceImage = (id: string) => `/assets/services/${id}.webp`;
 
 export const services: Service[] = [
   {

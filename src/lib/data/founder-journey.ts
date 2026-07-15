@@ -1,5 +1,4 @@
 import type { TeamMember } from "@/lib/data/team";
-import { teamMembers } from "@/lib/data/team";
 
 export type FounderJourneyChapter = {
   step: string;
@@ -8,8 +7,7 @@ export type FounderJourneyChapter = {
   description: string;
 };
 
-export type FounderJourney = {
-  member: TeamMember;
+export type FounderJourneyContent = {
   heroEyebrow: string;
   heroTitle: string;
   heroDescription: string;
@@ -25,10 +23,11 @@ export type FounderJourney = {
   ctaTitle: string;
 };
 
-const neazMember = teamMembers.find((member) => member.slug === "neaz-mahmud")!;
+export type FounderJourney = FounderJourneyContent & {
+  member: TeamMember;
+};
 
-export const neazMahmudJourney: FounderJourney = {
-  member: neazMember,
+export const neazMahmudJourneyContent: FounderJourneyContent = {
   heroEyebrow: "Founder journey",
   heroTitle: "Neaz Mahmud's journey from editor to UGCViss founder.",
   heroDescription:
@@ -95,3 +94,10 @@ export const neazMahmudJourney: FounderJourney = {
     "UGCViss is not only an editing team. It is a production and creative partner built to help brands plan better footage, create sharper ads, and launch more useful creative into paid social campaigns.",
   ctaTitle: "Want Neaz and the UGCViss team to shape your next creative sprint?",
 };
+
+export function buildFounderJourney(
+  member: TeamMember,
+  content: FounderJourneyContent = neazMahmudJourneyContent,
+): FounderJourney {
+  return { ...content, member };
+}

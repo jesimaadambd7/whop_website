@@ -37,6 +37,7 @@ export const teamMembers: TeamMember[] = [
     initials: "NM",
     badge: "NM",
     linkedin: "https://www.linkedin.com/in/neazmahmud/",
+    twitter: "https://x.com/chyon_khan",
     portfolioHref: "/portfolio/neaz-mahmud",
     profileHref: "/team/neaz-mahmud",
   },

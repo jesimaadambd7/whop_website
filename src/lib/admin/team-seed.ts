@@ -25,7 +25,7 @@ export const defaultAdminTeamMembers: AdminTeamMember[] = [
     bio: "Leads UGCViss's creative direction, production standards, UGC ad systems, and premium video editing workflow.",
     image: "/assets/team/neaz.jpg",
     linkedin: "https://www.linkedin.com/in/neazmahmud/",
-    twitter: "",
+    twitter: "https://x.com/chyon_khan",
     profileHref: "/team/neaz-mahmud",
     portfolioHref: "/portfolio/neaz-mahmud",
     status: "published",

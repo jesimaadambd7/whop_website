@@ -20,7 +20,7 @@ export function toPublicTeamMember(member: AdminTeamMember): TeamMember {
     initials,
     badge: initials,
     linkedin: member.linkedin || undefined,
-    twitter: member.twitter || undefined,
+    twitter: (member.twitter ?? "").trim() || undefined,
     portfolioHref: member.portfolioHref || `/portfolio/${member.slug}`,
     profileHref: member.profileHref || `/team/${member.slug}`,
   };

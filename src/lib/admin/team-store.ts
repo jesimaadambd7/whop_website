@@ -10,11 +10,26 @@ function isTeamMember(value: unknown): value is AdminTeamMember {
   return Boolean(member.id && member.slug && member.name);
 }
 
+function normalizeTeamMember(member: AdminTeamMember): AdminTeamMember {
+  return {
+    ...member,
+    linkedin: member.linkedin ?? "",
+    twitter: member.twitter ?? "",
+    profileHref: member.profileHref ?? "",
+    portfolioHref: member.portfolioHref ?? "",
+    initials: member.initials ?? "",
+    bio: member.bio ?? "",
+    image: member.image ?? null,
+    status: member.status ?? "published",
+    sortOrder: typeof member.sortOrder === "number" ? member.sortOrder : 0,
+  };
+}
+
 async function readStore(): Promise<AdminTeamMember[]> {
   const fallback = defaultAdminTeamMembers;
   const data = await readJsonStore(STORE_FILE, fallback);
   if (!Array.isArray(data)) return fallback;
-  const members = data.filter(isTeamMember);
+  const members = data.filter(isTeamMember).map(normalizeTeamMember);
   return members.length > 0 ? members : fallback;
 }
 

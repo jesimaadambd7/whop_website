@@ -15,6 +15,9 @@ import {
 } from "@/lib/data/team";
 import { buildPageMetadata } from "@/lib/seo";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata: Metadata = buildPageMetadata({
   title: "Team — Production, UGC Editing & Paid Ads Specialists",
   description:

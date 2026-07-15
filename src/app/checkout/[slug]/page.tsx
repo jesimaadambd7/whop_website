@@ -58,7 +58,12 @@ export default async function CheckoutPage({ params, searchParams }: Props) {
   }
 
   if (resource) {
-    return <ResourceCheckoutView resource={resource} />;
+    return (
+      <ResourceCheckoutView
+        resource={resource}
+        whopSandbox={process.env.WHOP_SANDBOX === "true"}
+      />
+    );
   }
 
   notFound();

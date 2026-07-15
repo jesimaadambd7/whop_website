@@ -16,13 +16,17 @@ import { getPublicWhopPlanId } from "@/lib/whop-plans";
 
 type ResourceCheckoutViewProps = {
   resource: VaultResource;
+  whopSandbox?: boolean;
 };
 
 const fieldClass =
   "mt-2 w-full rounded-2xl border border-white/10 bg-black/55 px-4 py-3.5 text-white outline-none transition focus:border-sky-300";
 const labelClass = "text-xs font-black uppercase tracking-[0.16em] text-zinc-400";
 
-export function ResourceCheckoutView({ resource }: ResourceCheckoutViewProps) {
+export function ResourceCheckoutView({
+  resource,
+  whopSandbox = false,
+}: ResourceCheckoutViewProps) {
   const planId = getPublicWhopPlanId(resource.slug);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
   const router = useRouter();

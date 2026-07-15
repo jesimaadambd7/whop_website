@@ -1,4 +1,5 @@
 import Whop from "@whop/sdk";
+import { getPublicWhopPlanId } from "@/lib/whop-plans";
 
 const apiKey = process.env.WHOP_API_KEY;
 const isSandbox = process.env.WHOP_SANDBOX === "true";
@@ -11,6 +12,5 @@ export const whop = apiKey
   : null;
 
 export function getWhopPlanId(slug: string): string | undefined {
-  const envKey = `NEXT_PUBLIC_WHOP_PLAN_${slug.toUpperCase().replace(/-/g, "_")}`;
-  return process.env[envKey];
+  return getPublicWhopPlanId(slug);
 }

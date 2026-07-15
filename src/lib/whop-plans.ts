@@ -1,4 +1,5 @@
-// Client-safe: reads NEXT_PUBLIC_WHOP_PLAN_* and checkout URL env vars
+// Client-safe: reads NEXT_PUBLIC_WHOP_PLAN_* and checkout URL env vars,
+// with production plan defaults for packages + resources.
 
 function isConfiguredPlanId(value?: string): value is string {
   if (!value) return false;
@@ -9,10 +10,29 @@ function isConfiguredPlanId(value?: string): value is string {
   return true;
 }
 
+/** Live Whop plan IDs — env vars override these when set. */
+const DEFAULT_WHOP_PLAN_IDS: Record<string, string> = {
+  // Packages
+  "ugc-ad-sprint": "plan_JqrQdwnkcl0a5",
+  "editing-sprint": "plan_3wRyivT4fTXUK",
+  "shoot-to-sales-sprint": "plan_97ZCwLZkadp6O",
+  "paid-ads-sprint": "plan_rTLdndqRzj3uB",
+  // Resources
+  "100-ai-ugc-prompt-vault": "plan_fzI4tLxdfMcxU",
+  "ai-product-video-workflow-sop": "plan_pSiyPmQp3nCvP",
+  "winning-video-ad-hook-framework-deck": "plan_MKQJQlUyXCRME",
+  "creative-strategy-research-template": "plan_NuAOviuUfIRCL",
+  // Add when created:
+  // "retention-editing-checklist-for-paid-social": "plan_xxxxxxxx",
+};
+
 export function getPublicWhopPlanId(slug: string): string | undefined {
   const envKey = `NEXT_PUBLIC_WHOP_PLAN_${slug.toUpperCase().replace(/-/g, "_")}`;
-  const value = process.env[envKey];
-  return isConfiguredPlanId(value) ? value : undefined;
+  const fromEnv = process.env[envKey];
+  if (isConfiguredPlanId(fromEnv)) return fromEnv.trim();
+
+  const fallback = DEFAULT_WHOP_PLAN_IDS[slug];
+  return isConfiguredPlanId(fallback) ? fallback : undefined;
 }
 
 export function getPublicWhopCheckoutUrl(slug: string): string | undefined {

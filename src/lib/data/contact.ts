@@ -21,13 +21,13 @@ export const contactBudgetOptions = [
 ] as const;
 
 /** Public booking page (open in new tab). */
-export const calendlyUrl = "https://calendly.com/nadimmahmudytd/30min";
+export const calendlyUrl = "https://calendly.com/ugcviss-support/30min";
 
 /** Direct scheduling link from Calendly (fallback if embed fails). */
 export const calendlySchedulingUrl =
-  "https://calendly.com/d/dvzd-8xf-4bw/30-minute-meeting";
+  "https://calendly.com/ugcviss-support/30min";
 
-const calendlyEventPath = "https://calendly.com/nadimmahmudytd/30min";
+const calendlyEventPath = "https://calendly.com/ugcviss-support/30min";
 
 type CalendlyEmbedOptions = {
   date?: string;

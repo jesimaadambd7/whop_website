@@ -305,7 +305,7 @@ function TeamProfileForm({
             {mode === "create" ? "Create team profile" : "Edit team profile"}
           </h2>
           <p className="mt-2 text-sm text-zinc-500">
-            Control names, roles, bios, LinkedIn, profile links, and photos from backend.
+            Control names, roles, bios, LinkedIn, X/Twitter, profile links, and photos from backend.
             New profiles publish by default.
           </p>
         </div>
@@ -398,7 +398,17 @@ function TeamProfileForm({
           <input
             className={inputClass}
             name="linkedin"
+            placeholder="https://www.linkedin.com/in/..."
             defaultValue={member?.linkedin ?? ""}
+          />
+        </div>
+        <div>
+          <label className={labelClass}>X / Twitter</label>
+          <input
+            className={inputClass}
+            name="twitter"
+            placeholder="https://x.com/..."
+            defaultValue={member?.twitter ?? ""}
           />
         </div>
         <div>

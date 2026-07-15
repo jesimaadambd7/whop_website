@@ -98,7 +98,7 @@ export function MemberTeamCard({ member, variant = "compact" }: MemberTeamCardPr
             {member.bio}
           </p>
 
-          {(member.linkedin || !isPage) && (
+          {(member.linkedin || member.twitter || !isPage) && (
             <div className="relative z-[3] mt-6 flex flex-wrap items-center justify-center gap-2">
               {member.linkedin && (
                 <a
@@ -109,6 +109,17 @@ export function MemberTeamCard({ member, variant = "compact" }: MemberTeamCardPr
                 >
                   <Link2 size={12} />
                   LinkedIn
+                </a>
+              )}
+              {member.twitter && (
+                <a
+                  href={member.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative z-[3] inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/8 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-200 transition hover:border-sky-400/40 hover:text-sky-100"
+                >
+                  <Link2 size={12} />
+                  X / Twitter
                 </a>
               )}
               {!isPage && (

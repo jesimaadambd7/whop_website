@@ -49,7 +49,7 @@ export function FounderJourneyPage({ journey }: FounderJourneyPageProps) {
     jobTitle: member.role,
     description: journey.profileBio,
     image: member.image ? `${siteConfig.url}${member.image}` : undefined,
-    sameAs: member.linkedin,
+    sameAs: [member.linkedin, member.twitter].filter(Boolean),
     url: pageUrl,
     worksFor: {
       "@type": "Organization",
@@ -151,15 +151,29 @@ export function FounderJourneyPage({ journey }: FounderJourneyPageProps) {
 
               <p className="mt-5 text-sm leading-7 text-zinc-400">{journey.profileBio}</p>
 
-              {member.linkedin && (
-                <a
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-5 inline-flex rounded-full border border-sky-400/35 bg-sky-400/10 px-4 py-2 text-sm font-black text-sky-100 transition hover:border-sky-400 hover:bg-sky-400 hover:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                >
-                  View LinkedIn
-                </a>
+              {(member.linkedin || member.twitter) && (
+                <div className="mt-5 flex flex-wrap gap-3">
+                  {member.linkedin && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex rounded-full border border-sky-400/35 bg-sky-400/10 px-4 py-2 text-sm font-black text-sky-100 transition hover:border-sky-400 hover:bg-sky-400 hover:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                    >
+                      View LinkedIn
+                    </a>
+                  )}
+                  {member.twitter && (
+                    <a
+                      href={member.twitter}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex rounded-full border border-sky-400/35 bg-sky-400/10 px-4 py-2 text-sm font-black text-sky-100 transition hover:border-sky-400 hover:bg-sky-400 hover:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                    >
+                      View X / Twitter
+                    </a>
+                  )}
+                </div>
               )}
             </Reveal>
           </div>

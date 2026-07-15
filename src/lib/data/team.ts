@@ -9,6 +9,7 @@ export type TeamMember = {
   /** Small badge shown on photo overlay */
   badge: string;
   linkedin?: string;
+  twitter?: string;
   portfolioHref: string;
   /** Public team profile URL, may override default /team/slug */
   profileHref: string;

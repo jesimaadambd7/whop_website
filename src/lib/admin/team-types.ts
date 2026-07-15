@@ -23,6 +23,7 @@ export type AdminTeamMember = {
   bio: string;
   image: string | null;
   linkedin: string;
+  twitter: string;
   profileHref: string;
   portfolioHref: string;
   status: TeamProfileStatus;

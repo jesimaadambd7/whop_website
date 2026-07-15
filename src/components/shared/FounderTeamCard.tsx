@@ -106,6 +106,17 @@ export function FounderTeamCard({ member }: FounderTeamCardProps) {
                   LinkedIn
                 </a>
               )}
+              {member.twitter && (
+                <a
+                  href={member.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative z-[3] inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/8 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-200 transition hover:border-sky-400/40 hover:text-sky-100"
+                >
+                  <Link2 size={12} />
+                  X / Twitter
+                </a>
+              )}
               <span className="founder-team-card__chip inline-flex items-center rounded-full border border-sky-400/30 bg-sky-400/15 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-sky-100">
                 Creative leadership
               </span>

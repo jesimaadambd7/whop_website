@@ -20,6 +20,7 @@ function parseMemberFromForm(form: FormData, existing?: AdminTeamMember): AdminT
     bio: String(form.get("bio") ?? existing?.bio ?? "").trim(),
     image: existing?.image ?? null,
     linkedin: String(form.get("linkedin") ?? existing?.linkedin ?? "").trim(),
+    twitter: String(form.get("twitter") ?? existing?.twitter ?? "").trim(),
     profileHref: String(form.get("profileHref") ?? existing?.profileHref ?? "").trim(),
     portfolioHref:
       String(form.get("portfolioHref") ?? existing?.portfolioHref ?? "").trim() ||

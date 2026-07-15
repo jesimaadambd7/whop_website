@@ -150,6 +150,7 @@ export function ResourceCheckoutView({
                 planId={planId}
                 returnUrl={returnUrl}
                 email={customerEmail}
+                sandbox={whopSandbox}
                 onPaymentComplete={handlePaymentComplete}
               />
             </div>

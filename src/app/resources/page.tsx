@@ -9,6 +9,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { featuredGuides, intentPages } from "@/lib/data/resources";
 import { loadPublishedVaultResources } from "@/lib/data/load-resources";
+import { siteConfig } from "@/lib/data/site";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -27,8 +28,24 @@ export const metadata: Metadata = buildPageMetadata({
 export default async function ResourcesPage() {
   const vaultResources = await loadPublishedVaultResources();
 
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "UGCViss Resources",
+    itemListElement: vaultResources.map((resource, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: resource.title,
+      url: `${siteConfig.url}/resources/${resource.slug}`,
+    })),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
       <PageHero
         eyebrow="Resources"
         title="Guides for better ecommerce video creative."

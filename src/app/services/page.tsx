@@ -10,6 +10,7 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { loadPackages } from "@/lib/data/packages";
 import { services, serviceBottlenecks } from "@/lib/data/services";
+import { siteConfig } from "@/lib/data/site";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -50,11 +51,33 @@ function SectionIntro({
   );
 }
 
+function ServicesItemListJsonLd() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "UGCViss Services",
+    itemListElement: services.map((service, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: service.title,
+      url: `${siteConfig.url}/services/${service.id}`,
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 export default async function ServicesPage() {
   const packages = await loadPackages();
 
   return (
     <>
+      <ServicesItemListJsonLd />
       <PageHero
         eyebrow="Services"
         title="Production and paid ads services for brands that need more than a single edit."

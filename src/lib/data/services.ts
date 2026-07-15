@@ -123,6 +123,25 @@ export const services: Service[] = [
   },
 ];
 
+export function getServiceById(id: string): Service | undefined {
+  return services.find((service) => service.id === id);
+}
+
+/** SEO title/keywords per service landing page. */
+export function getServiceSeo(service: Service) {
+  return {
+    title: `${service.title} Services`,
+    description: `${service.description} Ideal for ${service.idealFor}`,
+    keywords: [
+      service.title,
+      `${service.title} agency`,
+      `${service.title} for ecommerce`,
+      "UGCViss services",
+      "performance video creative",
+    ],
+  };
+}
+
 export const serviceBottlenecks = [
   {
     title: "Need fresh product footage?",

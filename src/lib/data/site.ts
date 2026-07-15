@@ -28,12 +28,12 @@ export const navigation = [
 
 export const footerLinks = {
   services: [
-    { label: "UGC Ads Production", href: "/services#ugc-ads" },
-    { label: "Video Editing", href: "/services#video-editing" },
-    { label: "Model & Product Shoots", href: "/services#model-shoots" },
-    { label: "Paid Social Creatives", href: "/services#paid-social" },
-    { label: "Motion Graphics", href: "/services#motion-graphics" },
-    { label: "Paid Ads Management", href: "/services#paid-ads" },
+    { label: "UGC Ads Production", href: "/services/ugc-ads" },
+    { label: "Video Editing", href: "/services/video-editing" },
+    { label: "Model & Product Shoots", href: "/services/model-shoots" },
+    { label: "Paid Social Creatives", href: "/services/paid-social" },
+    { label: "Motion Graphics", href: "/services/motion-graphics" },
+    { label: "Paid Ads Management", href: "/services/paid-ads" },
   ],
   company: [
     { label: "About", href: "/about" },
@@ -45,6 +45,7 @@ export const footerLinks = {
   resources: [
     { label: "FAQs", href: "/faqs" },
     { label: "Resources", href: "/resources" },
+    { label: "AI UGC Prompt Vault", href: "/resources/100-ai-ugc-prompt-vault" },
     { label: "Creator Portfolios", href: "/creator-portfolios" },
   ],
   legal: [

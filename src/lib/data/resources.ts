@@ -261,22 +261,22 @@ export const guideInsightParagraphs = [
 
 export const intentPages: IntentPage[] = [
   {
-    href: "/ugc-ads-agency",
+    href: "/services/ugc-ads",
     eyebrow: "UGC Ads Agency",
     title: "UGC ads built for ecommerce testing and sales.",
   },
   {
-    href: "/video-editing-services",
+    href: "/services/video-editing",
     eyebrow: "Video Editing Services",
     title: "Performance video editing for ads, social, and ecommerce.",
   },
   {
-    href: "/paid-social-ad-creatives",
+    href: "/services/paid-social",
     eyebrow: "Paid Social Ad Creatives",
     title: "Paid social creatives for brands that need more winning tests.",
   },
   {
-    href: "/ecommerce-video-production",
+    href: "/services/model-shoots",
     eyebrow: "Ecommerce Video Production",
     title: "Ecommerce video production from shoot planning to ad assets.",
   },

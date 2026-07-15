@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { AnimatedGlassCard } from "@/components/ui/AnimatedGlassCard";
 import { ServiceCardMedia } from "@/components/shared/ServiceCardMedia";
 import type { Service } from "@/lib/data/services";
@@ -21,7 +22,12 @@ export function ServiceDetailCard({ service, eager = false }: ServiceDetailCardP
 
         <div className="relative z-[1] flex flex-1 flex-col p-6 sm:p-7">
           <h3 className="font-display text-2xl font-black tracking-[-0.04em] text-white transition duration-400 group-hover/glass:text-sky-100">
-            {service.title}
+            <Link
+              href={`/services/${service.id}`}
+              className="transition hover:text-sky-300 focus:outline-none focus-visible:text-sky-300"
+            >
+              {service.title}
+            </Link>
           </h3>
           <p className="mt-4 text-sm leading-7 text-zinc-400 transition duration-400 group-hover/glass:text-zinc-300">
             {service.description}
@@ -50,6 +56,13 @@ export function ServiceDetailCard({ service, eager = false }: ServiceDetailCardP
               </p>
               <p className="mt-2 text-sm leading-6 text-zinc-300">{service.idealFor}</p>
             </div>
+
+            <Link
+              href={`/services/${service.id}`}
+              className="inline-flex text-sm font-black text-sky-300 transition hover:text-sky-200"
+            >
+              View service page →
+            </Link>
           </div>
         </div>
       </AnimatedGlassCard>

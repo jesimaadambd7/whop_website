@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { clientPortfolios } from "@/lib/data/client-portfolio";
 import { loadPackages } from "@/lib/data/packages";
 import { loadPublishedVaultResources } from "@/lib/data/load-resources";
+import { services } from "@/lib/data/services";
 import { siteConfig } from "@/lib/data/site";
 import { loadTeamMembers } from "@/lib/data/team";
 
@@ -67,6 +68,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.55,
   }));
 
+  const serviceEntries: MetadataRoute.Sitemap = services.map((service) => ({
+    url: absoluteUrl(`/services/${service.id}`),
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.85,
+  }));
+
   const resourceEntries: MetadataRoute.Sitemap = resources.map((resource) => ({
     url: absoluteUrl(`/resources/${resource.slug}`),
     lastModified: now,
@@ -93,6 +101,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const byUrl = new Map<string, MetadataRoute.Sitemap[number]>();
   for (const entry of [
     ...staticEntries,
+    ...serviceEntries,
     ...packageEntries,
     ...portfolioEntries,
     ...teamEntries,

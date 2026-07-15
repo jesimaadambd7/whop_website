@@ -18,7 +18,14 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const resource = await getPublishedVaultResourceBySlug(params.slug);
-  if (!resource) return { title: "Resource" };
+  if (!resource) {
+    return buildPageMetadata({
+      title: "Resource not found",
+      description: "This UGCViss resource is unavailable or unpublished.",
+      path: `/resources/${params.slug}`,
+      noIndex: true,
+    });
+  }
 
   return buildPageMetadata({
     title: `${resource.title} — UGC Creative Resource`,

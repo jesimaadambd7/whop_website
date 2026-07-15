@@ -15,7 +15,7 @@ export function ServiceCard({ service, eager = false }: ServiceCardProps) {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <Link href={`/services#${service.id}`} className="group/service block h-full">
+    <Link href={`/services/${service.id}`} className="group/service block h-full">
       <AnimatedGlassCard
         variant="card"
         className="service-card h-full"

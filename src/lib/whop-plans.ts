@@ -22,8 +22,7 @@ const DEFAULT_WHOP_PLAN_IDS: Record<string, string> = {
   "ai-product-video-workflow-sop": "plan_pSiyPmQp3nCvP",
   "winning-video-ad-hook-framework-deck": "plan_MKQJQlUyXCRME",
   "creative-strategy-research-template": "plan_NuAOviuUfIRCL",
-  // Add when created:
-  // "retention-editing-checklist-for-paid-social": "plan_xxxxxxxx",
+  "retention-editing-checklist-for-paid-social": "plan_0CbEUbCS4oyaZ",
 };
 
 export function getPublicWhopPlanId(slug: string): string | undefined {

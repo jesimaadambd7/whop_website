@@ -1,6 +1,6 @@
 import type { LegalSection } from "@/lib/data/legal-page";
 
-export const termsLastUpdated = "June 20, 2026";
+export const termsLastUpdated = "July 16, 2026";
 
 export type TermsSection = LegalSection;
 
@@ -22,12 +22,28 @@ export const termsSections: LegalSection[] = [
     navLabel: "What UGCViss provides",
     paragraphs: [
       "UGCViss provides creative and growth services that may include UGC ads production, model and product shoots, video editing, motion graphics, short-form content, creator sourcing, actor, influencer, and celebrity talent coordination, creative strategy, paid social ad creatives, and paid ads support.",
+      "UGCViss also sells digital products such as locked resource vaults, templates, prompt packs, research tools, checklists, and Creator Portfolio memberships.",
       "Exact deliverables, timelines, revision rounds, usage rights, payment terms, talent terms, and production requirements are confirmed before a project begins.",
     ],
   },
   {
-    id: "client-responsibilities",
+    id: "no-refund-and-exchange-policy",
     number: "03",
+    title: "No refund and exchange policy",
+    navLabel: "No refund and exchange policy",
+    paragraphs: [
+      "All sales of digital products, resources, templates, prompt packs, research tools, checklists, memberships, and related digital items are **final** once access, download links, unlock credentials, or delivery files have been made available to you.",
+      "Due to the nature of digital goods, **we do not offer exchanges, returns, or refunds** under any circumstances once the product, resource access, or account credentials have been delivered. Please ensure you are ordering the correct item before proceeding.",
+      "Custom creative service packages may still be reviewed for a pre-kickoff refund only when UGCViss has not confirmed kickoff and production work has not started, as stated at checkout. Chargebacks, payment disputes, or abuse of access after delivery may result in account suspension and enforcement under these terms.",
+    ],
+    callout: {
+      title: "Strict No Exchange & No Refund Policy",
+      body: "All sales of digital products and related items are **final**. Due to the nature of digital goods, **we do not offer exchanges, returns, or refunds** under any circumstances once access or credentials have been delivered. Please ensure you are ordering the correct item before proceeding.",
+    },
+  },
+  {
+    id: "client-responsibilities",
+    number: "04",
     title: "Client responsibilities",
     navLabel: "Client responsibilities",
     paragraphs: [
@@ -37,7 +53,7 @@ export const termsSections: LegalSection[] = [
   },
   {
     id: "proposals-payment-and-scheduling",
-    number: "04",
+    number: "05",
     title: "Proposals, payment, and scheduling",
     navLabel: "Proposals, payment, and scheduling",
     paragraphs: [
@@ -47,7 +63,7 @@ export const termsSections: LegalSection[] = [
   },
   {
     id: "revisions-and-approvals",
-    number: "05",
+    number: "06",
     title: "Revisions and approvals",
     navLabel: "Revisions and approvals",
     paragraphs: [
@@ -57,7 +73,7 @@ export const termsSections: LegalSection[] = [
   },
   {
     id: "creative-ownership-and-usage",
-    number: "06",
+    number: "07",
     title: "Creative ownership and usage",
     navLabel: "Creative ownership and usage",
     paragraphs: [
@@ -67,7 +83,7 @@ export const termsSections: LegalSection[] = [
   },
   {
     id: "third-party-creators-tools-and-platforms",
-    number: "07",
+    number: "08",
     title: "Third-party creators, tools, and platforms",
     navLabel: "Third-party creators, tools, and platforms",
     paragraphs: [
@@ -77,7 +93,7 @@ export const termsSections: LegalSection[] = [
   },
   {
     id: "paid-ads-and-performance",
-    number: "08",
+    number: "09",
     title: "Paid ads and performance",
     navLabel: "Paid ads and performance",
     paragraphs: [
@@ -87,7 +103,7 @@ export const termsSections: LegalSection[] = [
   },
   {
     id: "creator-portfolio-membership",
-    number: "09",
+    number: "10",
     title: "Creator Portfolio membership",
     navLabel: "Creator Portfolio membership",
     paragraphs: [
@@ -98,18 +114,18 @@ export const termsSections: LegalSection[] = [
   },
   {
     id: "creator-payments-resources-and-refunds",
-    number: "10",
+    number: "11",
     title: "Creator payments, resources, and refunds",
     navLabel: "Creator payments, resources, and refunds",
     paragraphs: [
       "An active Creator Portfolio membership provides personal, non-transferable access to published current and future UGCViss resources while the membership remains in good standing. Resources, prompts, templates, research, and tutorials may not be resold, redistributed, shared publicly, or used to create a competing resource library.",
-      "The Creator Portfolio purchase is eligible for a refund request within seven days only when the portfolio has not been published and no premium UGCViss resource has been downloaded. Approved refunds, payment disputes, or chargebacks may suspend the membership, public profile, and premium resource entitlement while preserving account data for review.",
+      "The Creator Portfolio purchase is eligible for a refund request within seven days only when the portfolio has not been published and no premium UGCViss resource has been downloaded. Once portfolio access, publication, or resource download has occurred, the **No Exchange & No Refund** policy applies. Approved refunds, payment disputes, or chargebacks may suspend the membership, public profile, and premium resource entitlement while preserving account data for review.",
       "UGCViss does not promise perpetual availability of every third-party integration or identical product features forever. We may make reasonable technical, security, legal, or operational changes while aiming to preserve the core lifetime portfolio entitlement within purchased limits.",
     ],
   },
   {
     id: "confidentiality",
-    number: "11",
+    number: "12",
     title: "Confidentiality",
     navLabel: "Confidentiality",
     paragraphs: [
@@ -119,7 +135,7 @@ export const termsSections: LegalSection[] = [
   },
   {
     id: "website-use",
-    number: "12",
+    number: "13",
     title: "Website use",
     navLabel: "Website use",
     paragraphs: [
@@ -129,7 +145,7 @@ export const termsSections: LegalSection[] = [
   },
   {
     id: "limitation-of-liability",
-    number: "13",
+    number: "14",
     title: "Limitation of liability",
     navLabel: "Limitation of liability",
     paragraphs: [
@@ -139,7 +155,7 @@ export const termsSections: LegalSection[] = [
   },
   {
     id: "updates-and-contact",
-    number: "14",
+    number: "15",
     title: "Updates and contact",
     navLabel: "Updates and contact",
     paragraphs: [

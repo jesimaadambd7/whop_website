@@ -1,6 +1,6 @@
 import type { LegalSection } from "@/lib/data/legal-page";
 
-export const privacyLastUpdated = "June 20, 2026";
+export const privacyLastUpdated = "July 16, 2026";
 
 export const privacySections: LegalSection[] = [
   {
@@ -26,8 +26,23 @@ export const privacySections: LegalSection[] = [
     ],
   },
   {
-    id: "creator-accounts-portfolios-and-inquiries",
+    id: "no-refund-and-exchange-policy-privacy",
     number: "03",
+    title: "No refund and exchange policy privacy clause",
+    navLabel: "No refund and exchange policy",
+    paragraphs: [
+      "Once order credentials, unlock access, download links, or delivery records enter your profile or order database records, they are fully available to you.",
+      "Security logs showing dashboard reads, unlock events, download activity, and delivery access may be fetched internally to resolve fraud disputes and determine ownership in compliance with our **No Exchange & No Refund** Terms of Service policy agreements.",
+      "We retain these records as needed for payment disputes, chargeback defense, abuse prevention, legal compliance, and customer support.",
+    ],
+    callout: {
+      title: "Strict No Exchange & No Refund Policy",
+      body: "All sales of digital products and related items are **final**. Due to the nature of digital goods, **we do not offer exchanges, returns, or refunds** under any circumstances once access or credentials have been delivered. Please ensure you are ordering the correct item before proceeding.",
+    },
+  },
+  {
+    id: "creator-accounts-portfolios-and-inquiries",
+    number: "04",
     title: "Creator accounts, portfolios, and inquiries",
     navLabel: "Creator accounts, portfolios, and inquiries",
     paragraphs: [
@@ -38,7 +53,7 @@ export const privacySections: LegalSection[] = [
   },
   {
     id: "calendly-and-booking-data",
-    number: "04",
+    number: "05",
     title: "Calendly and booking data",
     navLabel: "Calendly and booking data",
     paragraphs: [
@@ -48,7 +63,7 @@ export const privacySections: LegalSection[] = [
   },
   {
     id: "cookies-and-analytics",
-    number: "05",
+    number: "06",
     title: "Cookies and analytics",
     navLabel: "Cookies and analytics",
     paragraphs: [
@@ -59,7 +74,7 @@ export const privacySections: LegalSection[] = [
   },
   {
     id: "how-we-share-information",
-    number: "06",
+    number: "07",
     title: "How we share information",
     navLabel: "How we share information",
     paragraphs: [
@@ -69,7 +84,7 @@ export const privacySections: LegalSection[] = [
   },
   {
     id: "international-visitors",
-    number: "07",
+    number: "08",
     title: "International visitors",
     navLabel: "International visitors",
     paragraphs: [
@@ -79,7 +94,7 @@ export const privacySections: LegalSection[] = [
   },
   {
     id: "data-retention",
-    number: "08",
+    number: "09",
     title: "Data retention",
     navLabel: "Data retention",
     paragraphs: [
@@ -89,7 +104,7 @@ export const privacySections: LegalSection[] = [
   },
   {
     id: "security",
-    number: "09",
+    number: "10",
     title: "Security",
     navLabel: "Security",
     paragraphs: [
@@ -99,7 +114,7 @@ export const privacySections: LegalSection[] = [
   },
   {
     id: "your-choices",
-    number: "10",
+    number: "11",
     title: "Your choices",
     navLabel: "Your choices",
     paragraphs: [
@@ -109,7 +124,7 @@ export const privacySections: LegalSection[] = [
   },
   {
     id: "children-s-privacy",
-    number: "11",
+    number: "12",
     title: "Children's privacy",
     navLabel: "Children's privacy",
     paragraphs: [
@@ -118,7 +133,7 @@ export const privacySections: LegalSection[] = [
   },
   {
     id: "updates-and-contact",
-    number: "12",
+    number: "13",
     title: "Updates and contact",
     navLabel: "Updates and contact",
     paragraphs: [

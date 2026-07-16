@@ -1,6 +1,8 @@
 import type { Submission, SubmissionType } from "@/lib/admin/types";
 import { sendEmail } from "@/lib/email/send";
+import { escapeEmailHtml, renderEmailBrandHeader } from "@/lib/email/brand";
 import { siteConfig, getSupportEmail } from "@/lib/data/site";
+import { getPublicSiteUrl } from "@/lib/public-site-url";
 
 function getInquiryTypeLabel(type: SubmissionType) {
   if (type === "creative-audit") return "Creative audit request";
@@ -27,46 +29,48 @@ function buildInquiryReplyText(submission: Submission, body: string) {
   ].join("\n");
 }
 
-function escapeHtml(value: string) {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
-function buildInquiryReplyHtml(submission: Submission, body: string) {
-  const greeting = submission.name.trim() ? `Hi ${escapeHtml(submission.name)},` : "Hi there,";
+function buildInquiryShell(innerRows: string) {
+  const year = new Date().getFullYear();
   const supportEmail = getSupportEmail();
-  const formattedBody = escapeHtml(body.trim()).split("\n").join("<br />");
+  const siteUrl = getPublicSiteUrl();
 
   return `<!DOCTYPE html>
 <html lang="en">
-  <body style="margin:0;padding:32px 16px;background:#0b0d12;font-family:Arial,Helvetica,sans-serif;color:#e4e4e7;">
-    <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="supported-color-schemes" content="light dark" />
+  </head>
+  <body style="margin:0;padding:0;background-color:#0b0d12;font-family:Arial,Helvetica,sans-serif;color:#e4e4e7;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#0b0d12;padding:32px 16px;">
       <tr>
         <td align="center">
-          <table role="presentation" width="100%" style="max-width:600px;background:#12151d;border:1px solid #272a33;border-radius:24px;padding:32px 28px;">
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:600px;">
             <tr>
-              <td style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#38bdf8;padding-bottom:16px;">
-                Reply from ${escapeHtml(siteConfig.name)}
+              <td style="padding:0 0 24px 0;text-align:center;">
+                ${renderEmailBrandHeader()}
               </td>
             </tr>
             <tr>
-              <td style="font-size:15px;line-height:1.7;color:#a1a1aa;padding-bottom:20px;">
-                ${greeting}<br /><br />
-                Thanks for reaching out about your ${escapeHtml(getInquiryTypeLabel(submission.type).toLowerCase())}.
+              <td style="background-color:#12151d;border:1px solid #272a33;border-radius:24px;padding:32px 28px;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                  ${innerRows}
+                </table>
               </td>
             </tr>
             <tr>
-              <td style="background:#0b0d12;border:1px solid #272a33;border-radius:16px;padding:20px;font-size:15px;line-height:1.8;color:#d4d4d8;">
-                ${formattedBody}
-              </td>
-            </tr>
-            <tr>
-              <td style="padding-top:24px;font-size:13px;line-height:1.7;color:#71717a;">
-                Reply to this email if you want to share more details.<br />
-                Support: <a href="mailto:${escapeHtml(supportEmail)}" style="color:#38bdf8;">${escapeHtml(supportEmail)}</a>
+              <td style="padding:24px 8px 0;text-align:center;font-size:12px;line-height:1.7;color:#71717a;">
+                <p style="margin:0 0 8px 0;">
+                  Questions? Contact
+                  <a href="mailto:${escapeEmailHtml(supportEmail)}" style="color:#38bdf8;text-decoration:underline;">
+                    ${escapeEmailHtml(supportEmail)}
+                  </a>
+                </p>
+                <p style="margin:0;">
+                  <a href="${siteUrl}" style="color:#71717a;text-decoration:underline;">${escapeEmailHtml(siteUrl.replace(/^https?:\/\//, ""))}</a>
+                  · © ${year} ${escapeEmailHtml(siteConfig.name)}
+                </p>
               </td>
             </tr>
           </table>
@@ -75,6 +79,36 @@ function buildInquiryReplyHtml(submission: Submission, body: string) {
     </table>
   </body>
 </html>`;
+}
+
+function buildInquiryReplyHtml(submission: Submission, body: string) {
+  const greeting = submission.name.trim()
+    ? `Hi ${escapeEmailHtml(submission.name)},`
+    : "Hi there,";
+  const formattedBody = escapeEmailHtml(body.trim()).split("\n").join("<br />");
+
+  return buildInquiryShell(`
+                  <tr>
+                    <td style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#38bdf8;padding-bottom:16px;">
+                      Reply from ${escapeEmailHtml(siteConfig.name)}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-size:15px;line-height:1.7;color:#a1a1aa;padding-bottom:20px;">
+                      ${greeting}<br /><br />
+                      Thanks for reaching out about your ${escapeEmailHtml(getInquiryTypeLabel(submission.type).toLowerCase())}.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="background:#0b0d12;border:1px solid #272a33;border-radius:16px;padding:20px;font-size:15px;line-height:1.8;color:#d4d4d8;">
+                      ${formattedBody}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding-top:24px;font-size:13px;line-height:1.7;color:#71717a;">
+                      Reply to this email if you want to share more details.
+                    </td>
+                  </tr>`);
 }
 
 export async function notifyInquiryReply(submission: Submission, body: string) {
@@ -111,60 +145,43 @@ function buildInquiryConfirmationText(submission: Submission) {
 }
 
 function buildInquiryConfirmationHtml(submission: Submission) {
-  const greeting = submission.name.trim() ? `Hi ${escapeHtml(submission.name)},` : "Hi there,";
-  const supportEmail = getSupportEmail();
-  const summary = escapeHtml(submission.summary).split("\n").join("<br />");
+  const greeting = submission.name.trim()
+    ? `Hi ${escapeEmailHtml(submission.name)},`
+    : "Hi there,";
+  const summary = escapeEmailHtml(submission.summary).split("\n").join("<br />");
 
-  return `<!DOCTYPE html>
-<html lang="en">
-  <body style="margin:0;padding:32px 16px;background:#0b0d12;font-family:Arial,Helvetica,sans-serif;color:#e4e4e7;">
-    <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
-      <tr>
-        <td align="center">
-          <table role="presentation" width="100%" style="max-width:600px;background:#12151d;border:1px solid #272a33;border-radius:24px;padding:32px 28px;">
-            <tr>
-              <td style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#38bdf8;padding-bottom:16px;">
-                Inquiry received
-              </td>
-            </tr>
-            <tr>
-              <td style="font-size:28px;line-height:1.2;font-weight:700;color:#ffffff;padding-bottom:12px;">
-                Thanks — we got your message
-              </td>
-            </tr>
-            <tr>
-              <td style="font-size:15px;line-height:1.7;color:#a1a1aa;padding-bottom:20px;">
-                ${greeting}<br /><br />
-                We received your ${escapeHtml(getInquiryTypeLabel(submission.type).toLowerCase())} and our team is reviewing it now.
-              </td>
-            </tr>
-            <tr>
-              <td style="background:#0b0d12;border:1px solid #272a33;border-radius:16px;padding:20px;font-size:15px;line-height:1.8;color:#d4d4d8;">
-                ${summary}
-              </td>
-            </tr>
-            <tr>
-              <td style="padding-top:20px;font-size:14px;line-height:1.7;color:#a1a1aa;">
-                We usually reply with next steps, scope questions, or a call link. Watch your inbox for our response.
-              </td>
-            </tr>
-            <tr>
-              <td style="padding-top:16px;font-size:12px;color:#71717a;">
-                Reference: ${escapeHtml(submission.id)}
-              </td>
-            </tr>
-            <tr>
-              <td style="padding-top:24px;font-size:13px;line-height:1.7;color:#71717a;">
-                Questions? Contact
-                <a href="mailto:${escapeHtml(supportEmail)}" style="color:#38bdf8;">${escapeHtml(supportEmail)}</a>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </table>
-  </body>
-</html>`;
+  return buildInquiryShell(`
+                  <tr>
+                    <td style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#38bdf8;padding-bottom:16px;">
+                      Inquiry received
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-size:28px;line-height:1.2;font-weight:700;color:#ffffff;padding-bottom:12px;">
+                      Thanks — we got your message
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-size:15px;line-height:1.7;color:#a1a1aa;padding-bottom:20px;">
+                      ${greeting}<br /><br />
+                      We received your ${escapeEmailHtml(getInquiryTypeLabel(submission.type).toLowerCase())} and our team is reviewing it now.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="background:#0b0d12;border:1px solid #272a33;border-radius:16px;padding:20px;font-size:15px;line-height:1.8;color:#d4d4d8;">
+                      ${summary}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding-top:20px;font-size:14px;line-height:1.7;color:#a1a1aa;">
+                      We usually reply with next steps, scope questions, or a call link. Watch your inbox for our response.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding-top:16px;font-size:12px;color:#71717a;">
+                      Reference: ${escapeEmailHtml(submission.id)}
+                    </td>
+                  </tr>`);
 }
 
 export async function notifyInquiryConfirmation(submission: Submission) {
